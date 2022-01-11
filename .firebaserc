@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "music-shorts"
+  },
+  "targets": {
+    "music-shorts": {
+      "hosting": {
+        "music-shorts-auth": [
+          "music-shorts-auth"
+        ]
+      }
+    }
   }
 }
