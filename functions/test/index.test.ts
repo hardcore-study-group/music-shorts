@@ -2,14 +2,13 @@ import * as firebaseFunctionsTest from "firebase-functions-test";
 import * as Functions from "../src/index";
 // import * as admin from "firebase-admin";
 import {assert} from "chai";
-// import * as sinon from "sinon";
 
 
 const test = firebaseFunctionsTest({
-  databaseURL: "https://music-shorts.firebaseio.com",
-  storageBucket: "music-shorts.appspot.com",
-  projectId: "music-shorts",
-}, "serviceAccountKey.json");
+  databaseURL: "https://music-shorts-test.firebaseio.com",
+  storageBucket: "music-shorts-test.appspot.com",
+  projectId: "music-shorts-test",
+}, "testServiceAccountKey.json");
 
 
 describe("/", () => {
