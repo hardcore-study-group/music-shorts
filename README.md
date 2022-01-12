@@ -5,6 +5,7 @@ Open source project about app "music shorts"
 ```
 spotify.client_id
 spotify.client_secret
+spotify.redirect_uri
 ```
 
 # Use Spotify Sign In with Firebase
