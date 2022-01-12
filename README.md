@@ -1,6 +1,11 @@
 # music-shorts
 Open source project about app "music shorts"
 
+# firebase config
+```
+spotify.client_id
+spotify.client_secret
+```
 
 # Use Spotify Sign In with Firebase
 
@@ -32,12 +37,3 @@ Create and setup your Spotify app:
 Deploy your project:
  1. Run `firebase use --add` and choose your Firebase project. This will configure the Firebase CLI to use the correct project locally.
  1. Run `firebase deploy` to effectively deploy the sample. The first time the Functions are deployed the process can take several minutes.
-
-
-## Run the sample
-
-Open the sample's website by using `firebase open hosting:site` or directly accessing `https://<project-id>.firebaseapp.com/`.
-
-Click on the **Sign in with Spotify** button and a popup window will appear that will show the Spotify authentication consent screen. Sign In and/or authorize the authentication request.
-
-The website should display your display name, email and profile pic from Spotify. At this point you are authenticated in Firebase and can use the database/hosting etc...

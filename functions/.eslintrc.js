@@ -11,6 +11,7 @@ module.exports = {
     "plugin:import/typescript",
     "google",
     "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
@@ -23,11 +24,14 @@ module.exports = {
   plugins: [
     "@typescript-eslint",
     "import",
+    "prettier"
   ],
   rules: {
-    "quotes": ["error", "double"],
+    "prettier/prettier": "error",
     "import/no-unresolved": 0,
     "max-len": "off",
     "@typescript-eslint/no-unused-vars": "off",
+    "require-jsdoc": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
   },
 };
