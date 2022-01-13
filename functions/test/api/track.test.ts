@@ -1,1 +1,1 @@
-import {test} from '../index.test';
+import {testFunctions} from '../index.test';

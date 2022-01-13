@@ -1,18 +1,18 @@
 import {assert} from 'chai';
-import {test} from '../index.test';
+import {testFunctions} from '../index.test';
 
 describe('service/spotify', () => {
-  let spotify: {
+  let service: {
     getOAuthUrl: () => string;
   };
 
   before(async () => {
-    spotify = require('../../src/service/spotify');
+    service = require('../../src/service/spotify');
   });
 
   describe('getOAuthUrl', () => {
     it('return string type url', async () => {
-      const data = spotify.getOAuthUrl();
+      const data = service.getOAuthUrl();
       assert.typeOf(data, 'string', 'url type is a string');
       assert.include(
         data,

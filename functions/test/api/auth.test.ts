@@ -1,6 +1,6 @@
 import {assert} from 'chai';
 import {CloudFunction} from 'firebase-functions/v1';
-import {test} from '../index.test';
+import {testFunctions} from '../index.test';
 
 describe('api/auth', () => {
   let Functions: {
@@ -13,7 +13,7 @@ describe('api/auth', () => {
 
   describe('getSpotifyOAuthUrl', () => {
     it('return string type url', async () => {
-      const data = await test.wrap(Functions.getSpotifyOAuthUrl)({});
+      const data = await testFunctions.wrap(Functions.getSpotifyOAuthUrl)({});
       assert.typeOf(data, 'string', 'url type is a string');
       assert.include(
         data,

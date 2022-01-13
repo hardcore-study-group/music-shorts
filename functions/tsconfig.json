@@ -9,13 +9,14 @@
     "target": "es2017",
     "esModuleInterop": true,
     "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true
   },
   "compileOnSave": true,
   "include": [
     "src",
     "test",
-    "types"
+    "type"
   ],
   "exclude": [
     ".eslintrc.js",
