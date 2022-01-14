@@ -1,9 +1,13 @@
 import firebaseFunctionsTest from 'firebase-functions-test';
 // import * as admin from "firebase-admin";
-import {assert} from 'chai';
 import {CloudFunction} from 'firebase-functions/v1';
 import _admin from 'firebase-admin';
 import testServiceAccountkey from '../testServiceAccountKey.json';
+import chaiAsPromised from 'chai-as-promised';
+import chai, {assert} from 'chai';
+
+chai.use(chaiAsPromised);
+chai.should();
 
 const FIREBASE_CONFIG: _admin.AppOptions = {
   databaseURL: 'https://music-shorts-test.firebaseio.com',
