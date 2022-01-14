@@ -1,5 +1,4 @@
 import {assert} from 'chai';
-import {testFunctions} from '../index.test';
 
 describe('service/spotify', () => {
   let service: {
@@ -11,14 +10,9 @@ describe('service/spotify', () => {
   });
 
   describe('getOAuthUrl', () => {
-    it('return string type url', async () => {
-      const data = service.getOAuthUrl();
-      assert.typeOf(data, 'string', 'url type is a string');
-      assert.include(
-        data,
-        'https://accounts.spotify.com/authorize',
-        'spotify url format',
-      );
-    });
+    it('Check return url format', () =>
+      service
+        .getOAuthUrl()
+        .should.be.include('https://accounts.spotify.com/authorize'));
   });
 });

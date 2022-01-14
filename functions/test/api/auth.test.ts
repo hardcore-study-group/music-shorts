@@ -7,26 +7,26 @@ describe('api/auth', () => {
     getSpotifyOAuthUrl: CloudFunction<void>;
     getSpotifyFirebaseCustomToken: CloudFunction<void>;
   };
+
   before(() => {
     Functions = require('../../src/api/auth');
   });
 
   describe('getSpotifyOAuthUrl', () => {
-    it('return string type url', async () => {
-      const data = await testFunctions.wrap(Functions.getSpotifyOAuthUrl)({});
-      assert.typeOf(data, 'string', 'url type is a string');
-      assert.include(
-        data,
-        'https://accounts.spotify.com/authorize',
-        'spotify url format',
-      );
-    });
+    it('check return url format', () =>
+      testFunctions
+        .wrap(Functions.getSpotifyOAuthUrl)({})
+        .should.eventually.be.include(
+          'https://accounts.spotify.com/authorize',
+        ));
   });
 
-  // describe("getSpotifyFirebaseCustomToken", () => {
-  //   it("return string type token", async () =>{
-  //     const data = await test.wrap(Functions.getSpotifyFirebaseCustomToken)({});
-  //     assert.typeOf(data, "string", "token type is a string");
+  // describe('getSpotifyFirebaseCustomToken', () => {
+  //   it('return string type token', async () => {
+  //     const data = await testFunctions.wrap(
+  //       Functions.getSpotifyFirebaseCustomToken,
+  //     )({});
+  //     assert.typeOf(data, 'string', 'token type is a string');
   //   });
   // });
 });

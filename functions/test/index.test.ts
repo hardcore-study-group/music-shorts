@@ -4,7 +4,7 @@ import {CloudFunction} from 'firebase-functions/v1';
 import _admin from 'firebase-admin';
 import testServiceAccountkey from '../testServiceAccountKey.json';
 import chaiAsPromised from 'chai-as-promised';
-import chai, {assert} from 'chai';
+import chai from 'chai';
 
 chai.use(chaiAsPromised);
 chai.should();
@@ -40,8 +40,8 @@ describe('/', () => {
     testFunctions.cleanup();
   });
 
-  it('Functions "isRunning" will return "server is running"', async () => {
-    const data = await testFunctions.wrap(Functions.isRunning)({});
-    assert.equal(data, 'server is running');
-  });
+  it('Functions "isRunning" will return "server is running"', () =>
+    testFunctions
+      .wrap(Functions.isRunning)({})
+      .should.be.equal('server is running'));
 });
