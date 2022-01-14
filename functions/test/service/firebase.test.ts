@@ -77,6 +77,7 @@ describe('service/firebase', () => {
           displayName: USER_DATA_2.displayName,
           photoURL: USER_DATA_2.photoURL,
         }));
+
     it('Check updated accessToken', () =>
       testAdmin
         .firestore()
