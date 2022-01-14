@@ -30,6 +30,7 @@
     "@typescript-eslint/parser": "^3.8.0",
     "chai": "^4.3.4",
     "chai-as-promised": "^7.1.1",
+    "dotenv": "^11.0.0",
     "eslint": "^7.6.0",
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^8.3.0",
@@ -38,6 +39,7 @@
     "firebase-functions-test": "^0.3.3",
     "mocha": "^9.1.3",
     "prettier": "^2.5.1",
+    "puppeteer": "^13.0.1",
     "ts-node": "^10.4.0",
     "typescript": "^3.8.0"
   }

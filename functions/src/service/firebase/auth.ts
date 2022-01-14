@@ -4,7 +4,7 @@ import {CreateFirebaseAccountUserData} from '../../../type/service/firebase';
 export const createFirebaseAccount = async (
   userData: CreateFirebaseAccountUserData,
 ) => {
-  const {accessToken, displayName, email, photoURL, uid} = userData;
+  const {accessToken, refreshToken, email, uid} = userData;
 
   await Promise.all([
     (async () => {
@@ -14,15 +14,14 @@ export const createFirebaseAccount = async (
         .collection('user')
         .doc(uid)
         .get();
-      if (userSnapshot.exists) await userSnapshot.ref.update({accessToken});
-      else await userSnapshot.ref.set({accessToken});
+      if (userSnapshot.exists)
+        await userSnapshot.ref.update({accessToken, refreshToken});
+      else await userSnapshot.ref.set({accessToken, refreshToken});
     })(),
     (async () => {
       // Create or update the user account.
       try {
         await admin.auth().updateUser(uid, {
-          displayName: displayName,
-          photoURL: photoURL,
           email: email,
           emailVerified: true,
         });
@@ -32,8 +31,6 @@ export const createFirebaseAccount = async (
         if (error.code !== 'auth/user-not-found') throw error;
         await admin.auth().createUser({
           uid: uid,
-          displayName: displayName,
-          photoURL: photoURL,
           email: email,
           emailVerified: true,
         });

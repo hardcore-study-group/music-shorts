@@ -8,11 +8,12 @@ import chai from 'chai';
 
 chai.use(chaiAsPromised);
 chai.should();
+require('dotenv').config();
 
 const FIREBASE_CONFIG: _admin.AppOptions = {
-  databaseURL: 'https://music-shorts-test.firebaseio.com',
-  storageBucket: 'music-shorts-test.appspot.com',
-  projectId: 'music-shorts-test',
+  databaseURL: `https://${process.env.FIREBASE_TEST_PROJECT_ID}.firebaseio.com`,
+  storageBucket: `${process.env.FIREBASE_TEST_PROJECT_ID}.appspot.com`,
+  projectId: process.env.FIREBASE_TEST_PROJECT_ID,
   credential: _admin.credential.cert(testServiceAccountkey as any),
 };
 // initialize functions test mode
@@ -20,9 +21,10 @@ export const testFunctions = firebaseFunctionsTest(FIREBASE_CONFIG);
 // set functions config
 testFunctions.mockConfig({
   spotify: {
-    client_id: '59420b8a2fe94e9db278b76bd580f476',
-    client_secret: '09bc408b7a4241ecb2817b7b17bbb6ce',
-    redirect_uri: 'http://localhost:6000/spotify/popup.html',
+    client_id: process.env.SPOTIFY_TEST_CLIENT_ID,
+    client_secret: process.env.SPOTIFY_TEST_SECRET,
+    redirect_uri:
+      'https://music-shorts-auth.firebaseapp.com/spotify/popup.html',
   },
 });
 
@@ -30,7 +32,7 @@ export const testAdmin = _admin.initializeApp(FIREBASE_CONFIG, 'test_admin');
 
 describe('/', () => {
   let Functions: {
-    isRunning: CloudFunction<void>;
+    isRunning: CloudFunction<Promise<string>>;
   };
   before(() => {
     Functions = require('../src/index');

@@ -24,18 +24,16 @@ describe('service/firebase', () => {
 
   describe('createFirebaseAccount', () => {
     const USER_DATA_1: CreateFirebaseAccountUserData = {
-      accessToken: 'test_token',
-      displayName: 'test',
+      accessToken: 'test_access_token',
+      refreshToken: 'test_refresh_token',
       email: 'test@gmail.com',
-      photoURL: 'https://dummyimage.com/512x512.png',
       uid: 'test',
     };
 
     const USER_DATA_2: CreateFirebaseAccountUserData = {
-      accessToken: 'test_token_2',
-      displayName: 'test_2',
+      accessToken: 'test_access_token_2',
+      refreshToken: 'test_refresh_token_2',
       email: 'test2@gmail.com',
-      photoURL: 'https://dummyimage.com/512x512.jpg',
       uid: 'test',
     };
 
@@ -50,8 +48,6 @@ describe('service/firebase', () => {
         .getUser(USER_DATA_1.uid)
         .should.eventually.be.have.deep.include({
           email: USER_DATA_1.email,
-          displayName: USER_DATA_1.displayName,
-          photoURL: USER_DATA_1.photoURL,
         }));
 
     it('Check accessToken', () =>
@@ -74,8 +70,6 @@ describe('service/firebase', () => {
         .getUser(USER_DATA_2.uid)
         .should.eventually.be.have.deep.include({
           email: USER_DATA_2.email,
-          displayName: USER_DATA_2.displayName,
-          photoURL: USER_DATA_2.photoURL,
         }));
 
     it('Check updated accessToken', () =>

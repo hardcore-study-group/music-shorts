@@ -12,3 +12,14 @@ const OAUTH_SCOPES = ['user-read-email'];
 export const getOAuthUrl = () => {
   return spotify.createAuthorizeURL(OAUTH_SCOPES, '');
 };
+
+export const getCredential = async (code: string) => {
+  const data = await spotify.authorizationCodeGrant(code);
+  return data;
+};
+
+export const getMe = async (accessToken: string) => {
+  spotify.setAccessToken(accessToken);
+  const me = await spotify.getMe();
+  return me;
+};
