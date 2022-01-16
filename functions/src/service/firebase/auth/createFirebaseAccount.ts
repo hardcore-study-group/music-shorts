@@ -1,7 +1,5 @@
-import {admin} from '.';
-import {User} from '../../../type/firestore';
-import {CreateFirebaseAccountUserData} from '../../../type/service/firebase';
-import {spotify} from '../spotify';
+import {admin} from '..';
+import {CreateFirebaseAccountUserData} from '../../../../type/service/firebase';
 
 export const createFirebaseAccount = async (
   userData: CreateFirebaseAccountUserData,
@@ -44,14 +42,4 @@ export const createFirebaseAccount = async (
   const token = await admin.auth().createCustomToken(uid);
 
   return token;
-};
-
-export const getAccessToken = async (uid: string) => {
-  const {data} = await admin.firestore().collection('user').doc(uid).get();
-  const user = data() as User;
-  if (!user.refreshToken) throw new Error("User don't have refreshToken");
-
-  spotify.setAccessToken(user.refreshToken);
-  const {body} = await spotify.refreshAccessToken();
-  return body.access_token;
 };

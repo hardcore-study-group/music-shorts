@@ -9,9 +9,11 @@ export interface Root {
 export interface User {
   accessToken?: string;
   refreshToken?: string;
+  is_admin?: boolean;
   playlist: Playlist;
 }
 export interface Track {
+  createdAt: firestore.Timestamp;
   spotifyId: string;
   name: string;
   artist_names: string[];
@@ -21,6 +23,6 @@ export interface Track {
   spotify_data: any;
 }
 export interface Playlist {
+  createdAt: firestore.Timestamp;
   track: Track;
-  addedAt: firestore.Timestamp;
 }
