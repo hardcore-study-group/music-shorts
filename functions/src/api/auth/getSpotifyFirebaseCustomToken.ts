@@ -2,7 +2,7 @@ import {https} from 'firebase-functions';
 import {HttpsError} from 'firebase-functions/v1/https';
 import {GetSpotifyFirebaseCustomTokenData} from '../../../type/api/auth';
 import {createFirebaseAccount} from '../../service/firebase';
-import {getCredential, getMe} from '../../service/spotify';
+import {spotify} from '../../service/spotify';
 
 export const getSpotifyFirebaseCustomToken = https.onCall(
   async (data: GetSpotifyFirebaseCustomTokenData, context) => {
@@ -11,9 +11,9 @@ export const getSpotifyFirebaseCustomToken = https.onCall(
 
     const {spotifyCode} = data;
 
-    const credential = await getCredential(spotifyCode);
-
-    const me = await getMe(credential.body.access_token);
+    const credential = await spotify.authorizationCodeGrant(spotifyCode);
+    spotify.setAccessToken(credential.body.access_token);
+    const me = await spotify.getMe();
 
     const token = await createFirebaseAccount({
       uid: `spotify:${me.body.id}`,

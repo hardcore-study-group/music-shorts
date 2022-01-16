@@ -1,8 +1,13 @@
 import {expect} from 'chai';
 import puppeteer from 'puppeteer';
+import SpotifyWebApi from 'spotify-web-api-node';
+import setup from '../hook/setup';
 
-describe('service/spotify', () => {
+describe.skip('service/spotify', () => {
+  const {testAdmin, testFunctions} = setup();
+
   let service: {
+    spotify: SpotifyWebApi;
     getOAuthUrl: () => string;
     getCredential: (code: string) => Promise<any>;
     getMe: (accessToken: string) => Promise<any>;

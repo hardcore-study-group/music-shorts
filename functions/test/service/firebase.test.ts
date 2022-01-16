@@ -1,7 +1,9 @@
 import {CreateFirebaseAccountUserData} from '../../type/service/firebase';
-import {testAdmin} from '../index.test';
+import setup from '../hook/setup';
 
 describe('service/firebase', () => {
+  const {testAdmin, testFunctions} = setup();
+
   let service: {
     createFirebaseAccount: (
       userData: CreateFirebaseAccountUserData,

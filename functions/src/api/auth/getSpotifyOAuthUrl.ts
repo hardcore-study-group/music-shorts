@@ -1,7 +1,7 @@
 import {https} from 'firebase-functions';
-import {getOAuthUrl} from '../../service/spotify';
+import {spotify} from '../../service/spotify';
 
 export const getSpotifyOAuthUrl = https.onCall(async (data, context) => {
-  const url = getOAuthUrl();
+  const url = spotify.createAuthorizeURL(['user-read-email'], '');
   return url;
 });

@@ -1,9 +1,11 @@
 import {CloudFunction} from 'firebase-functions/v1';
 import {GetSpotifyFirebaseCustomTokenData} from '../../type/api/auth';
-import {testFunctions} from '../index.test';
 import puppeteer from 'puppeteer';
+import setup from '../hook/setup';
 
 describe('api/auth', () => {
+  const {testAdmin, testFunctions} = setup();
+
   let Functions: {
     getSpotifyOAuthUrl: CloudFunction<Promise<string>>;
     getSpotifyFirebaseCustomToken: CloudFunction<Promise<string>>;
