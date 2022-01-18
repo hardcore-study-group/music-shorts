@@ -1,11 +1,7 @@
 import {firestore} from 'firebase-admin';
 import {https} from 'firebase-functions';
 import {HttpsError} from 'firebase-functions/v1/https';
-import {
-  AddTrackData,
-  GetTracksData,
-  RemoveTrackData,
-} from '../../../type/api/track';
+import {AddTrackData} from '../../../type/api/track';
 import {Track} from '../../../type/firestore';
 import {admin, adminGuard} from '../../service/firebase';
 import {spotify} from '../../service/spotify';

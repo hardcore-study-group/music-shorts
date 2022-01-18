@@ -1,22 +1,23 @@
+import {expect} from 'chai';
 import {CloudFunction} from 'firebase-functions/v1';
 import {SearchTracksData} from '../../type/api/search';
-import setup from '../hook/setup';
+import '../index.test';
 
-describe('api/search', () => {
-  const {testAdmin, testFunctions} = setup();
-
+describe('api/search', function () {
   let Functions: {
-    searchTracks: CloudFunction<Promise<any>>;
+    searchTracks: CloudFunction<Promise<{items: any}>>;
   };
 
-  before(() => {
+  before(function () {
     Functions = require('../../src/api/search');
   });
 
-  describe('searchTracks', () => {
-    it('will be return ', () =>
-      testFunctions.wrap(Functions.searchTracks)({
+  describe('searchTracks', function () {
+    it('will be return ', async function () {
+      const result = await this.testFunctions.wrap(Functions.searchTracks)({
         query: 'just two of us',
-      } as SearchTracksData)).should.be.has.property('items', '');
+      } as SearchTracksData);
+      expect(result).to.be.has.property('items', '');
+    });
   });
 });
