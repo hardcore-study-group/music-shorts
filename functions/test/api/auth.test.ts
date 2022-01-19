@@ -1,9 +1,9 @@
 import {CloudFunction} from 'firebase-functions/v1';
 import {GetSpotifyFirebaseCustomTokenData} from '../../type/api/auth';
 import puppeteer from 'puppeteer';
-import {expect} from 'chai';
-import '../index.test';
+import {assert, expect} from 'chai';
 import {HttpsError} from 'firebase-functions/v1/https';
+import {testFunctions} from '../setup.test';
 
 describe('api/auth', () => {
   let Functions: {
@@ -14,20 +14,18 @@ describe('api/auth', () => {
   let signinUrl: string;
   let spotifyCode: string;
 
-  before(function () {
+  before(() => {
     Functions = require('../../src/api/auth');
   });
 
-  context('getSpotifyOAuthUrl', function () {
-    it('check return url format', async function () {
-      const result = await this.testFunctions.wrap(
-        Functions.getSpotifyOAuthUrl,
-      )();
-      expect(result).to.be.include('https://accounts.spotify.com/authorize');
+  context('getSpotifyOAuthUrl', () => {
+    it('check return url format', async () => {
+      const result = await testFunctions.wrap(Functions.getSpotifyOAuthUrl)({});
       signinUrl = result;
+      expect(result).to.be.include('https://accounts.spotify.com/authorize');
     });
 
-    it('signin with spotify', async function () {
+    it('signin with spotify', async () => {
       const browser = await puppeteer.launch({
         headless: true,
         timeout: 30000,
@@ -58,32 +56,32 @@ describe('api/auth', () => {
       });
 
       await browser.close();
-    });
+      expect(spotifyCode.length).to.be.greaterThanOrEqual(1);
+    }).timeout(15000);
   });
 
-  context('getSpotifyFirebaseCustomToken', function () {
-    it('return string type token', async function () {
-      const result = await this.testFunctions.wrap(
+  context('getSpotifyFirebaseCustomToken', () => {
+    it('return string type token', async () => {
+      const result = await testFunctions.wrap(
         Functions.getSpotifyFirebaseCustomToken,
       )({
         spotifyCode,
       } as GetSpotifyFirebaseCustomTokenData);
 
       expect(result).to.be.a('string');
-    });
+    }).timeout(10000);
 
-    it('throw error incorrect spotifyCode', async function () {
-      const result = await this.testFunctions
+    it('throw error incorrect spotifyCode', async () => {
+      const result = await testFunctions
         .wrap(Functions.getSpotifyFirebaseCustomToken)({
           spotifyCode: 'error_code',
         } as GetSpotifyFirebaseCustomTokenData)
         .catch((e: any) => e);
+      expect(result).to.be.an('error');
+    }).timeout(5000);
 
-      expect(result).to.throw(Error);
-    });
-
-    it('throw error when alread signed in', async function () {
-      const result = await this.testFunctions
+    it('throw error when already signed in', async () => {
+      const result = await testFunctions
         .wrap(Functions.getSpotifyFirebaseCustomToken)(
           {
             spotifyCode: 'testCode',
@@ -91,7 +89,7 @@ describe('api/auth', () => {
           {auth: true},
         )
         .catch((e: any) => e);
-      expect(result).to.throw(HttpsError, 'Already signed in');
-    });
+      expect(result.constructor).to.equal(HttpsError);
+    }).timeout(5000);
   });
 });
