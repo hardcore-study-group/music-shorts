@@ -17,7 +17,7 @@ declare module 'firebase-functions-test/lib/features' {
   interface FeaturesList {
     wrap<T>(
       cloudFunction: CloudFunction<T>,
-    ): (data?: any, options?: ContextOptions) => Promise<T>;
+    ): (data: any, options?: ContextOptions) => Promise<T>;
   }
 }
 

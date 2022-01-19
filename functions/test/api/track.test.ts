@@ -82,4 +82,33 @@ describe.only('api/track', () => {
       expect(error).to.be.an('error');
     });
   });
+
+  context('getRecommendTracks', async () => {
+    it('return array tracks when call', async () => {
+      const result = await testFunctions.wrap(Functions.getRecommendTracks)({});
+      expect(result).to.be.an('array');
+    });
+  });
+
+  context('getTracks', async () => {
+    it('return array tracks when call', async () => {
+      const result = await testFunctions.wrap(Functions.getTracks)({
+        offset: 0,
+        limit: 10,
+      });
+      expect(result).to.be.an('array');
+    });
+  });
+
+  context.only('removeTrack', () => {
+    it('remove one track on db', async () => {
+      const error = await testFunctions
+        .wrap(Functions.getTracks)({
+          offset: 0,
+          limit: 10,
+        })
+        .catch((e: any) => e);
+      expect(error).to.not.a('error');
+    });
+  });
 });
