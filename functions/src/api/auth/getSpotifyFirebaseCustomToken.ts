@@ -1,7 +1,7 @@
 import {https} from 'firebase-functions';
 import {HttpsError} from 'firebase-functions/v1/https';
 import {GetSpotifyFirebaseCustomTokenData} from '../../../type/api/auth';
-import {createFirebaseAccount} from '../../service/firebase';
+import {admin, createFirebaseAccount} from '../../service/firebase';
 import {spotify} from '../../service/spotify';
 
 export const getSpotifyFirebaseCustomToken = https.onCall(
@@ -15,13 +15,14 @@ export const getSpotifyFirebaseCustomToken = https.onCall(
     spotify.setAccessToken(credential.body.access_token);
     const me = await spotify.getMe();
 
-    const token = await createFirebaseAccount({
+    const user = await createFirebaseAccount({
       uid: `spotify:${me.body.id}`,
       email: me.body.email,
       refreshToken: credential.body.refresh_token,
       accessToken: credential.body.access_token,
     });
 
+    const token = await admin.auth().createCustomToken(user.uid);
     return token;
   },
 );

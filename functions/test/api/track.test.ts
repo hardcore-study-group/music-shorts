@@ -1,4 +1,7 @@
+import {expect} from 'chai';
+import {UserRecord} from 'firebase-admin/lib/auth/user-record';
 import {CloudFunction} from 'firebase-functions/v1';
+import {clearTestUser, createTestUser} from '../auth.test';
 
 describe('api/track', () => {
   let Functions: {
@@ -7,8 +10,13 @@ describe('api/track', () => {
     getTracks: CloudFunction<Promise<any>>;
     removeTrack: CloudFunction<Promise<any>>;
   };
-
-  before(function () {
+  let user: UserRecord;
+  before(async function () {
     Functions = require('../../src/api/track');
+    user = await createTestUser();
+  });
+
+  after(async () => {
+    await clearTestUser();
   });
 });

@@ -4,6 +4,7 @@ import puppeteer from 'puppeteer';
 import {assert, expect} from 'chai';
 import {HttpsError} from 'firebase-functions/v1/https';
 import {testAdmin, testFunctions} from '../setup.test';
+import {clearTestUser} from '../auth.test';
 
 describe('api/auth', () => {
   let Functions: {
@@ -20,10 +21,7 @@ describe('api/auth', () => {
 
   after(async () => {
     // delete user
-    const {uid} = await testAdmin
-      .auth()
-      .getUserByEmail(process.env.SPOTIFY_TEST_ACCOUNT_ID || '');
-    await testAdmin.auth().deleteUser(uid);
+    await clearTestUser();
   });
 
   context('getSpotifyOAuthUrl', () => {
@@ -36,7 +34,7 @@ describe('api/auth', () => {
     it('signin with spotify', async () => {
       const browser = await puppeteer.launch({
         headless: true,
-        timeout: 30000,
+        timeout: 15000,
       });
       const page = await browser.newPage();
       await page.goto(signinUrl);
@@ -85,7 +83,7 @@ describe('api/auth', () => {
         } as GetSpotifyFirebaseCustomTokenData)
         .catch((e: any) => e);
       expect(result).to.be.an('error');
-    }).timeout(5000);
+    }).timeout(10000);
 
     it('throw error when already signed in', async () => {
       const result = await testFunctions
@@ -97,6 +95,6 @@ describe('api/auth', () => {
         )
         .catch((e: any) => e);
       expect(result.constructor).to.equal(HttpsError);
-    }).timeout(5000);
+    }).timeout(10000);
   });
 });

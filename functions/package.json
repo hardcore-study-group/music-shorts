@@ -4,7 +4,8 @@
   "scripts": {
     "lint": "eslint --ext .js,.ts .",
     "build": "tsc",
-    "test": "NODE_ENV=test mocha --reporter spec test/**/*.test.ts -r ts-node/register --parallel ",
+    "test": "npm run test:api",
+    "test:api": "NODE_ENV=test mocha --reporter spec test/api/*.test.ts -r ts-node/register --timeout 10000",
     "serve": "npm run build && firebase emulators:start --only functions",
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",

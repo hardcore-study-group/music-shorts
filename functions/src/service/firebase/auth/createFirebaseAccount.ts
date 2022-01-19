@@ -25,16 +25,16 @@ export const createFirebaseAccount = async (
       // Create or update the user account.
       try {
         user = await admin.auth().updateUser(uid, {
-          email: email,
+          email,
           emailVerified: true,
         });
       } catch (_error) {
         const error = _error as any;
         // If user does not exists we create it.
-        if (error.code !== 'auth/user-not-found') throw error;
+        if (error.errorInfo.code !== 'auth/user-not-found') throw error;
         user = await admin.auth().createUser({
-          uid: uid,
-          email: email,
+          uid,
+          email,
           emailVerified: true,
         });
       }

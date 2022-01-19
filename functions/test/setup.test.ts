@@ -1,5 +1,4 @@
 import chaiAsPromised from 'chai-as-promised';
-import {CloudFunction} from 'firebase-functions/v1';
 import _admin from 'firebase-admin';
 import testServiceAccountkey from '../testServiceAccountKey.json';
 import chai, {expect} from 'chai';
@@ -8,6 +7,34 @@ import firebaseFunctionsTest from 'firebase-functions-test';
 chai.use(chaiAsPromised);
 chai.should();
 require('dotenv').config();
+
+context('env test', () => {
+  it('dotenv', () => {
+    expect(process.env.FIREBASE_TEST_PROJECT_ID || undefined).to.be.a(
+      'string',
+      'FIREBASE_TEST_PROJECT_ID',
+    );
+    expect(process.env.SPOTIFY_TEST_CLIENT_ID || undefined).to.be.a(
+      'string',
+      'SPOTIFY_TEST_CLIENT_ID',
+    );
+    expect(process.env.SPOTIFY_TEST_SECRET || undefined).to.be.a(
+      'string',
+      'SPOTIFY_TEST_SECRET',
+    );
+    expect(process.env.SPOTIFY_TEST_ACCOUNT_ID || undefined).to.be.a(
+      'string',
+      'SPOTIFY_TEST_ACCOUNT_ID',
+    );
+    // check email format
+    expect((process.env.SPOTIFY_TEST_ACCOUNT_ID || undefined)?.includes('@')).to
+      .be.true;
+    expect(process.env.SPOTIFY_TEST_ACCOUNT_PASSWORD || undefined).to.be.a(
+      'string',
+      'SPOTIFY_TEST_ACCOUNT_PASSWORD',
+    );
+  });
+});
 
 const FIREBASE_CONFIG: _admin.AppOptions = {
   databaseURL: `https://${process.env.FIREBASE_TEST_PROJECT_ID}.firebaseio.com`,
