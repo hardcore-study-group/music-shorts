@@ -20,16 +20,38 @@ export const addPlaylistOneTrack = https.onCall(
     if (!trackSnapshot.exists)
       throw new HttpsError('invalid-argument', 'Invalid track');
 
-    const snapshot = await admin
+    const prevTrack = await admin
       .firestore()
       .collection('user')
       .doc(context.auth.uid)
       .collection('playlist')
-      .add({
+      .doc(trackSnapshot.id)
+      .get();
+    if (prevTrack.exists)
+      throw new HttpsError(
+        'already-exists',
+        'this track already added on playlist',
+      );
+
+    await admin
+      .firestore()
+      .collection('user')
+      .doc(context.auth.uid)
+      .collection('playlist')
+      .doc(trackSnapshot.id)
+      .set({
         track: trackSnapshot.data(),
-        addedAt: firestore.Timestamp.now(),
+        added_at: firestore.Timestamp.now(),
       });
-    const track = await snapshot.get();
+
+    const track = await admin
+      .firestore()
+      .collection('user')
+      .doc(context.auth.uid)
+      .collection('playlist')
+      .doc(trackSnapshot.id)
+      .get();
+
     return {...track.data(), id: track.id};
   },
 );

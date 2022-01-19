@@ -7,14 +7,14 @@ export interface Root {
 }
 
 export interface User {
-  accessToken?: string;
-  refreshToken?: string;
+  access_token?: string;
+  refresh_token?: string;
   is_admin?: boolean;
   playlist: Playlist;
 }
 export interface Track {
-  createdAt: firestore.Timestamp;
-  spotifyId: string;
+  created_at: firestore.Timestamp;
+  spotify_id: string;
   name: string;
   artist_names: string[];
   image: string;
@@ -23,6 +23,6 @@ export interface Track {
   spotify_data: any;
 }
 export interface Playlist {
-  createdAt: firestore.Timestamp;
+  created_at: firestore.Timestamp;
   track: Track;
 }

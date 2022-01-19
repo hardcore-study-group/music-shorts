@@ -33,5 +33,6 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 'off',
     'no-invalid-this': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
+    camelcase: 'off',
   },
 };

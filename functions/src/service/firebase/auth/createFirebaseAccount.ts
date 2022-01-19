@@ -18,8 +18,15 @@ export const createFirebaseAccount = async (
         .doc(uid)
         .get();
       if (userSnapshot.exists)
-        await userSnapshot.ref.update({accessToken, refreshToken});
-      else await userSnapshot.ref.set({accessToken, refreshToken});
+        await userSnapshot.ref.update({
+          access_token: accessToken,
+          refresh_token: refreshToken,
+        });
+      else
+        await userSnapshot.ref.set({
+          access_token: accessToken,
+          refresh_token: refreshToken,
+        });
     })(),
     (async () => {
       // Create or update the user account.

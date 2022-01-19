@@ -5,7 +5,7 @@
     "lint": "eslint --ext .js,.ts .",
     "build": "tsc",
     "test": "npm run test:api",
-    "test:api": "NODE_ENV=test mocha --reporter spec test/api/*.test.ts -r ts-node/register --timeout 10000",
+    "test:api": "NODE_ENV=test mocha --reporter spec test/api/*.test.ts -r ts-node/register --timeout 15000",
     "test:service":"NODE_ENV=test mocha --reporter spec test/service/*.test.ts -r ts-node/register --timeout 10000",
     "serve": "npm run build && firebase emulators:start --only functions",
     "shell": "npm run build && firebase functions:shell",

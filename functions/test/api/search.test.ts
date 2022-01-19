@@ -20,7 +20,7 @@ describe('api/search', () => {
     await clearTestUser();
   });
 
-  describe('searchTracks', () => {
+  context('searchTracks', () => {
     it('will be return ', async () => {
       const result = await testFunctions.wrap(Functions.searchTracks)(
         {

@@ -9,7 +9,7 @@ export const getMyPlaylist = https.onCall(async (data, context) => {
     .collection('user')
     .doc(context.auth.uid)
     .collection('playlist')
-    .orderBy('addedAt', 'desc')
+    .orderBy('added_at', 'desc')
     .limit(100)
     .get();
   return snapshot.docs.map(v => ({...v.data(), id: v.id}));

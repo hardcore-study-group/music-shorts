@@ -1,10 +1,11 @@
 import {expect} from 'chai';
+import {firestore} from 'firebase-admin';
 import {UserRecord} from 'firebase-admin/lib/auth/user-record';
 import {CloudFunction} from 'firebase-functions/v1';
 import {clearTestUser, createTestUser} from '../auth.test';
 import {testAdmin, testFunctions} from '../setup.test';
 
-describe.only('api/playlist', () => {
+describe('api/playlist', () => {
   let Functions: {
     addPlaylistOneTrack: CloudFunction<Promise<any>>;
     getMyPlaylist: CloudFunction<Promise<any>>;
@@ -20,7 +21,10 @@ describe.only('api/playlist', () => {
       testAdmin
         .firestore()
         .collection('track')
-        .add({testVal: 'test'})
+        .add({
+          added_at: firestore.Timestamp.now(),
+          track: {spotify_id: 'test_spotify_id'},
+        })
         .then(v => (mockTrackId = v.id)),
     ]);
   });
@@ -51,6 +55,18 @@ describe.only('api/playlist', () => {
         .get();
 
       expect(snapshot.exists).to.be.true;
+    });
+
+    it('throw error if already exist', async () => {
+      const result = await testFunctions
+        .wrap(Functions.addPlaylistOneTrack)(
+          {
+            trackId: mockTrackId,
+          },
+          {auth: user},
+        )
+        .catch((e: any) => e);
+      expect(result).to.be.an('error');
     });
   });
 

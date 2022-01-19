@@ -15,7 +15,7 @@ export const addTrack = https.onCall(async (data: AddTrackData, context) => {
   const prevSpotifyTrack = await admin
     .firestore()
     .collection('track')
-    .where('spotifyId', '==', spotifyTrackId)
+    .where('spotify_id', '==', spotifyTrackId)
     .get();
   if (prevSpotifyTrack.size !== 0)
     throw new HttpsError('already-exists', 'Spotify track already exists');
@@ -26,8 +26,8 @@ export const addTrack = https.onCall(async (data: AddTrackData, context) => {
     .firestore()
     .collection('track')
     .add({
-      createdAt: firestore.Timestamp.now(),
-      spotifyId: spotifyTrack.id,
+      created_at: firestore.Timestamp.now(),
+      spotify_id: spotifyTrack.id,
       artist_names: spotifyTrack.artists.map(v => v.name),
       name: spotifyTrack.name,
       duration_ms: spotifyTrack.duration_ms,
