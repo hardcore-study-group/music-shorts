@@ -5,7 +5,7 @@ import {HttpsError} from 'firebase-functions/v1/https';
 import {clearTestUser, createTestUser} from '../auth.test';
 import {testAdmin, testFunctions} from '../setup.test';
 
-describe.only('api/track', () => {
+describe('api/track', () => {
   let Functions: {
     addTrack: CloudFunction<Promise<any>>;
     getRecommendTracks: CloudFunction<Promise<any>>;
@@ -100,7 +100,7 @@ describe.only('api/track', () => {
     });
   });
 
-  context.only('removeTrack', () => {
+  context('removeTrack', () => {
     it('remove one track on db', async () => {
       const error = await testFunctions
         .wrap(Functions.getTracks)({

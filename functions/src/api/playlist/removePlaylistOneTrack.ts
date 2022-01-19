@@ -3,7 +3,7 @@ import {HttpsError} from 'firebase-functions/v1/https';
 import {RemovePlaylistOneTrackData} from '../../../type/api/playlist';
 import {admin} from '../../service/firebase';
 
-export const addPlaylistOneTrack = https.onCall(
+export const removePlaylistOneTrack = https.onCall(
   async (data: RemovePlaylistOneTrackData, context) => {
     const {id} = data;
 

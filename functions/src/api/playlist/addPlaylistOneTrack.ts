@@ -29,7 +29,7 @@ export const addPlaylistOneTrack = https.onCall(
         track: trackSnapshot.data(),
         addedAt: firestore.Timestamp.now(),
       });
-
-    return (await snapshot.get()).data();
+    const track = await snapshot.get();
+    return {...track.data(), id: track.id};
   },
 );

@@ -56,6 +56,6 @@ testFunctions.mockConfig({
 
 export const testAdmin = _admin.initializeApp(FIREBASE_CONFIG, 'test_admin');
 
-after(() => {
-  testFunctions.cleanup();
+after(async () => {
+  await testFunctions.cleanup();
 });
