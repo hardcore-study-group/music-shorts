@@ -1,3 +1,4 @@
+import {UserRecord} from 'firebase-admin/lib/auth/user-record';
 import {admin} from '..';
 import {CreateFirebaseAccountUserData} from '../../../../type/service/firebase';
 
@@ -5,6 +6,8 @@ export const createFirebaseAccount = async (
   userData: CreateFirebaseAccountUserData,
 ) => {
   const {accessToken, refreshToken, email, uid} = userData;
+
+  let user: UserRecord;
 
   await Promise.all([
     (async () => {
@@ -21,7 +24,7 @@ export const createFirebaseAccount = async (
     (async () => {
       // Create or update the user account.
       try {
-        await admin.auth().updateUser(uid, {
+        user = await admin.auth().updateUser(uid, {
           email: email,
           emailVerified: true,
         });
@@ -29,7 +32,7 @@ export const createFirebaseAccount = async (
         const error = _error as any;
         // If user does not exists we create it.
         if (error.code !== 'auth/user-not-found') throw error;
-        await admin.auth().createUser({
+        user = await admin.auth().createUser({
           uid: uid,
           email: email,
           emailVerified: true,
@@ -38,8 +41,6 @@ export const createFirebaseAccount = async (
     })(),
   ]);
 
-  // Create a Firebase custom auth token.
-  const token = await admin.auth().createCustomToken(uid);
-
-  return token;
+  // @ts-ignore
+  return user;
 };

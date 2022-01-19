@@ -3,7 +3,7 @@ import {GetSpotifyFirebaseCustomTokenData} from '../../type/api/auth';
 import puppeteer from 'puppeteer';
 import {assert, expect} from 'chai';
 import {HttpsError} from 'firebase-functions/v1/https';
-import {testFunctions} from '../setup.test';
+import {testAdmin, testFunctions} from '../setup.test';
 
 describe('api/auth', () => {
   let Functions: {
@@ -16,6 +16,14 @@ describe('api/auth', () => {
 
   before(() => {
     Functions = require('../../src/api/auth');
+  });
+
+  after(async () => {
+    // delete user
+    const {uid} = await testAdmin
+      .auth()
+      .getUserByEmail(process.env.SPOTIFY_TEST_ACCOUNT_ID || '');
+    await testAdmin.auth().deleteUser(uid);
   });
 
   context('getSpotifyOAuthUrl', () => {
@@ -67,7 +75,6 @@ describe('api/auth', () => {
       )({
         spotifyCode,
       } as GetSpotifyFirebaseCustomTokenData);
-
       expect(result).to.be.a('string');
     }).timeout(10000);
 
