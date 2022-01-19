@@ -36,5 +36,6 @@ export const addTrack = https.onCall(async (data: AddTrackData, context) => {
       spotify_data: spotifyTrack,
     } as Track);
 
-  return (await snapshot.get()).data();
+  const track = (await snapshot.get()).data();
+  return {...track, id: snapshot.id};
 });

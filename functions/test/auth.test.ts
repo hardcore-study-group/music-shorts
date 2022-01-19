@@ -50,7 +50,9 @@ export const createTestUser = async () => {
   const user = await testAdmin
     .auth()
     .getUserByEmail(process.env.SPOTIFY_TEST_ACCOUNT_ID || '');
-
+  await testAdmin.firestore().collection('user').doc(user.uid).update({
+    is_admin: true,
+  });
   return user;
 };
 

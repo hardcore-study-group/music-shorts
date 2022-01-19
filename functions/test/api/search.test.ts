@@ -24,7 +24,7 @@ describe('api/search', () => {
     it('will be return ', async () => {
       const result = await testFunctions.wrap(Functions.searchTracks)(
         {
-          query: 'just two of us',
+          query: 'just the two of us',
         } as SearchTracksData,
         {auth: {uid: user.uid}},
       );
