@@ -3,6 +3,8 @@ name: Functions
 on:
   push:
     branches: [main]
+    paths:
+      - "functions/**"
   pull_request:
     types: [opened, synchronize, reopened]
 
