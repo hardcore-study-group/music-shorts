@@ -26,14 +26,17 @@ jobs:
           node-version: ${{ matrix.node }}
 
       - name: Create .env file from github secret
-        run:  echo "$TEST_FUNCTIONS_ENV" >> .env
+        run: echo "$TEST_FUNCTIONS_ENV" >> .env
         env: 
           TEST_FUNCTIONS_ENV: ${{ secrets.TEST_FUNCTIONS_ENV }}
 
       - name: Create test firebase service account key from github secret
-        run:  echo "$TEST_FIREBASE_SERVICE_ACCOUNT_KEY" >> testServiceAccountKey.json
+        run: echo "$TEST_FIREBASE_SERVICE_ACCOUNT_KEY" >> testServiceAccountKey.json
         env: 
           TEST_FIREBASE_SERVICE_ACCOUNT_KEY: ${{ secrets.TEST_FIREBASE_SERVICE_ACCOUNT_KEY }}
+
+      - name: ls
+        run: ls
 
       - name: Install modules
         run: yarn
