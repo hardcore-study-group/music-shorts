@@ -56,7 +56,7 @@ describe('service/firebase', () => {
         .collection('user')
         .doc(USER_DATA_1.uid)
         .get()
-        .then(snapshot => snapshot.data()?.accessToken)
+        .then(snapshot => snapshot.data()?.access_token)
         .should.eventually.be.to.equal(USER_DATA_1.accessToken));
 
     it('Update user when second time call function', () =>
@@ -78,7 +78,7 @@ describe('service/firebase', () => {
         .collection('user')
         .doc(USER_DATA_2.uid)
         .get()
-        .then(snapshot => snapshot.data()?.accessToken)
+        .then(snapshot => snapshot.data()?.access_token)
         .should.eventually.be.to.equal(USER_DATA_2.accessToken));
   });
 });
