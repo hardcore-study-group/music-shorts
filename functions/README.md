@@ -8,5 +8,5 @@ SPOTIFY_TEST_ACCOUNT_PASSWORD // your spotify test account password
 ```
 ### Secret file
 ```
-./testServiceAccountKey.json # your tset firebase project's service account key
+./testServiceAccountKey.json # your test firebase project's service account key
 ```
