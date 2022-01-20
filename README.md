@@ -34,7 +34,3 @@ Create and setup your Spotify app:
     ```
 
  > Make sure the Spotify Client Secret is always kept secret. For instance do not save this in your version control system.
-
-Deploy your project:
- 1. Run `firebase use --add` and choose your Firebase project. This will configure the Firebase CLI to use the correct project locally.
- 1. Run `firebase deploy` to effectively deploy the sample. The first time the Functions are deployed the process can take several minutes.
