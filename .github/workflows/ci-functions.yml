@@ -1,0 +1,43 @@
+name: Functions
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        platform: [ubuntu-latest]
+        node: ["16"]
+    name: Node ${{ matrix.node }} (${{ matrix.platform }})
+    runs-on: ${{ matrix.platform }}
+    defaults:
+      run:
+        working-directory: functions
+       
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Create .env file from github secret
+        run:  echo "$TEST_FUNCTIONS_ENV" >> .env
+        env: TEST_FUNCTIONS_ENV: ${{ secrets.TEST_FUNCTIONS_ENV }}
+
+      - name: Create test firebase service account key from github secret
+        run:  echo "$TEST_FIREBASE_SERVICE_ACCOUNT_KEY" >> testServiceAccountKey.json
+        env: TEST_FIREBASE_SERVICE_ACCOUNT_KEY: ${{ secrets.TEST_FIREBASE_SERVICE_ACCOUNT_KEY }}
+
+      - name: Install modules
+        run: yarn
+
+      - name: Check linting
+        run: yarn lint
+
+      - name: Run test
+        run: yarn test
