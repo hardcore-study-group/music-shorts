@@ -1,8 +1,9 @@
-name: Functions
+name: CI Functions
 
 on:
   push:
-    branches: [main]
+    branches: 
+      - main
     paths:
       - "functions/**"
   pull_request:

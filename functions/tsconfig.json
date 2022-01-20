@@ -14,12 +14,12 @@
   },
   "compileOnSave": true,
   "include": [
-    "src",
-    "test",
-    "type"
+    "src/**/*.ts",
   ],
   "exclude": [
     ".eslintrc.js",
-    ".prettierrc.js"
+    ".prettierrc.js",
+    "test",
+    "type"
   ]
 }

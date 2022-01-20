@@ -1,12 +1,12 @@
-import {initializeApp, credential} from 'firebase-admin';
+import _admin from 'firebase-admin';
 
 export const admin =
   process.env.NODE_ENV === 'test'
-    ? initializeApp({
-        credential: credential.cert(
+    ? _admin.initializeApp({
+        credential: _admin.credential.cert(
           require('../../../testServiceAccountKey.json'),
         ),
       })
-    : initializeApp();
+    : _admin.initializeApp();
 
 export * from './auth';
