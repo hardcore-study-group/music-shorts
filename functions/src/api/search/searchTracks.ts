@@ -12,6 +12,6 @@ export const searchTracks = https.onCall(
     const accessToken = await getAccessToken(context.auth.uid);
     spotify.setAccessToken(accessToken);
     const {body} = await spotify.searchTracks(query, {limit, offset});
-    return body.tracks;
+    // return body.tracks;
   },
 );
