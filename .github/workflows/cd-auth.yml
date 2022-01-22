@@ -1,11 +1,11 @@
-name: CD Admin
+name: CD Auth
 
 on:
   push:
     branches: 
       - main
     paths:
-      - "admin/**"
+      - "auth/**"
 
 jobs:
   build-and-deploy:
