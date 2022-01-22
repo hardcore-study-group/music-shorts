@@ -5,8 +5,11 @@
   "targets": {
     "music-shorts": {
       "hosting": {
-        "music-shorts-auth": [
+        "auth": [
           "music-shorts-auth"
+        ],
+        "admin": [
+          "music-shorts-admin"
         ]
       }
     }
