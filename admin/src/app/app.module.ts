@@ -8,9 +8,11 @@ import {initializeApp, provideFirebaseApp} from '@angular/fire/app';
 import {environment} from '../environments/environment';
 import {provideAuth, getAuth} from '@angular/fire/auth';
 import {provideFunctions, getFunctions} from '@angular/fire/functions';
+import {DashboardViewComponent} from './views/dashboard-view/dashboard-view.component';
+import {SignInViewComponent} from './views/sign-in-view/sign-in-view.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, SignInViewComponent, DashboardViewComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

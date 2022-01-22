@@ -20,9 +20,12 @@
         "plugin:@angular-eslint/template/process-inline-templates",
         "plugin:prettier/recommended"
       ],
-      "plugins": [ "prettier"],
+      "plugins": [
+        "prettier"
+      ],
       "rules": {
         "prettier/prettier": "error",
+        "@angular-eslint/no-empty-lifecycle-method": "off",
         "@angular-eslint/directive-selector": [
           "error",
           {
