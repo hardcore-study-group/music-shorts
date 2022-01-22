@@ -8,11 +8,11 @@ import {initializeApp, provideFirebaseApp} from '@angular/fire/app';
 import {environment} from '../environments/environment';
 import {provideAuth, getAuth} from '@angular/fire/auth';
 import {provideFunctions, getFunctions} from '@angular/fire/functions';
-import {DashboardViewComponent} from './views/dashboard-view/dashboard-view.component';
-import {SignInViewComponent} from './views/sign-in-view/sign-in-view.component';
+import {DashboardComponent} from './view/dashboard/dashboard.component';
+import {SignInComponent} from './view/sign-in/sign-in.component';
 
 @NgModule({
-  declarations: [AppComponent, SignInViewComponent, DashboardViewComponent],
+  declarations: [AppComponent, DashboardComponent, SignInComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

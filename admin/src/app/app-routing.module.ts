@@ -1,12 +1,12 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {DashboardViewComponent} from './views/dashboard-view/dashboard-view.component';
-import {SignInViewComponent} from './views/sign-in-view/sign-in-view.component';
+import {DashboardComponent} from './view/dashboard/dashboard.component';
+import {SignInComponent} from './view/sign-in/sign-in.component';
 
 const routes: Routes = [
-  {path: 'sign-in', component: SignInViewComponent},
-  {path: 'dashboard', component: DashboardViewComponent},
-  {path: '', redirectTo: '/sign-in', pathMatch: 'full'},
+  {path: 'sign-in', component: SignInComponent},
+  {path: 'dashboard', component: DashboardComponent},
+  {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
 ];
 
 @NgModule({
