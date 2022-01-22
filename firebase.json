@@ -11,13 +11,13 @@
     },
     "hosting": [
       {
-        "target": "music-shorts-auth",
+        "target": "auth",
         "public": "auth",
         "port": 6000
       },
       {
         "target": "admin",
-        "public": "admin/dist",
+        "public": "admin/dist/admin",
         "port": 6001
       }
     ],
@@ -27,8 +27,12 @@
   },
   "hosting": [
     {
-      "target": "music-shorts-auth",
+      "target": "auth",
       "public": "auth"
+    },
+    {
+      "target": "admin",
+      "public": "admin/dist/admin"
     }
   ],
   "functions": {
