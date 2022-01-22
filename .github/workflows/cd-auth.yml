@@ -1,0 +1,29 @@
+name: CD Admin
+
+on:
+  push:
+    branches: 
+      - main
+    paths:
+      - "admin/**"
+
+jobs:
+  build-and-deploy:
+    strategy:
+      matrix:
+        platform: [ubuntu-latest]
+        node: ["16"]
+    name: Node ${{ matrix.node }} (${{ matrix.platform }})
+    runs-on: ${{ matrix.platform }}
+
+    steps:
+      - uses: actions/checkout@main
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Install firebase
+        run: npm i firebase-tools -g
+          
+      - name: Deploy to Firebase
+        run: firebase deploy --only hosting:auth --token ${{ secrets.FIREBASE_DEPLOY_TOKEN }}
