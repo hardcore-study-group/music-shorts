@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/compat/auth';
 import {AngularFireFunctions} from '@angular/fire/compat/functions';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -11,6 +12,7 @@ export class SignInComponent implements OnInit {
   constructor(
     public auth: AngularFireAuth,
     public functions: AngularFireFunctions,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {}
@@ -37,8 +39,9 @@ export class SignInComponent implements OnInit {
           if (!code) return;
           popup.close();
           getSpotifyFirebaseCustomToken({spotifyCode: code}).subscribe(
-            token => {
-              this.auth.signInWithCustomToken(token);
+            async token => {
+              await this.auth.signInWithCustomToken(token);
+              this.router.navigate(['/']);
             },
           );
         },
