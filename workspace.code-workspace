@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "admin"
+		},
+		{
+			"path": "auth"
 		}
 	],
 	"settings": {}

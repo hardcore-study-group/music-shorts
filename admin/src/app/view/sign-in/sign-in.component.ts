@@ -16,18 +16,34 @@ export class SignInComponent implements OnInit {
   ngOnInit(): void {}
 
   onSigninWithSpotify() {
-    const callable = this.functions.httpsCallable<any, string>(
+    const getSpotifyOAuthUrl = this.functions.httpsCallable<any, string>(
       'getSpotifyOAuthUrl',
-    )({});
-    callable.subscribe(url => {
-      const w = window.open(
-        'https://auth.music-shorts.com/spotify/callback.html',
+    );
+    const getSpotifyFirebaseCustomToken = this.functions.httpsCallable<
+      {spotifyCode: string},
+      string
+    >('getSpotifyFirebaseCustomToken');
+
+    getSpotifyOAuthUrl({}).subscribe(url => {
+      const popup = window.open(
+        url,
         'spotify',
         'toolbar=no, menubar=no, width=600, height=700, top=100, left=100',
       );
-      w?.addEventListener('load', () => console.log('loaded'));
-      w?.addEventListener('close', () => console.log('closed'));
-      w?.addEventListener('message', event => console.log(event), false);
+      popup?.addEventListener(
+        'message',
+        event => {
+          const code = event.data.code;
+          if (!code) return;
+          popup.close();
+          getSpotifyFirebaseCustomToken({spotifyCode: code}).subscribe(
+            token => {
+              this.auth.signInWithCustomToken(token);
+            },
+          );
+        },
+        false,
+      );
     });
   }
 }

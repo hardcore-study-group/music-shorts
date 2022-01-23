@@ -17,9 +17,15 @@ import {
   AngularFireFunctionsModule,
   USE_EMULATOR,
 } from '@angular/fire/compat/functions';
+import {OAuthSpotifyCallbackComponent} from './view/o-auth-spotify-callback/o-auth-spotify-callback.component';
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent, SignInComponent],
+  declarations: [
+    AppComponent,
+    DashboardComponent,
+    SignInComponent,
+    OAuthSpotifyCallbackComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

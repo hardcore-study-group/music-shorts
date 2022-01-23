@@ -8,7 +8,7 @@
     "test:api": "NODE_ENV=test mocha --reporter spec test/api/*.test.ts -r ts-node/register --timeout 15000 --bail",
     "test:service": "NODE_ENV=test mocha --reporter spec test/service/*.test.ts -r ts-node/register --timeout 10000 --bail",
     "serve": "npm run build && firebase functions:config:get > .runtimeconfig.json && firebase emulators:start --only functions",
-    "shell": "npm run build && firebase functions:config:get > .runtimeconfig.json &&firebase functions:shell",
+    "shell": "npm run build && firebase functions:config:get > .runtimeconfig.json && firebase functions:shell",
     "start": "npm run shell",
     "deploy": "npm run build && firebase deploy --only functions",
     "logs": "firebase functions:log"
