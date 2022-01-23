@@ -17,6 +17,8 @@ SPOTIFY_TEST_ACCOUNT_PASSWORD // your spotify test account password
   }
 }
 ```
+
+> firebase functions:config:set spotify.client_id="..." spotify.client_secret="..." spotify.redirect_uri="..."
 ### Secret file
 ```
 ./testServiceAccountKey.json # your test firebase project's service account key, used when "npm run test"
