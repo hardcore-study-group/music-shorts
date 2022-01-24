@@ -10,7 +10,6 @@ export const getSpotifyFirebaseCustomToken = https.onCall(
       throw new HttpsError('already-exists', 'Already signed in');
 
     const {spotifyCode} = data;
-
     const credential = await spotify.authorizationCodeGrant(spotifyCode);
     spotify.setAccessToken(credential.body.access_token);
     const me = await spotify.getMe();

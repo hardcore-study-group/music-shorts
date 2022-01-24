@@ -1,0 +1,61 @@
+.toolbar {
+  padding: 0 24px;
+  height: 64px;
+  .spacer {
+    flex: 1 1 auto;
+  }
+  mat-form-field {
+    width: 350px;
+    margin-right: 16px;
+    input {
+      font-size: 16px;
+    }
+  }
+}
+
+.option-container {
+  height: auto;
+  div.option {
+    padding: 12px 0px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    div.img-container {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      img.track-img {
+        width: 40px;
+        height: 40px;
+        border-radius: 4px;
+      }
+      div.img-wrapper {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 40px;
+        height: 40px;
+        border-radius: 4px;
+        background-color: rgba($color: #ff0000, $alpha: 0.7);
+      }
+    }
+    div.content-container {
+      height: 40px;
+      margin-left: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      p.title {
+        font-size: 14px;
+        line-height: normal;
+        font-weight: bold;
+        margin-bottom: 6px;
+      }
+      p.artist {
+        font-size: 12px;
+        line-height: normal;
+        color: #888888;
+      }
+    }
+  }
+}

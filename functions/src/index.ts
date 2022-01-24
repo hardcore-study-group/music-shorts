@@ -5,4 +5,7 @@ export const isRunning = https.onCall((request, response) => {
 });
 
 export * from './api/auth';
+export * from './api/player';
+export * from './api/playlist';
+export * from './api/search';
 export * from './api/track';

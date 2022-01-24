@@ -1,3 +1,35 @@
-<p>dashboard works!</p>
+<mat-toolbar class="toolbar">
+  <span class="title">Music shorts admin</span>
+  <span class="spacer"></span>
 
-<button mat-button (click)="signOut()">sign out</button>
+  <mat-form-field appearance="standard">
+    <input
+      type="text"
+      placeholder="Search to add new track"
+      matInput
+      [formControl]="myControl"
+      [matAutocomplete]="auto"
+    />
+  </mat-form-field>
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option
+      class="option-container"
+      *ngFor="let track of searchedTracks | async"
+    >
+      <div (click)="addTrack(track.id)" class="option">
+        <div class="img-container">
+          <img class="track-img" [src]="track.album.images[0].url" />
+          <div *ngIf="!track.preview_url" class="img-wrapper"></div>
+        </div>
+        <div class="content-container">
+          <p class="title">{{ track.name }}</p>
+          <p class="artist">
+            {{ artistDisplay(track.artists) }}
+          </p>
+        </div>
+      </div>
+    </mat-option>
+  </mat-autocomplete>
+
+  <button mat-button (click)="signOut()">sign out</button>
+</mat-toolbar>

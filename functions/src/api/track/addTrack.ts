@@ -3,7 +3,7 @@ import {https} from 'firebase-functions';
 import {HttpsError} from 'firebase-functions/v1/https';
 import {AddTrackData} from '../../../type/api/track';
 import {Track} from '../../../type/firestore';
-import {admin, adminGuard} from '../../service/firebase';
+import {admin, adminGuard, getAccessToken} from '../../service/firebase';
 import {spotify} from '../../service/spotify';
 
 export const addTrack = https.onCall(async (data: AddTrackData, context) => {
@@ -19,8 +19,15 @@ export const addTrack = https.onCall(async (data: AddTrackData, context) => {
     .get();
   if (prevSpotifyTrack.size !== 0)
     throw new HttpsError('already-exists', 'Spotify track already exists');
-
+  const accessToken = await getAccessToken(context.auth.uid);
+  spotify.setAccessToken(accessToken);
   const {body: spotifyTrack} = await spotify.getTrack(spotifyTrackId);
+
+  if (!spotifyTrack.preview_url)
+    throw new HttpsError(
+      'unavailable',
+      'This track doesn\'t have property "preview_url"',
+    );
 
   const snapshot = await admin
     .firestore()
