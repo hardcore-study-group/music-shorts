@@ -51,7 +51,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatPaginatorModule,
     MatTableModule,
   ],
-  providers: [{provide: USE_EMULATOR, useValue: ['localhost', 5000]}],
+  // providers: [{provide: USE_EMULATOR, useValue: ['localhost', 5000]}],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
