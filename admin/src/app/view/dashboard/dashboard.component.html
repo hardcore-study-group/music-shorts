@@ -1,0 +1,56 @@
+<mat-toolbar class="toolbar">
+  <span class="title">Music shorts admin</span>
+  <span class="spacer"></span>
+
+  <mat-form-field appearance="standard">
+    <input
+      type="text"
+      placeholder="Search to add new track"
+      matInput
+      [formControl]="myControl"
+      [matAutocomplete]="auto"
+    />
+  </mat-form-field>
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option
+      class="option-container"
+      *ngFor="let track of searchedTracks | async"
+    >
+      <div (click)="addTrack(track.id)" class="option">
+        <div class="img-container">
+          <img class="track-img" [src]="track.album.images[0].url" />
+          <div *ngIf="!track.preview_url" class="img-wrapper"></div>
+        </div>
+        <div class="content-container">
+          <p class="title">{{ track.name }}</p>
+          <p class="artist">
+            {{ artistDisplay(track.artists) }}
+          </p>
+        </div>
+      </div>
+    </mat-option>
+  </mat-autocomplete>
+
+  <button mat-button (click)="signOut()">sign out</button>
+</mat-toolbar>
+<div class="table-container">
+  <div class="table-item" *ngFor="let track of dataSource | async">
+    <img class="album-img" [src]="track.image" />
+    <p class="title">{{ track.name }}</p>
+    <p class="artist">
+      {{ track.artist_names.join(', ') }}
+    </p>
+    <button (click)="deleteTrack(track.id)" mat-button>
+      <p class="delete-btn-text">delete</p>
+    </button>
+  </div>
+  <div class="paginator">
+    <button mat-button (click)="prevPage()">
+      <p class="btn-text">prev</p>
+    </button>
+    <span class="page">{{ page | async }}</span>
+    <button mat-button (click)="nextPage()">
+      <p class="btn-text">next</p>
+    </button>
+  </div>
+</div>

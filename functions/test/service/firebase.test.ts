@@ -1,3 +1,4 @@
+import {expect} from 'chai';
 import {CreateFirebaseAccountUserData} from '../../type/service/firebase';
 import {testAdmin} from '../setup.test';
 
@@ -14,11 +15,21 @@ describe('service/firebase', () => {
 
   after(() =>
     describe('Clear firebase auth test data', () => {
-      it('Clear firebase auth', () =>
-        testAdmin.auth().deleteUser('test').should.be.fulfilled);
+      it('Clear firebase auth', async () => {
+        const result = await testAdmin
+          .auth()
+          .deleteUser('test')
+          .catch((e: any) => e);
+        expect(result).not.be.a('error');
+      });
 
-      it('Check user deleted', () =>
-        testAdmin.auth().getUser('test').should.be.rejected);
+      it('Check user deleted', async () => {
+        const result = await testAdmin
+          .auth()
+          .getUser('test')
+          .catch((e: any) => e);
+        expect(result).to.be.a('error');
+      });
     }),
   );
 
@@ -37,48 +48,48 @@ describe('service/firebase', () => {
       uid: 'test',
     };
 
-    it('Create user when first time call function', () =>
-      service
-        .createFirebaseAccount(USER_DATA_1)
-        .should.eventually.be.has.property('uid')).timeout(5000);
+    it('Create user when first time call function', async () => {
+      const user = await service.createFirebaseAccount(USER_DATA_1);
+      expect(user).to.has.property('uid');
+    });
 
-    it('Compare with created firebase auth', () =>
-      testAdmin
-        .auth()
-        .getUser(USER_DATA_1.uid)
-        .should.eventually.be.have.deep.include({
-          email: USER_DATA_1.email,
-        }));
+    it('Compare with created firebase auth', async () => {
+      const user = await testAdmin.auth().getUser(USER_DATA_1.uid);
+      expect(user).to.have.deep.include({
+        email: USER_DATA_1.email,
+      });
+    });
 
-    it('Check accessToken', () =>
-      testAdmin
+    it('Check accessToken', async () => {
+      const access_token = await testAdmin
         .firestore()
         .collection('user')
         .doc(USER_DATA_1.uid)
         .get()
-        .then(snapshot => snapshot.data()?.access_token)
-        .should.eventually.be.to.equal(USER_DATA_1.accessToken));
+        .then(snapshot => snapshot.data()?.access_token);
+      expect(access_token).to.equal(USER_DATA_1.accessToken);
+    });
 
-    it('Update user when second time call function', () =>
-      service
-        .createFirebaseAccount(USER_DATA_2)
-        .should.eventually.be.has.property('uid')).timeout(5000);
+    it('Update user when second time call function', async () => {
+      const user = await service.createFirebaseAccount(USER_DATA_2);
+      expect(user).to.has.property('uid');
+    });
 
-    it('Compare with updated firebase auth', () =>
-      testAdmin
-        .auth()
-        .getUser(USER_DATA_2.uid)
-        .should.eventually.be.have.deep.include({
-          email: USER_DATA_2.email,
-        }));
+    it('Compare with updated firebase auth', async () => {
+      const user = await testAdmin.auth().getUser(USER_DATA_2.uid);
+      expect(user).to.have.deep.include({
+        email: USER_DATA_2.email,
+      });
+    });
 
-    it('Check updated accessToken', () =>
-      testAdmin
+    it('Check updated accessToken', async () => {
+      const accessToken = await testAdmin
         .firestore()
         .collection('user')
         .doc(USER_DATA_2.uid)
         .get()
-        .then(snapshot => snapshot.data()?.access_token)
-        .should.eventually.be.to.equal(USER_DATA_2.accessToken));
+        .then(snapshot => snapshot.data()?.access_token);
+      expect(accessToken).to.equal(USER_DATA_2.accessToken);
+    });
   });
 });

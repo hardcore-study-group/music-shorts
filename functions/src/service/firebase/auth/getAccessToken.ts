@@ -7,6 +7,6 @@ export const getAccessToken = async (uid: string) => {
   const user = snapshot.data() as User;
   if (!user.refresh_token) throw new Error("User don't have refreshToken");
   spotify.setRefreshToken(user.refresh_token);
-  const {body} = await spotify.refreshAccessToken();
-  return body.access_token;
+  const result = await spotify.refreshAccessToken();
+  return result.body.access_token;
 };

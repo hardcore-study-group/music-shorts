@@ -1,0 +1,121 @@
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.toolbar {
+  padding: 0 24px;
+  height: 64px;
+  align-items: center;
+  .spacer {
+    flex: 1 1 auto;
+  }
+  mat-form-field {
+    width: 350px;
+    margin-right: 16px;
+    input {
+      font-size: 16px;
+    }
+  }
+}
+
+.option-container {
+  height: auto;
+  div.option {
+    padding: 12px 0px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    div.img-container {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      img.track-img {
+        width: 40px;
+        height: 40px;
+        border-radius: 4px;
+      }
+      div.img-wrapper {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 40px;
+        height: 40px;
+        border-radius: 4px;
+        background-color: rgba($color: #ff0000, $alpha: 0.7);
+      }
+    }
+    div.content-container {
+      height: 40px;
+      margin-left: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      p.title {
+        font-size: 14px;
+        line-height: normal;
+        font-weight: bold;
+        margin-bottom: 6px;
+      }
+      p.artist {
+        font-size: 12px;
+        line-height: normal;
+        color: #888888;
+      }
+    }
+  }
+}
+
+div.table-container {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #333;
+}
+
+div.table-item {
+  display: flex;
+  align-items: center;
+  height: 64px;
+  padding: 0px 24px;
+  border-bottom: solid 1px #888;
+
+  img.album-img {
+    width: 48px;
+    height: 48px;
+    border-radius: 4px;
+    margin-right: 8px;
+  }
+  p.title {
+    color: #fff;
+    margin-bottom: 0;
+    flex: 1;
+    text-align: center;
+  }
+  p.artist {
+    color: #fff;
+    margin-bottom: 0;
+    flex: 1;
+    text-align: center;
+  }
+  p.delete-btn-text {
+    color: #fff;
+    margin-bottom: 0;
+  }
+}
+
+div.paginator {
+  align-self: flex-end;
+  margin: 24px;
+  p.btn-text {
+    color: #fff;
+    margin-bottom: 0;
+  }
+  span.page {
+    color: #fff;
+    margin: 0px 16px;
+  }
+}

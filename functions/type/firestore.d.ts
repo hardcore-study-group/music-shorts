@@ -20,6 +20,7 @@ export interface Track {
   image: string;
   preview_url: string;
   duration_ms: number;
+  add_user_id: string;
   spotify_data: any;
 }
 export interface Playlist {

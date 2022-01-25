@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Demonstrates how to authorize Firebase with Spotify auth using Firebase Functions">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Authenticate with Spotify</title>
+</head>
+
+<body>
+
+  Please wait...
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-functions.js"></script>
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyCcuimm-R6FNygaQjH9rMSXRdG6srDRSvU",
+      authDomain: "music-shorts.firebaseapp.com",
+      databaseURL: "https://music-shorts-default-rtdb.firebaseio.com",
+      projectId: "music-shorts",
+      storageBucket: "music-shorts.appspot.com",
+      messagingSenderId: "866427811004",
+      appId: "1:866427811004:web:b1d2662bb7529fb6e48cb9",
+      measurementId: "G-01HEP8ZE46"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    // Initialize Cloud Functions through Firebase
+    var functions = firebase.functions();
+
+    var code = window.location.href.split('code=')[1].split('&')[0]
+
+    firebase.functions().httpsCallable('getSpotifyFirebaseCustomToken')({ spotifyCode: code })
+      .then((token) => {
+        postMessage(token)
+        console.log(token)
+        window.close()
+      })
+  </script>
+</body>
+
+</html>

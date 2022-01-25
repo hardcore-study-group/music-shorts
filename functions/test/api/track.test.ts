@@ -1,7 +1,6 @@
 import {expect} from 'chai';
 import {UserRecord} from 'firebase-admin/lib/auth/user-record';
 import {CloudFunction} from 'firebase-functions/v1';
-import {HttpsError} from 'firebase-functions/v1/https';
 import {clearTestUser, createTestUser} from '../auth.test';
 import {testAdmin, testFunctions} from '../setup.test';
 
@@ -32,7 +31,7 @@ describe('api/track', () => {
     it('create field on track collection', async () => {
       const result = await testFunctions.wrap(Functions.addTrack)(
         {
-          spotifyTrackId: '5fdNHVZHbWB1AaXk4RBGVD',
+          spotifyTrackId: 'test_track_id',
         },
         {auth: user},
       );
@@ -53,7 +52,7 @@ describe('api/track', () => {
       const error = await testFunctions
         .wrap(Functions.addTrack)(
           {
-            spotifyTrackId: '5fdNHVZHbWB1AaXk4RBGVD',
+            spotifyTrackId: 'test_track_id',
           },
           {auth: user},
         )
@@ -64,7 +63,7 @@ describe('api/track', () => {
     it('throw error if not admin', async () => {
       const error = await testFunctions
         .wrap(Functions.addTrack)({
-          spotifyTrackId: '5fdNHVZHbWB1AaXk4RBGVD',
+          spotifyTrackId: 'test_track_id',
         })
         .catch((e: any) => e);
       expect(error).to.be.an('error');
