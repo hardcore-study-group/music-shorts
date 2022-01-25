@@ -26,10 +26,12 @@ class MusicSlide extends StatelessWidget {
             left: 0,
             child: AlbumCover(_imageUrl)),
         Positioned(
-          bottom: 0,
+          bottom: 24,
           child: MusicInformation(
             title: _title,
             artist: _artist,
+            isAlignLeft: true,
+            isBold: true,
           ),
         ),
         Positioned(

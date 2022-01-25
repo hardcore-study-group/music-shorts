@@ -1,5 +1,8 @@
+import 'package:app/widget/music_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:app/widget/music_information.dart';
+import 'package:spotify_sdk/platform_channels.dart';
+import 'package:spotify_sdk/spotify_sdk.dart';
 
 class PlayerPage extends StatefulWidget {
   const PlayerPage({Key? key}) : super(key: key);
@@ -19,14 +22,38 @@ class _PlayerPageState extends State<PlayerPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppBar Example'),
+        title: const Text('Player',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            )),
+        backgroundColor: Color(0xff222222),
+        elevation: 0,
+        automaticallyImplyLeading: true,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: () {},
+        ),
       ),
       body: Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
         color: Color(0xff222222),
         child: Column(
           children: [
-            MusicInformation(title: _title, artist: _artist),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 20),
+              child: MusicInformation(
+                title: _title,
+                artist: _artist,
+                leading: 8,
+                isBold: true,
+                isAlignLeft: false,
+              ),
+            ),
             Image.network(_imageUrl),
+            SizedBox(height: 20),
+            MusicController(),
           ],
         ),
       ),
