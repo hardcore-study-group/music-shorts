@@ -32,7 +32,16 @@
     },
     {
       "target": "admin",
-      "public": "admin/dist/admin"
+      "public": "admin/dist/admin",
+      "ignore": [
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
     }
   ],
   "functions": {
