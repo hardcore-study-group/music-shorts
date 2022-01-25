@@ -1,6 +1,14 @@
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .toolbar {
   padding: 0 24px;
   height: 64px;
+  align-items: center;
   .spacer {
     flex: 1 1 auto;
   }
@@ -57,5 +65,57 @@
         color: #888888;
       }
     }
+  }
+}
+
+div.table-container {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #333;
+}
+
+div.table-item {
+  display: flex;
+  align-items: center;
+  height: 64px;
+  padding: 0px 24px;
+  border-bottom: solid 1px #888;
+
+  img.album-img {
+    width: 48px;
+    height: 48px;
+    border-radius: 4px;
+    margin-right: 8px;
+  }
+  p.title {
+    color: #fff;
+    margin-bottom: 0;
+    flex: 1;
+    text-align: center;
+  }
+  p.artist {
+    color: #fff;
+    margin-bottom: 0;
+    flex: 1;
+    text-align: center;
+  }
+  p.delete-btn-text {
+    color: #fff;
+    margin-bottom: 0;
+  }
+}
+
+div.paginator {
+  align-self: flex-end;
+  margin: 24px;
+  p.btn-text {
+    color: #fff;
+    margin-bottom: 0;
+  }
+  span.page {
+    color: #fff;
+    margin: 0px 16px;
   }
 }

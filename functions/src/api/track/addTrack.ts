@@ -40,6 +40,7 @@ export const addTrack = https.onCall(async (data: AddTrackData, context) => {
       duration_ms: spotifyTrack.duration_ms,
       preview_url: spotifyTrack.preview_url,
       image: spotifyTrack.album.images[0].url,
+      add_user_id: context.auth.uid,
       spotify_data: spotifyTrack,
     } as Track);
 
