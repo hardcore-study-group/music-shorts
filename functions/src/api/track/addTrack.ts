@@ -12,22 +12,25 @@ export const addTrack = https.onCall(async (data: AddTrackData, context) => {
   if (!context.auth) throw new HttpsError('unauthenticated', 'Sign in require');
   await adminGuard(context.auth.uid);
 
-  const prevSpotifyTrack = await admin
-    .firestore()
-    .collection('track')
-    .where('spotify_id', '==', spotifyTrackId)
-    .get();
-  if (prevSpotifyTrack.size !== 0)
-    throw new HttpsError('already-exists', 'Spotify track already exists');
   const accessToken = await getAccessToken(context.auth.uid);
   spotify.setAccessToken(accessToken);
-  const {body: spotifyTrack} = await spotify.getTrack(spotifyTrackId);
-
+  const result = await spotify.getTrack(spotifyTrackId);
+  const spotifyTrack = result.body;
+  // this service must have "preview_url"
   if (!spotifyTrack.preview_url)
     throw new HttpsError(
       'unavailable',
       'This track doesn\'t have property "preview_url"',
     );
+  // check already exists
+  const prevSpotifyTrack = await admin
+    .firestore()
+    .collection('track')
+    .where('spotify_id', '==', spotifyTrack.id)
+    .get();
+
+  if (prevSpotifyTrack.size !== 0)
+    throw new HttpsError('already-exists', 'Spotify track already exists');
 
   const snapshot = await admin
     .firestore()

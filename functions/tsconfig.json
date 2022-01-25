@@ -20,6 +20,7 @@
     ".eslintrc.js",
     ".prettierrc.js",
     "test",
-    "type"
+    "type",
+    "module"
   ]
 }

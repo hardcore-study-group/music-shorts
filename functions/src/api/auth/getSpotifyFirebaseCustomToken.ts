@@ -11,6 +11,7 @@ export const getSpotifyFirebaseCustomToken = https.onCall(
 
     const {spotifyCode} = data;
     const credential = await spotify.authorizationCodeGrant(spotifyCode);
+
     spotify.setAccessToken(credential.body.access_token);
     const me = await spotify.getMe();
 

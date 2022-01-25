@@ -11,7 +11,7 @@ export const searchTracks = https.onCall(
       throw new HttpsError('unauthenticated', 'Signin require');
     const accessToken = await getAccessToken(context.auth.uid);
     spotify.setAccessToken(accessToken);
-    const {body} = await spotify.searchTracks(query, {limit, offset});
-    return body.tracks;
+    const result = await spotify.searchTracks(query, {limit, offset});
+    return result.body.tracks;
   },
 );
