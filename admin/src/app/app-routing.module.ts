@@ -7,7 +7,6 @@ import {
   redirectLoggedInTo,
   canActivate,
 } from '@angular/fire/compat/auth-guard';
-import {OAuthSpotifyCallbackComponent} from './view/o-auth-spotify-callback/o-auth-spotify-callback.component';
 
 const redirectUnauthorizedToSignin = () => redirectUnauthorizedTo(['sign-in']);
 const redirectSignedInToDashboard = () => redirectLoggedInTo(['dashboard']);
@@ -22,10 +21,6 @@ const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     ...canActivate(redirectUnauthorizedToSignin),
-  },
-  {
-    path: 'o-auth-spotify-callback',
-    component: OAuthSpotifyCallbackComponent,
   },
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
 ];

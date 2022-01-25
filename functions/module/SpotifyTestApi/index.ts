@@ -20,6 +20,9 @@ class SpotifyTestApi extends SpotifyWebApi {
   authorizationCodeGrant(): any {
     return require('./authorizationCodeGrant_mock.json');
   }
+  getMe(): any {
+    return require('./getMe_mock.json');
+  }
 }
 
 export default SpotifyTestApi;

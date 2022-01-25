@@ -1,10 +1,19 @@
 {
     "body": {
-        "access_token": "BQBR0LHc3wBVhB1njJQ5tI44A-8_GReY58Ao9_MK6xdsGaT92XsjW9EdkWnQRXpg2kXbPhOuAcY7_eUeCkAK6Qdup98RiAsWqlZT7JOPGrwHTRFZfqr1pNp09FOcS_4yOCi8yovX6yQVvrBXMe7NcaTNFSnZdrRddcqca89ymsffVb0",
-        "token_type": "Bearer",
-        "expires_in": 3600,
-        "refresh_token": "AQC5PtccVNPEQyQMQ7r7gUNIQRFWGQspb6VlxYW9fOYwgGUCo8uK5XH8zGzuywGvqgw1FT-gWRMkpgHFUyQp6qsu2uEgfWMcJaluNyTF7saB6zejZ4ILyfldwyozYWp-HG4",
-        "scope": "user-read-email"
+        "display_name": "test_user",
+        "email": "test_user@gmail.com",
+        "external_urls": {
+            "spotify": "https://open.spotify.com/user/31se6zrwwpucppd5q7tptxs7xwwq"
+        },
+        "followers": {
+            "href": null,
+            "total": 0
+        },
+        "href": "https://api.spotify.com/v1/users/31se6zrwwpucppd5q7tptxs7xwwq",
+        "id": "31se6zrwwpucppd5q7tptxs7xwwq",
+        "images": [],
+        "type": "user",
+        "uri": "spotify:user:31se6zrwwpucppd5q7tptxs7xwwq"
     },
     "headers": {
         "date": "Tue, 25 Jan 2022 07:04:18 GMT",
