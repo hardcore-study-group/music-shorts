@@ -21,17 +21,11 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
-import {OAuthSpotifyCallbackComponent} from './view/o-auth-spotify-callback/o-auth-spotify-callback.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    DashboardComponent,
-    SignInComponent,
-    OAuthSpotifyCallbackComponent,
-  ],
+  declarations: [AppComponent, DashboardComponent, SignInComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -51,7 +45,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatPaginatorModule,
     MatTableModule,
   ],
-  // providers: [{provide: USE_EMULATOR, useValue: ['localhost', 5000]}],
+  providers: [{provide: USE_EMULATOR, useValue: ['localhost', 5000]}],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

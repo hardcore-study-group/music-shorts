@@ -34,10 +34,13 @@
     var code = window.location.href.split('code=')[1].split('&')[0]
 
     firebase.functions().httpsCallable('getSpotifyFirebaseCustomToken')({ spotifyCode: code })
-      .then((token) => {
-        postMessage(token)
-        console.log(token)
-        window.close()
+      .then((res) => {
+        // console.log(res.data)
+        window.addEventListener("message", event => {
+          if(['http://localhost:4200', 'https://admin.music-shorts.com'].indexOf(event.origin) === -1) return
+          // console.log(event.origin)
+          event.source.postMessage(res.data, event.origin)
+        }, false);
       })
   </script>
 </body>
