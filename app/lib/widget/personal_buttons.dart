@@ -6,13 +6,13 @@ class PersonalButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(
+      padding: const EdgeInsets.only(
         top: 50,
         right: 10,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+        children: const [
           ProfileButton(),
           PlayListButton(),
         ],
@@ -31,7 +31,7 @@ class ProfileButton extends StatelessWidget {
         print('profile cllicked');
       },
       child: Column(
-        children: [
+        children: const [
           Icon(
             Icons.account_circle_rounded,
             color: Colors.white,
@@ -53,7 +53,7 @@ class PlayListButton extends StatelessWidget {
         print('playlist clicked');
       },
       child: Column(
-        children: [
+        children: const [
           Icon(
             Icons.playlist_play_rounded,
             color: Colors.white,
