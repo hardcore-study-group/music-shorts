@@ -1,8 +1,8 @@
 import 'package:app/widget/music_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:app/widget/music_information.dart';
-import 'package:spotify_sdk/platform_channels.dart';
-import 'package:spotify_sdk/spotify_sdk.dart';
+// import 'package:spotify_sdk/platform_channels.dart';
+// import 'package:spotify_sdk/spotify_sdk.dart';
 
 class PlayerPage extends StatefulWidget {
   const PlayerPage({Key? key}) : super(key: key);
