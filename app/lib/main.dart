@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:app/home_page.dart';
-import 'package:app/player_page.dart';
+import 'package:app/page/home_page.dart';
+import 'package:app/page/player_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +15,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       home: HomePage(),
-      // home: const PlayerPage(),
     );
   }
 }
