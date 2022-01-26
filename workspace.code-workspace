@@ -4,11 +4,14 @@
 			"path": "functions"
 		},
 		{
+			"path": "app"
+		},
+		{
 			"path": "admin"
 		},
 		{
 			"path": "auth"
-		}
+		},
 	],
 	"settings": {}
 }

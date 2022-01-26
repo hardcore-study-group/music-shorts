@@ -20,24 +20,24 @@ class MusicInformation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         child: Column(
-          crossAxisAlignment: (this.isAlignLeft
+          crossAxisAlignment: (isAlignLeft
               ? CrossAxisAlignment.start
               : CrossAxisAlignment.center),
           children: [
             Text(
               title,
               style: TextStyle(
-                fontWeight: (this.isBold ? FontWeight.bold : FontWeight.normal),
+                fontWeight: (isBold ? FontWeight.bold : FontWeight.normal),
                 fontSize: 16,
-                color: Color(0xffffffff),
+                color: const Color(0xffffffff),
               ),
             ),
-            SizedBox(height: this.leading as double),
+            SizedBox(height: leading),
             Text(
               artist,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 14,
                 color: Color(0xff888888),
               ),

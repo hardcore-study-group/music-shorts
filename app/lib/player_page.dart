@@ -27,22 +27,22 @@ class _PlayerPageState extends State<PlayerPage> {
               fontWeight: FontWeight.bold,
               fontSize: 16,
             )),
-        backgroundColor: Color(0xff222222),
+        backgroundColor: const Color(0xff222222),
         elevation: 0,
         automaticallyImplyLeading: true,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
+          icon: const Icon(Icons.arrow_back_ios),
           onPressed: () {},
         ),
       ),
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        color: Color(0xff222222),
+        color: const Color(0xff222222),
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 20),
+              padding: const EdgeInsets.symmetric(vertical: 20),
               child: MusicInformation(
                 title: _title,
                 artist: _artist,
@@ -52,7 +52,7 @@ class _PlayerPageState extends State<PlayerPage> {
               ),
             ),
             Image.network(_imageUrl),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             MusicController(),
           ],
         ),

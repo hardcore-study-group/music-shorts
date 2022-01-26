@@ -34,11 +34,11 @@ class MusicSlide extends StatelessWidget {
             isBold: true,
           ),
         ),
-        Positioned(
+        const Positioned(
           right: 0,
           child: LikeButtons(),
         ),
-        Positioned(
+        const Positioned(
           top: 0,
           right: 0,
           child: PersonalButtons(),
@@ -51,7 +51,7 @@ class MusicSlide extends StatelessWidget {
 class BackgroundCover extends StatelessWidget {
   String url = '';
 
-  BackgroundCover(url) : this.url = url;
+  BackgroundCover(url) : url = url;
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +75,7 @@ class BackgroundCover extends StatelessWidget {
           child: Container(
             height: MediaQuery.of(context).size.height / 2,
             width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
@@ -95,7 +95,7 @@ class BackgroundCover extends StatelessWidget {
 class AlbumCover extends StatelessWidget {
   String url = '';
 
-  AlbumCover(url) : this.url = url;
+  AlbumCover(url) : url = url;
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +103,7 @@ class AlbumCover extends StatelessWidget {
         onPressed: () {
           print('music paused');
         },
-        style: TextButton.styleFrom(padding: EdgeInsets.all(0)),
+        style: TextButton.styleFrom(padding: const EdgeInsets.all(0)),
         child: SizedBox(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.width,

@@ -5,11 +5,11 @@ class LikeButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: MediaQuery.of(context).size.height,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+        children: const [
           ThumbsUpButton(),
           SizedBox(height: 24),
           ThumbsDownButton(),
@@ -29,7 +29,7 @@ class ThumbsUpButton extends StatelessWidget {
         print('like cllicked');
       },
       child: Column(
-        children: [
+        children: const [
           Icon(
             Icons.thumb_up_alt,
             color: Colors.white,
@@ -58,7 +58,7 @@ class ThumbsDownButton extends StatelessWidget {
         print('dislike cllicked');
       },
       child: Column(
-        children: [
+        children: const [
           Icon(
             Icons.thumb_down_alt,
             color: Colors.white,

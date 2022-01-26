@@ -22,7 +22,7 @@ class _MusicControllerState extends State<MusicController> {
   Widget build(BuildContext context) {
     return Container(
       child: Column(
-        children: [
+        children: const [
           MusicSlider(),
           SizedBox(height: 24),
           MusicButtons(),
@@ -40,7 +40,7 @@ class MusicSlider extends StatelessWidget {
     return Column(
       children: [
         SliderTheme(
-          data: SliderThemeData(
+          data: const SliderThemeData(
             thumbColor: Color(0xffbb86fc),
             thumbShape: RoundSliderThumbShape(
               enabledThumbRadius: 6,
@@ -60,7 +60,7 @@ class MusicSlider extends StatelessWidget {
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
+          children: const [
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 24),
               child: Text(
@@ -89,7 +89,7 @@ class MusicButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: [
+      children: const [
         PreviousButton(),
         SizedBox(width: 40),
         PlayButton(),
@@ -109,7 +109,7 @@ class PreviousButton extends StatelessWidget {
       onPressed: () {
         print('previous cllicked');
       },
-      child: Icon(
+      child: const Icon(
         Icons.skip_previous,
         color: Colors.white,
         size: 40,
@@ -127,7 +127,7 @@ class PlayButton extends StatelessWidget {
       onPressed: () {
         print('like cllicked');
       },
-      child: Icon(
+      child: const Icon(
         Icons.play_arrow,
         color: Colors.white,
         size: 40,
@@ -145,7 +145,7 @@ class NextButton extends StatelessWidget {
       onPressed: () {
         print('like cllicked');
       },
-      child: Icon(
+      child: const Icon(
         Icons.skip_next,
         color: Colors.white,
         size: 40,
