@@ -21,7 +21,7 @@ export class SignInComponent implements OnInit {
     const getSpotifyOAuthUrl = this.functions.httpsCallable<any, string>(
       'getSpotifyOAuthUrl',
     );
-    getSpotifyOAuthUrl({}).subscribe(url => {
+    getSpotifyOAuthUrl({state: 'admin'}).subscribe(url => {
       const popup = window.open(
         url,
         'spotify',

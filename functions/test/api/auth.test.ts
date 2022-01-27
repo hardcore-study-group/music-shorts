@@ -1,5 +1,8 @@
 import {CloudFunction} from 'firebase-functions/v1';
-import {GetSpotifyFirebaseCustomTokenData} from '../../type/api/auth';
+import {
+  GetSpotifyFirebaseCustomTokenData,
+  GetSpotifyOAuthUrl,
+} from '../../type/api/auth';
 import {assert, expect} from 'chai';
 import {HttpsError} from 'firebase-functions/v1/https';
 import {testAdmin, testFunctions} from '../setup.test';
@@ -22,7 +25,9 @@ describe('api/auth', () => {
 
   context('getSpotifyOAuthUrl', () => {
     it('check return url format', async () => {
-      const result = await testFunctions.wrap(Functions.getSpotifyOAuthUrl)({});
+      const result = await testFunctions.wrap(Functions.getSpotifyOAuthUrl)({
+        state: 'app',
+      } as GetSpotifyOAuthUrl);
       expect(result).to.be.include('https://accounts.spotify.com/authorize');
     });
   });
