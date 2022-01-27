@@ -1,5 +1,6 @@
-import 'dart:developer';
-
+import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:uni_links/uni_links.dart';
 import 'package:app/util/hex_color.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
@@ -14,13 +15,41 @@ class SigninPage extends StatefulWidget {
 }
 
 class _SigninPageState extends State<SigninPage> {
-  FirebaseFunctions functions = FirebaseFunctions.instance;
+  late StreamSubscription uriLinkSubscription;
 
   void _launchURL() async {
+    // -------------- firebase functinos ------------- //
     HttpsCallable callable =
         FirebaseFunctions.instance.httpsCallable('getSpotifyOAuthUrl');
-    dynamic result = await callable({'state': 'app'});
-    if (!await launch(result.data)) throw "Could not launch ${result.data}";
+    dynamic result =
+        await callable({'state': 'app'}); // get url from firebase functions
+    // -------------- firebase functinos ------------- //
+    if (!await launch(result.data, forceSafariVC: false)) {
+      // open url with browser
+      throw "Could not launch ${result.data}";
+    }
+  }
+
+  @override
+  void initState() {
+    // create subscription when open app with app scheme
+    uriLinkSubscription = uriLinkStream.listen((Uri? uri) async {
+      if (uri!.host == 'auth') {
+        final fireabseCustomToken = uri.pathSegments[0];
+        // firebase signin
+        await FirebaseAuth.instance.signInWithCustomToken(fireabseCustomToken);
+        // navigate to root screen
+        Navigator.pushNamedAndRemoveUntil(context, '/', (_) => false);
+      }
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // disconnect subscription
+    uriLinkSubscription.cancel();
+    super.dispose();
   }
 
   @override

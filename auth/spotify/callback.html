@@ -43,6 +43,7 @@
           }, false);
         } else if (state === 'app') {
           window.location.href = `musicshorts://auth/${res.data}`
+          window.close()
         }
       })
   </script>

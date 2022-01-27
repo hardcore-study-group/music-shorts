@@ -35,6 +35,7 @@ dependencies:
   material_design_icons_flutter: ^5.0.6595
   url_launcher: ^6.0.18
   cupertino_icons: ^1.0.2
+  uni_links: ^0.5.1
 
 dev_dependencies:
   flutter_test:
