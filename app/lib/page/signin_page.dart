@@ -1,6 +1,10 @@
+import 'dart:developer';
+
 import 'package:app/util/hex_color.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SigninPage extends StatefulWidget {
   const SigninPage({Key? key}) : super(key: key);
@@ -10,6 +14,15 @@ class SigninPage extends StatefulWidget {
 }
 
 class _SigninPageState extends State<SigninPage> {
+  FirebaseFunctions functions = FirebaseFunctions.instance;
+
+  void _launchURL() async {
+    HttpsCallable callable =
+        FirebaseFunctions.instance.httpsCallable('getSpotifyOAuthUrl');
+    dynamic result = await callable({'state': 'app'});
+    if (!await launch(result.data)) throw "Could not launch ${result.data}";
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +52,7 @@ class _SigninPageState extends State<SigninPage> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(32),
                 ),
-                onPressed: () => print('1'),
+                onPressed: _launchURL,
                 padding: const EdgeInsets.all(0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,

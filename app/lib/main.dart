@@ -1,11 +1,17 @@
 import 'package:app/page/premium_require_spotify_page.dart';
 import 'package:app/page/signin_page.dart';
-import 'package:app/page/signin_with_spotify_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:app/page/home_page.dart';
 import 'package:app/page/player_page.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(MaterialApp(
     title: 'Music shorts',
     theme: ThemeData(
@@ -23,7 +29,6 @@ void main() {
       '/': (context) => const HomePage(),
       '/player': (context) => const PlayerPage(),
       '/signin': (context) => const SigninPage(),
-      '/signin_with_spotify': (context) => const SigninWithSpotifyPage(),
       '/premium_require_spotify': (context) =>
           const PremiumRequireSpotifyPage(),
     },
