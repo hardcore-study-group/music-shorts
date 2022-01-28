@@ -16,7 +16,7 @@ void main() async {
   print(FirebaseAuth.instance.currentUser);
 
   runApp(MaterialApp(
-    title: 'Music shorts',
+    title: 'Music Shorts',
     theme: ThemeData(
         scaffoldBackgroundColor: const Color(0xFF333333),
         splashColor: const Color(0x88000000),
@@ -26,7 +26,7 @@ void main() async {
             toolbarHeight: 56,
             backgroundColor: Color(0x00000000),
             elevation: 0)),
-    initialRoute: '/',
+    initialRoute: '/signin',
     debugShowCheckedModeBanner: false,
     routes: {
       '/': (context) => const HomePage(),
