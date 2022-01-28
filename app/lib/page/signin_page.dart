@@ -1,10 +1,11 @@
 import 'dart:async';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:uni_links/uni_links.dart';
+import 'dart:io';
 import 'package:app/util/hex_color.dart';
 import 'package:cloud_functions/cloud_functions.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:uni_links/uni_links.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SigninPage extends StatefulWidget {
@@ -15,7 +16,7 @@ class SigninPage extends StatefulWidget {
 }
 
 class _SigninPageState extends State<SigninPage> {
-  late StreamSubscription uriLinkSubscription;
+  late StreamSubscription? uriLinkSubscription;
 
   void _launchURL() async {
     // -------------- firebase functinos ------------- //
@@ -33,22 +34,26 @@ class _SigninPageState extends State<SigninPage> {
   @override
   void initState() {
     // create subscription when open app with app scheme
-    uriLinkSubscription = uriLinkStream.listen((Uri? uri) async {
-      if (uri!.host == 'auth') {
-        final fireabseCustomToken = uri.pathSegments[0];
-        // firebase signin
-        await FirebaseAuth.instance.signInWithCustomToken(fireabseCustomToken);
-        // navigate to root screen
-        Navigator.pushNamedAndRemoveUntil(context, '/', (_) => false);
-      }
-    });
+    // IOS ONLY
+    if (Platform.isIOS) {
+      uriLinkSubscription = uriLinkStream.listen((Uri? uri) async {
+        if (uri?.pathSegments[0] == 'verify') {
+          final fireabseCustomToken = uri!.pathSegments[1];
+          // firebase signin
+          await FirebaseAuth.instance
+              .signInWithCustomToken(fireabseCustomToken);
+          // navigate to root screen
+          Navigator.pushNamedAndRemoveUntil(context, '/', (_) => false);
+        }
+      });
+    }
     super.initState();
   }
 
   @override
   void dispose() {
     // disconnect subscription
-    uriLinkSubscription.cancel();
+    uriLinkSubscription?.cancel();
     super.dispose();
   }
 
@@ -69,7 +74,7 @@ class _SigninPageState extends State<SigninPage> {
             Container(
                 margin: const EdgeInsets.fromLTRB(8, 0, 8, 40),
                 child: const Text(
-                    'If you want to listen to the entire music, you have to sign in with a premium Spotify account.',
+                    'If you want to listen to the entire music, you have to sign in with a premium spotify account.',
                     style: TextStyle(
                       height: 1.5,
                       color: Color(0xffffffff),

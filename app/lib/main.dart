@@ -1,6 +1,6 @@
+import 'package:app/page/auth_verify.dart';
 import 'package:app/page/premium_require_spotify_page.dart';
 import 'package:app/page/signin_page.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:app/page/home_page.dart';
@@ -13,27 +13,41 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  print(FirebaseAuth.instance.currentUser);
+  // print("user info");
+  // print(FirebaseAuth.instance.currentUser);
 
   runApp(MaterialApp(
-    title: 'Music shorts',
-    theme: ThemeData(
-        scaffoldBackgroundColor: const Color(0xFF333333),
-        splashColor: const Color(0x88000000),
-        disabledColor: const Color(0x88000000),
-        // iconTheme: const IconThemeData(size: 16),
-        appBarTheme: const AppBarTheme(
-            toolbarHeight: 56,
-            backgroundColor: Color(0x00000000),
-            elevation: 0)),
-    initialRoute: '/',
-    debugShowCheckedModeBanner: false,
-    routes: {
-      '/': (context) => const HomePage(),
-      '/player': (context) => const PlayerPage(),
-      '/signin': (context) => const SigninPage(),
-      '/premium_require_spotify': (context) =>
-          const PremiumRequireSpotifyPage(),
-    },
-  ));
+      title: 'Music Shorts',
+      theme: ThemeData(
+          scaffoldBackgroundColor: const Color(0xFF333333),
+          splashColor: const Color(0x88000000),
+          disabledColor: const Color(0x88000000),
+          // iconTheme: const IconThemeData(size: 16),
+          appBarTheme: const AppBarTheme(
+              toolbarHeight: 56,
+              backgroundColor: Color(0x00000000),
+              elevation: 0)),
+      initialRoute: '/signin',
+      debugShowCheckedModeBanner: false,
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case '/':
+            return MaterialPageRoute(builder: (context) => const HomePage());
+          case '/player':
+            return MaterialPageRoute(builder: (context) => const PlayerPage());
+          case '/signin':
+            return MaterialPageRoute(builder: (context) => const SigninPage());
+          case '/premium_require_spotify':
+            return MaterialPageRoute(
+                builder: (context) => const PremiumRequireSpotifyPage());
+        }
+        // Handle '/verify/:id'
+        var uri = Uri.parse(settings.name!);
+        if (uri.pathSegments.length == 2 &&
+            uri.pathSegments.first == 'verify') {
+          var token = uri.pathSegments[1];
+          return MaterialPageRoute(
+              builder: (context) => AuthVerify(token: token));
+        }
+      }));
 }
