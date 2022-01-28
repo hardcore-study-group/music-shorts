@@ -42,7 +42,7 @@
             event.source.postMessage(res.data, event.origin)
           }, false);
         } else if (state === 'app') {
-          window.location.href = `musicshorts://auth/${res.data}`
+          window.location.href = `app://musicshorts/verify/${res.data}`
           window.close()
         }
       })
