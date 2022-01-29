@@ -30,7 +30,7 @@ export const getRecommendTracks = https.onCall(
             return [];
           });
 
-    const result: (Track & {id: string})[] = [];
+    let result: (Track & {id: string})[] = [];
     const getTracks = get100Tracks();
     while (result.length < 3) {
       const tracks = await getTracks();
@@ -45,6 +45,8 @@ export const getRecommendTracks = https.onCall(
       result.push(...trackData);
     }
 
+    result = result.slice(0, 3);
+
     // cache called
     if (result.length) {
       await firestore()
@@ -57,7 +59,7 @@ export const getRecommendTracks = https.onCall(
         });
     }
 
-    return result.slice(0, 3);
+    return result;
   },
 );
 
