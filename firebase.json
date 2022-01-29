@@ -42,6 +42,11 @@
           "destination": "/index.html"
         }
       ]
+    },
+    {
+      "target":"homepage",
+      "public": "homepage",
+      "cleanUrls": true
     }
   ],
   "functions": {

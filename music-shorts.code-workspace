@@ -12,6 +12,9 @@
 		{
 			"path": "auth"
 		},
+		{
+			"path":"homepage"
+		}
 	],
 	"settings": {}
 }
