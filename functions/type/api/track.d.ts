@@ -9,3 +9,7 @@ export interface RemoveTrackData {
 export interface AddTrackData {
   spotifyTrackId: string;
 }
+
+export interface GetRecommendTracks {
+  anonymouseId?: string;
+}

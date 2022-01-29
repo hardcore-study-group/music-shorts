@@ -3,6 +3,8 @@ import {UserRecord} from 'firebase-admin/lib/auth/user-record';
 import {CloudFunction} from 'firebase-functions/v1';
 import {clearTestUser, createTestUser} from '../auth.test';
 import {testAdmin, testFunctions} from '../setup.test';
+import {GetRecommendTracks} from '../../type/api/track';
+import {firestore} from 'firebase-admin';
 
 describe('api/track', () => {
   let Functions: {
@@ -83,9 +85,48 @@ describe('api/track', () => {
   });
 
   context('getRecommendTracks', async () => {
-    it('return array tracks when call', async () => {
-      const result = await testFunctions.wrap(Functions.getRecommendTracks)({});
+    let firstCalledTracks: {id: string}[];
+
+    before(async () => {
+      await Promise.all(
+        Array(10)
+          .fill({
+            created_at: firestore.Timestamp.now(),
+            called_user_ids: [],
+          })
+          .map((v: any) => testAdmin.firestore().collection('track').add(v)),
+      );
+    });
+
+    after(async () => {
+      await testAdmin.firestore().collection('guest').doc('random_id').delete();
+    });
+
+    it('return max 3 track array', async () => {
+      const result = await testFunctions.wrap(Functions.getRecommendTracks)({
+        anonymouseId: 'random_id',
+      } as GetRecommendTracks);
+      firstCalledTracks = result;
       expect(result).to.be.an('array');
+      expect(result.length <= 3).to.be.true;
+    });
+
+    it('same tracks never show again', async () => {
+      const result = await testFunctions.wrap(Functions.getRecommendTracks)({
+        anonymouseId: 'random_id',
+      } as GetRecommendTracks);
+      expect(
+        result.filter((v: {id: string}) =>
+          firstCalledTracks.map(v => v.id).includes(v.id),
+        ).length === 0,
+      ).to.be.true;
+    });
+
+    it('guest user require argument "anonymouseId"', async () => {
+      const result = await testFunctions
+        .wrap(Functions.getRecommendTracks)({})
+        .catch((e: any) => e);
+      expect(result).to.be.a('error');
     });
   });
 
