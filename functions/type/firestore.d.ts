@@ -11,6 +11,7 @@ export interface User {
   refresh_token?: string;
   is_admin?: boolean;
   playlist: Playlist;
+  called_track_ids: string[];
 }
 export interface Track {
   created_at: firestore.Timestamp;
