@@ -30,10 +30,6 @@ class _PlayerPageState extends State<PlayerPage> {
         backgroundColor: const Color(0xff222222),
         elevation: 0,
         automaticallyImplyLeading: true,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios),
-          onPressed: () {},
-        ),
       ),
       body: Container(
         width: MediaQuery.of(context).size.width,

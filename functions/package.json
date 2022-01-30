@@ -4,7 +4,8 @@
   "scripts": {
     "build": "tsc",
     "serve": "npm run firebase:config && tsc && firebase serve --only functions",
-    "firebase:config":"firebase functions:config:get > .runtimeconfig.json",
+    "shell": "npm run firebase:config && tsc && firebase functions:shell",
+    "firebase:config": "firebase functions:config:get > .runtimeconfig.json",
     "deploy": "npm run build && firebase deploy --only functions",
     "logs": "firebase functions:log",
     "lint": "eslint --ext .js,.ts .",

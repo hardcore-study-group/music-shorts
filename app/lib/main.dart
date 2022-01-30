@@ -1,4 +1,5 @@
 import 'package:app/page/auth_verify_page.dart';
+import 'package:app/page/playlist_page.dart';
 import 'package:app/page/premium_require_spotify_page.dart';
 import 'package:app/page/profile_page.dart';
 import 'package:app/page/signin_page.dart';
@@ -28,7 +29,7 @@ void main() async {
               toolbarHeight: 56,
               backgroundColor: Color(0x00000000),
               elevation: 0)),
-      initialRoute: '/',
+      initialRoute: '/playlist',
       debugShowCheckedModeBanner: false,
       onGenerateRoute: (settings) {
         switch (settings.name) {
@@ -38,8 +39,10 @@ void main() async {
             return MaterialPageRoute(builder: (context) => const PlayerPage());
           case '/signin':
             return MaterialPageRoute(builder: (context) => const SigninPage());
-          case 'profile':
+          case '/profile':
             return MaterialPageRoute(builder: (context) => const ProfilePage());
+          case '/playlist':
+            return MaterialPageRoute(builder: (context) => const Playlist());
           case '/premium_require_spotify':
             return MaterialPageRoute(
                 builder: (context) => const PremiumRequireSpotifyPage());
