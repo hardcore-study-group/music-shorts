@@ -1,5 +1,5 @@
 export interface StartPlayerData {
   deviceId: string;
-  trackId: string;
+  trackId?: string;
   shuffle?: boolean;
 }

@@ -6,7 +6,7 @@ import {spotify} from '../../service/spotify';
 
 export const startPlayer = https.onCall(
   async (data: StartPlayerData, context) => {
-    const {deviceId, trackId} = data;
+    const {deviceId, trackId, shuffle = false} = data;
     if (!context.auth)
       throw new HttpsError('unauthenticated', 'sign in require');
 

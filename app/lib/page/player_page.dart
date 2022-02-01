@@ -4,6 +4,13 @@ import 'package:app/widget/music_information.dart';
 // import 'package:spotify_sdk/platform_channels.dart';
 // import 'package:spotify_sdk/spotify_sdk.dart';
 
+class PlayerPageScreenArguments {
+  bool shuffle = false;
+  final String? trackId;
+
+  PlayerPageScreenArguments(this.trackId, this.shuffle);
+}
+
 class PlayerPage extends StatefulWidget {
   const PlayerPage({Key? key}) : super(key: key);
 
@@ -20,6 +27,9 @@ class _PlayerPageState extends State<PlayerPage> {
 
   @override
   Widget build(BuildContext context) {
+    final args =
+        ModalRoute.of(context)!.settings.arguments as PlayerPageScreenArguments;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Player',

@@ -15,7 +15,11 @@ class _PlaylistState extends State<Playlist> {
 
   void shuffle() {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => const PlayerPage()));
+        context,
+        MaterialPageRoute(
+            settings:
+                RouteSettings(arguments: PlayerPageScreenArguments(null, true)),
+            builder: (context) => const PlayerPage()));
   }
 
   void init() async {
@@ -69,9 +73,18 @@ class _PlaylistState extends State<Playlist> {
                       'removePlaylistOneTrack')({"id": item["id"]});
                 },
                 background: Container(color: Colors.red),
-                child: Container(
+                child: MaterialButton(
                     height: 64,
-                    width: double.infinity,
+                    // width: double.infinity,
+                    onPressed: () => {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  settings: RouteSettings(
+                                      arguments: PlayerPageScreenArguments(
+                                          item["id"], false)),
+                                  builder: (context) => const PlayerPage()))
+                        },
                     padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
