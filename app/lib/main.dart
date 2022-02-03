@@ -1,5 +1,7 @@
-import 'package:app/page/auth_verify.dart';
+import 'package:app/page/auth_verify_page.dart';
+import 'package:app/page/playlist_page.dart';
 import 'package:app/page/premium_require_spotify_page.dart';
+import 'package:app/page/profile_page.dart';
 import 'package:app/page/signin_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +21,7 @@ void main() async {
   runApp(MaterialApp(
       title: 'Music Shorts',
       theme: ThemeData(
-          scaffoldBackgroundColor: const Color(0xFF333333),
+          scaffoldBackgroundColor: const Color(0xFF222222),
           splashColor: const Color(0x88000000),
           disabledColor: const Color(0x88000000),
           // iconTheme: const IconThemeData(size: 16),
@@ -27,7 +29,7 @@ void main() async {
               toolbarHeight: 56,
               backgroundColor: Color(0x00000000),
               elevation: 0)),
-      initialRoute: '/signin',
+      initialRoute: '/playlist',
       debugShowCheckedModeBanner: false,
       onGenerateRoute: (settings) {
         switch (settings.name) {
@@ -37,6 +39,10 @@ void main() async {
             return MaterialPageRoute(builder: (context) => const PlayerPage());
           case '/signin':
             return MaterialPageRoute(builder: (context) => const SigninPage());
+          case '/profile':
+            return MaterialPageRoute(builder: (context) => const ProfilePage());
+          case '/playlist':
+            return MaterialPageRoute(builder: (context) => const Playlist());
           case '/premium_require_spotify':
             return MaterialPageRoute(
                 builder: (context) => const PremiumRequireSpotifyPage());

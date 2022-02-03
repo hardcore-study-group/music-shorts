@@ -1,3 +1,4 @@
+import 'package:app/page/profile_page.dart';
 import "package:flutter/material.dart";
 
 class PersonalButtons extends StatelessWidget {
@@ -28,7 +29,8 @@ class ProfileButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-        print('profile cllicked');
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const ProfilePage()));
       },
       child: Column(
         children: const [
