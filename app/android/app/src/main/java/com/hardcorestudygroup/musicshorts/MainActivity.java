@@ -1,4 +1,4 @@
-package com.app;
+package com.hardcorestudygroup.musicshorts;
 
 import com.facebook.react.ReactActivity;
 
