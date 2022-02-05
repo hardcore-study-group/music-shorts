@@ -1,6 +1,7 @@
-import {Text, View} from 'react-native';
+import {StatusBar, Text, View} from 'react-native';
 import React, {useEffect} from 'react';
 import SplashScreen from 'react-native-splash-screen';
+import Navigation from './src/navigations';
 
 const App = () => {
   useEffect(() => {
@@ -10,9 +11,10 @@ const App = () => {
   }, []);
 
   return (
-    <View>
-      <Text />
-    </View>
+    <>
+      <StatusBar barStyle="light-content" />
+      <Navigation />
+    </>
   );
 };
 
