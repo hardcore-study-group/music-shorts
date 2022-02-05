@@ -1,5 +1,0 @@
-# Secrets
-```
-android/key.propertes
-
-```
