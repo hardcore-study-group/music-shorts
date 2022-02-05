@@ -29,7 +29,7 @@
     "ios:clean:force": "rm -rf ~/Library/Developer/Xcode/DerivedData/*",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "oss": "license-checker --json --out ./src/assets/oss.json"
+    "oss": "npx license-checker --json --out ./src/assets/oss.json"
   },
   "dependencies": {
     "@react-navigation/native": "^6.0.8",
