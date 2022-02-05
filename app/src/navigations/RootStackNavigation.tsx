@@ -14,7 +14,8 @@ const RootStackNavigation = () => {
   return (
     <RootStack.Navigator
       initialRouteName="Home"
-      screenOptions={{animation: 'slide_from_right'}}>
+      screenOptions={{animation: 'slide_from_right'}}
+    >
       <RootStack.Screen name="Home" component={HomeScreen} />
       <RootStack.Screen name="Playlist" component={PlaylistScreen} />
     </RootStack.Navigator>

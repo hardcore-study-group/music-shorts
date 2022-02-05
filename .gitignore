@@ -65,5 +65,4 @@ node_modules/
 # dotenv environment variables file
 .env
 serviceAccountKey.json
-app_old/
 app/android/app/key.jks

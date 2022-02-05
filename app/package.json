@@ -27,7 +27,7 @@
     "pod:clean:force": "sudo rm -rf ~/Library/Caches/CocoaPods",
     "ios:clean": "cd ios && xcodebuild clean",
     "ios:clean:force": "rm -rf ~/Library/Developer/Xcode/DerivedData/*",
-    "test": "jest",
+    "test": "NODE_ENV=test jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "oss": "npx license-checker --json --out ./src/assets/oss.json"
   },
@@ -62,6 +62,9 @@
   },
   "jest": {
     "preset": "react-native",
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|rollbar-react-native|@fortawesome|@react-native|@react-navigation)"
+    ],
     "moduleFileExtensions": [
       "ts",
       "tsx",
