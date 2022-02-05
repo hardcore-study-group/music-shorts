@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "angular.ng-template",
+    "dsznajder.es7-react-js-snippets",
+    "dbaeumer.vscode-eslint",
+    "toba.vsfire",
+    "ecmel.vscode-html-css",
+    "Orta.vscode-jest",
+    "esbenp.prettier-vscode",
+    "syler.sass-indented"
+  ]
+}

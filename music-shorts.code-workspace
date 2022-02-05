@@ -13,7 +13,7 @@
 			"path": "auth"
 		},
 		{
-			"path":"homepage"
+			"path": "homepage"
 		}
 	],
 	"settings": {}
