@@ -2,6 +2,7 @@ import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
 import RootStackNavigation, {RootStackParamList} from './RootStackNavigation';
 
 import React from 'react';
+import {COLORS} from '../constants/styles';
 
 export type NavigationParamList = RootStackParamList;
 
@@ -10,7 +11,7 @@ const Navigation = () => {
     <NavigationContainer
       theme={{
         ...DefaultTheme,
-        colors: {...DefaultTheme.colors, background: '#222'},
+        colors: {...DefaultTheme.colors, background: COLORS.black},
       }}>
       <RootStackNavigation />
     </NavigationContainer>
