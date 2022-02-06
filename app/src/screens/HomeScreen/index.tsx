@@ -15,7 +15,7 @@ const HomeScreen = () => {
   useEffect(() => {
     (async () => {
       try {
-        // const session = await auth.authorize(spotifyConfig);
+        const session = await auth.authorize(spotifyConfig);
         await remote.connect('');
         await remote.playUri('spotify:track:6IA8E2Q5ttcpbuahIejO74');
         await remote.seek(58000);
