@@ -4,9 +4,9 @@ import useNavigation from '../../hooks/useNavigation';
 import {ApiConfig, ApiScope, auth, remote} from 'react-native-spotify-remote';
 
 const spotifyConfig: ApiConfig = {
-  clientID: '',
-  redirectURL: '',
-  scopes: [ApiScope.AppRemoteControlScope, ApiScope.UserFollowReadScope],
+  clientID: 'babda1a147134d70b64cb301089cfeaa',
+  redirectURL: 'musicshorts://callback',
+  scopes: [ApiScope.AppRemoteControlScope, ApiScope.UserReadEmailScope],
 };
 
 const HomeScreen = () => {
@@ -15,8 +15,11 @@ const HomeScreen = () => {
   useEffect(() => {
     (async () => {
       try {
+        console.log((await auth.getSession())?.accessToken);
+        // await auth.endSession();
         const session = await auth.authorize(spotifyConfig);
-        await remote.connect('');
+        console.log(session.accessToken);
+        await remote.connect(session.accessToken);
         await remote.playUri('spotify:track:6IA8E2Q5ttcpbuahIejO74');
         await remote.seek(58000);
       } catch (error) {
