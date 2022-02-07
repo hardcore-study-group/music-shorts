@@ -5,8 +5,8 @@ import {ApiConfig, ApiScope, auth, remote} from 'react-native-spotify-remote';
 
 const spotifyConfig: ApiConfig = {
   clientID: 'babda1a147134d70b64cb301089cfeaa',
-  redirectURL: 'musicshorts://callback',
-  scopes: [ApiScope.AppRemoteControlScope, ApiScope.UserReadEmailScope],
+  redirectURL: 'musicshorts://spotify-login-callback',
+  scopes: [ApiScope.AppRemoteControlScope, ApiScope.UserFollowReadScope],
 };
 
 const HomeScreen = () => {
@@ -15,7 +15,7 @@ const HomeScreen = () => {
   useEffect(() => {
     (async () => {
       try {
-        console.log((await auth.getSession())?.accessToken);
+        // console.log((await auth.getSession())?.accessToken);
         // await auth.endSession();
         const session = await auth.authorize(spotifyConfig);
         console.log(session.accessToken);
