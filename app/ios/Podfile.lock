@@ -408,7 +408,7 @@ PODS:
   - RNScreens (3.10.2):
     - React-Core
     - React-RCTImage
-  - RNSpotifyRemote (0.3.11-3):
+  - RNSpotifyRemote (0.3.11-5):
     - React-Core
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
@@ -643,7 +643,7 @@ SPEC CHECKSUMS:
   RNFBAuth: 7eb50d60c82b4a59018b0c7a1d4afdd1250eff74
   RNFBFunctions: 6edd867deda52f7e43cc5a3d69b2720aa6ce7e05
   RNScreens: d6da2b9e29cf523832c2542f47bf1287318b1868
-  RNSpotifyRemote: 51e07dab69f00fe3980494762111099c8cc78ea8
+  RNSpotifyRemote: ab3fcbccaebead1684ba455a1d1bbdd123909faf
   Yoga: 9b6696970c3289e8dea34b3eda93f23e61fb8121
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
