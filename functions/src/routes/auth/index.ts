@@ -9,7 +9,7 @@ router.get('/token/swap/:code', async (req, res) => {
     const {body, statusCode} = await spotify.authorizationCodeGrant(code);
     res.status(statusCode).json(body);
   } catch (error) {
-    res.status(500).send(error);
+    res.status(400).send(error);
   }
 });
 
@@ -20,7 +20,7 @@ router.post('/token/refresh', async (req, res) => {
     const {body, statusCode} = await spotify.refreshAccessToken();
     res.status(statusCode).json(body);
   } catch (error) {
-    res.status(500).send(error);
+    res.status(400).send(error);
   }
 });
 

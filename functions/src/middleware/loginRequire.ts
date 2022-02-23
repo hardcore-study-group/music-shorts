@@ -1,7 +1,7 @@
 import {RequestHandler} from 'express';
 import {spotify} from '../config/spotify';
 
-const signinRequire: RequestHandler = async (req, res, next) => {
+const loginRequire: RequestHandler = async (req, res, next) => {
   try {
     spotify.setAccessToken(req.headers.access_token);
     spotify.setRefreshToken(req.headers.refresh_token);
@@ -14,4 +14,4 @@ const signinRequire: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default signinRequire;
+export default loginRequire;
