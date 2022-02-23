@@ -15,7 +15,7 @@ router.get('/token/swap/:code', async (req, res) => {
 
 router.post('/token/refresh', async (req, res) => {
   try {
-    const {refresh_token} = req.body;
+    const {refresh_token} = req.headers;
     spotify.setRefreshToken(refresh_token);
     const {body, statusCode} = await spotify.refreshAccessToken();
     res.status(statusCode).json(body);
