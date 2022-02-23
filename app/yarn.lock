@@ -5774,7 +5774,7 @@ react-native-codegen@^0.0.8:
     jscodeshift "^0.11.0"
     nullthrows "^1.1.1"
 
-react-native-events@^1.0.20, react-native-events@^1.0.21:
+react-native-events@^1.0.21:
   version "1.0.21"
   resolved "https://registry.yarnpkg.com/react-native-events/-/react-native-events-1.0.21.tgz#d1fbe492a3321d09c630da5132dad10a5312b823"
   integrity sha512-qBolATOf+xzUkYOlOK3I4Nm/l6Y5vtng8dAM9TPHy170NSKKpsgirAnaCO82+nEkniEanm+Nb/cP4pFVPQAeaQ==
@@ -5799,12 +5799,12 @@ react-native-splash-screen@^3.3.0:
   resolved "https://registry.yarnpkg.com/react-native-splash-screen/-/react-native-splash-screen-3.3.0.tgz#3af71ed17afe50fee69590a45aec399d071ead02"
   integrity sha512-rGjt6HkoSXxMqH4SQUJ1gnPQlPJV8+J47+4yhgTIan4bVvAwJhEeJH7wWt9hXSdH4+VfwTS0GTaflj1Tw83IhA==
 
-react-native-spotify-remote@0.3.11-3:
-  version "0.3.11-3"
-  resolved "https://registry.yarnpkg.com/react-native-spotify-remote/-/react-native-spotify-remote-0.3.11-3.tgz#a85d49b7593ee69d01d8f24e953163e5e734a42c"
-  integrity sha512-x9WWJ6TE3lxy5z0Uw8aff8KezrVWHNF29qxhx/4qRMxJdCO/2/ONHQIlBsNWLL1L3IfcO1T154Fm9T1WVox6zQ==
+react-native-spotify-remote@0.3.11-5:
+  version "0.3.11-5"
+  resolved "https://registry.yarnpkg.com/react-native-spotify-remote/-/react-native-spotify-remote-0.3.11-5.tgz#2638c7fecec28f8e7cc42b850cfc4271c84aa506"
+  integrity sha512-6i6ibtIJOX8BywxlSWmb3GKOVCL6kCASFdDtnvfdVz35BtL/IPdxCd/jk4/v1yqm3HU6EWjNyS1d91m/Yk0R+g==
   dependencies:
-    react-native-events "^1.0.20"
+    react-native-events "^1.0.21"
 
 react-native-status-bar-height@^2.6.0:
   version "2.6.0"

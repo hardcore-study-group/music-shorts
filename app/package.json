@@ -43,7 +43,7 @@
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.10.2",
     "react-native-splash-screen": "^3.3.0",
-    "react-native-spotify-remote": "0.3.11-3",
+    "react-native-spotify-remote": "0.3.11-5",
     "react-native-status-bar-height": "^2.6.0"
   },
   "devDependencies": {
