@@ -1,5 +1,6 @@
 import {Router} from 'express';
 import {firestore} from 'firebase-admin';
+import {admin} from '../../config/firebase';
 import loginRequire from '../../middleware/loginRequire';
 import {Track} from '../../types/firestore';
 
@@ -7,7 +8,8 @@ const router = Router();
 
 router.post('/', loginRequire, async (req, res) => {
   try {
-    const calledTrackIds = await firestore()
+    const calledTrackIds = await admin
+      .firestore()
       .collection('user')
       .doc(req.me.id)
       .get()
@@ -19,7 +21,8 @@ router.post('/', loginRequire, async (req, res) => {
       let count = 0;
       return () => {
         count += 1;
-        return firestore()
+        return admin
+          .firestore()
           .collection('track')
           .orderBy('created_at', 'desc')
           .offset((count - 1) * 100)
@@ -45,7 +48,8 @@ router.post('/', loginRequire, async (req, res) => {
 
     // caching
     if (result.length) {
-      await firestore()
+      await admin
+        .firestore()
         .collection('user')
         .doc(req.me.id)
         .update({

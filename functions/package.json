@@ -8,9 +8,7 @@
     "deploy": "npm run build && firebase deploy --only functions",
     "firebase:config": "firebase functions:config:get > .runtimeconfig.json",
     "lint": "eslint --ext .js,.ts .",
-    "test": "npm run test:service && npm run test:api",
-    "test:api": "NODE_ENV=test mocha --reporter spec test/api/*.test.ts -r ts-node/register --timeout 15000 --bail",
-    "test:service": "NODE_ENV=test mocha --reporter spec test/service/*.test.ts -r ts-node/register --timeout 10000 --bail"
+    "test": "ls"
   },
   "engines": {
     "node": "16"
