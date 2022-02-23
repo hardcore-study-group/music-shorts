@@ -1,6 +1,5 @@
 import {firestore} from 'firebase-admin';
 
-/* eslint-disable camelcase */
 export interface Root {
   user: User[];
   track: Track[];

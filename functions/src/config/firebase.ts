@@ -10,5 +10,3 @@ export const admin =
         serviceAccountId:
           'firebase-adminsdk-7gvq1@music-shorts.iam.gserviceaccount.com',
       });
-
-export * from './auth';

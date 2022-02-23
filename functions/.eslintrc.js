@@ -34,5 +34,6 @@ module.exports = {
     'no-invalid-this': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
     camelcase: 'off',
+    'new-cap': 'off',
   },
 };

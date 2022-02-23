@@ -1,11 +1,18 @@
+import express from 'express';
 import {https} from 'firebase-functions';
+// ----------------- routes ----------------- //
+import playlists from './routes/playlists';
+import search from './routes/search';
+import tracks from './routes/tracks';
+import auth from './routes/auth';
+// ----------------- routes ----------------- //
 
-export const isRunning = https.onCall((request, response) => {
-  return 'server is running';
-});
+const app = express();
 
-export * from './api/auth';
-export * from './api/player';
-export * from './api/playlist';
-export * from './api/search';
-export * from './api/track';
+app.get('/isrunning', (req, res) => res.send('Server is running!!!'));
+app.use('/playlists', playlists);
+app.use('/search', search);
+app.use('/auth', auth);
+app.use('/tracks', tracks);
+
+export const api = https.onRequest(app);
