@@ -18,7 +18,6 @@ declare global {
 declare module 'http' {
   interface IncomingHttpHeaders {
     access_token: string;
-    refresh_token: string;
   }
   interface IncomingMessage {
     me: SpotifyApi.CurrentUsersProfileResponse;

@@ -3,24 +3,27 @@ import React, {useEffect} from 'react';
 import SplashScreen from 'react-native-splash-screen';
 import Navigation from './src/navigations';
 import {COLORS} from './src/constants/styles';
+import AuthProvider from './src/context/AuthContext';
 
 const App = () => {
   useEffect(() => {
     setTimeout(() => {
       SplashScreen.hide();
-    }, 1000);
+    }, 2000);
   }, []);
 
   return (
-    <View style={{flex: 1, backgroundColor: COLORS.black}}>
-      <StatusBar
-        backgroundColor="transparent"
-        barStyle="light-content"
-        translucent
-      />
+    <AuthProvider>
+      <View style={{flex: 1, backgroundColor: COLORS.black}}>
+        <StatusBar
+          backgroundColor="transparent"
+          barStyle="light-content"
+          translucent
+        />
 
-      <Navigation />
-    </View>
+        <Navigation />
+      </View>
+    </AuthProvider>
   );
 };
 

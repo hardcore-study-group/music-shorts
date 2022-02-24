@@ -3,9 +3,9 @@ import {spotify} from '../../config/spotify';
 
 const router = Router();
 
-router.get('/token/swap/:code', async (req, res) => {
+router.get('/token/swap', async (req, res) => {
   try {
-    const {code} = req.params;
+    const {code} = req.body;
     const {body, statusCode} = await spotify.authorizationCodeGrant(code);
     res.status(statusCode).json(body);
   } catch (error) {
@@ -15,7 +15,7 @@ router.get('/token/swap/:code', async (req, res) => {
 
 router.post('/token/refresh', async (req, res) => {
   try {
-    const {refresh_token} = req.headers;
+    const {refresh_token} = req.body;
     spotify.setRefreshToken(refresh_token);
     const {body, statusCode} = await spotify.refreshAccessToken();
     res.status(statusCode).json(body);
