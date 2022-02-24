@@ -4,6 +4,7 @@ import SplashScreen from 'react-native-splash-screen';
 import Navigation from './src/navigations';
 import {COLORS} from './src/constants/styles';
 import AuthProvider from './src/context/AuthContext';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 const App = () => {
   useEffect(() => {
@@ -13,17 +14,19 @@ const App = () => {
   }, []);
 
   return (
-    <AuthProvider>
-      <View style={{flex: 1, backgroundColor: COLORS.black}}>
-        <StatusBar
-          backgroundColor="transparent"
-          barStyle="light-content"
-          translucent
-        />
+    <SafeAreaProvider>
+      <AuthProvider>
+        <View style={{flex: 1, backgroundColor: COLORS.black}}>
+          <StatusBar
+            backgroundColor="transparent"
+            barStyle="light-content"
+            translucent
+          />
 
-        <Navigation />
-      </View>
-    </AuthProvider>
+          <Navigation />
+        </View>
+      </AuthProvider>
+    </SafeAreaProvider>
   );
 };
 

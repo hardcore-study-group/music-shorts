@@ -9,6 +9,9 @@ import auth from './routes/auth';
 
 const app = express();
 
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+
 app.get('/isrunning', (req, res) => res.send('Server is running!!!'));
 app.use('/playlists', playlists);
 app.use('/search', search);

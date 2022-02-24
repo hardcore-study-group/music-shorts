@@ -6,13 +6,13 @@ import React, {
   useState,
 } from 'react';
 import {ApiConfig, ApiScope, auth} from 'react-native-spotify-remote';
-import {BASE_URL} from '../constants/values';
+import {BASE_URL, SPOTIFY_CLIENT_ID} from '../constants/values';
 
 const spotifyConfig: ApiConfig = {
-  clientID: 'babda1a147134d70b64cb301089cfeaa',
+  clientID: SPOTIFY_CLIENT_ID,
   redirectURL: 'musicshorts://spotify-login-callback',
-  scopes: [ApiScope.AppRemoteControlScope, ApiScope.UserFollowReadScope],
-  authType: 'TOKEN',
+  scopes: [ApiScope.AppRemoteControlScope],
+  // authType: 'TOKEN',
   tokenSwapURL: `${BASE_URL}/auth/token/swap`,
   tokenRefreshURL: `${BASE_URL}/auth/token/refresh`,
 };
@@ -36,8 +36,13 @@ const AuthProvider: React.FC = ({children}) => {
   }, []);
   // first time login
   const authenticate = useCallback(async () => {
-    const session = await auth.authorize(spotifyConfig);
-    setAccessToken(session.accessToken);
+    try {
+      const session = await auth.authorize(spotifyConfig);
+      console.log(session);
+      setAccessToken(session.accessToken);
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   const contextValue = useMemo<AuthContextType>(
