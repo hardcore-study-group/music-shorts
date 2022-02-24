@@ -3,7 +3,9 @@ import {spotify} from '../config/spotify';
 
 const loginRequire: RequestHandler = async (req, res, next) => {
   try {
-    spotify.setAccessToken(req.headers.access_token);
+    if (!req.headers.authorization) throw Error('Login require');
+    const accessToken = req.headers.authorization.replace('Bearer ', '');
+    spotify.setAccessToken(accessToken);
     const {body, statusCode} = await spotify.getMe();
     if (statusCode !== 200) throw body;
     req.me = body;

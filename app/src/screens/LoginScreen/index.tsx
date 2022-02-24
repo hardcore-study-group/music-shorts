@@ -1,13 +1,33 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
-import React, {useContext} from 'react';
+import React, {useCallback, useContext} from 'react';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import SpotifyButton from '../../components/SpotifyButton';
 import FastImage from 'react-native-fast-image';
-import {AuthContext} from '../../context/AuthContext';
+import {useRecoilRefresher_UNSTABLE} from 'recoil';
+import {ApiConfig, ApiScope, auth} from 'react-native-spotify-remote';
+import {BASE_URL, SPOTIFY_CLIENT_ID} from '../../constants/values';
+import {accessTokenQuery} from '../../recoil/auth';
+
+const spotifyConfig: ApiConfig = {
+  clientID: SPOTIFY_CLIENT_ID,
+  redirectURL: 'musicshorts://spotify-login-callback',
+  scopes: [ApiScope.AppRemoteControlScope, ApiScope.UserReadPrivateScope],
+  tokenSwapURL: `${BASE_URL}/auth/token/swap`,
+  tokenRefreshURL: `${BASE_URL}/auth/token/refresh`,
+};
 
 const LoginScreen = () => {
   const {bottom} = useSafeAreaInsets();
-  const {authenticate} = useContext(AuthContext);
+  const refresh = useRecoilRefresher_UNSTABLE(accessTokenQuery);
+
+  const signin = useCallback(async () => {
+    try {
+      await auth.authorize(spotifyConfig);
+      refresh();
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
   return (
     <View style={[styles.container, {paddingVertical: bottom + 80}]}>
@@ -18,7 +38,7 @@ const LoginScreen = () => {
           source={require('../../assets/splash.png')}
         />
       </View>
-      <SpotifyButton onPress={authenticate} title="Sign in with spotify" />
+      <SpotifyButton onPress={signin} title="Sign in with spotify" />
     </View>
   );
 };

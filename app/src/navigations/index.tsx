@@ -1,31 +1,30 @@
 import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
 import RootStackNavigation, {RootStackParamList} from './RootStackNavigation';
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {COLORS} from '../constants/styles';
 import CheckAppInstalledScreen from '../screens/CheckAppInstalledScreen';
-import {AuthContext} from '../context/AuthContext';
 import LoginScreen from '../screens/LoginScreen';
 import PremiumScreen from '../screens/PremiumScreen';
-import {Linking} from 'react-native';
+import {useRecoilValue, useRecoilRefresher_UNSTABLE} from 'recoil';
+import {accessTokenQuery, isAppInstalledQuery} from '../recoil/auth';
+import {meQuery} from '../recoil/me';
 
 export type NavigationParamList = RootStackParamList;
 
 const Navigation = () => {
-  const [isInstalled, setIsInstalled] = useState(false);
-  const {accessToken, isPremium} = useContext(AuthContext);
+  const accessToken = useRecoilValue(accessTokenQuery);
+  const isInstalled = useRecoilValue(isAppInstalledQuery);
+  const inInstalledRefresh = useRecoilRefresher_UNSTABLE(isAppInstalledQuery);
+  const me = useRecoilValue(meQuery);
 
   useEffect(() => {
     // spotify install checker
-    const interval = setInterval(async () => {
-      const canOpen = await Linking.canOpenURL('spotify://');
-      setIsInstalled(canOpen);
-    }, 1000);
-    return () => clearInterval(interval);
+    return () => clearInterval(setInterval(inInstalledRefresh, 1000));
   }, []);
 
   if (!isInstalled) return <CheckAppInstalledScreen />;
   if (!accessToken) return <LoginScreen />;
-  if (!isPremium) return <PremiumScreen />;
+  if (!me) return <PremiumScreen />;
 
   return (
     <NavigationContainer

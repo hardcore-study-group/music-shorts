@@ -10,6 +10,7 @@ export const SPOTIFY_URL = {
   appstore: 'https://apps.apple.com/app/id324684580',
 };
 export const SPOTIFY_CLIENT_ID = 'babda1a147134d70b64cb301089cfeaa';
+export const SPOTIFY_PREMIUM_URL = 'https://www.spotify.com/premium';
 
 export const BASE_URL = (() => {
   const LOCAL_IP = '192.168.10.26';
