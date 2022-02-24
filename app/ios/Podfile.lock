@@ -410,6 +410,8 @@ PODS:
     - React-RCTImage
   - RNSpotifyRemote (0.3.11-5):
     - React-Core
+  - RNVectorIcons (9.1.0):
+    - React-Core
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
@@ -476,6 +478,7 @@ DEPENDENCIES:
   - "RNFBFunctions (from `../node_modules/@react-native-firebase/functions`)"
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSpotifyRemote (from `../node_modules/react-native-spotify-remote`)
+  - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -580,6 +583,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-screens"
   RNSpotifyRemote:
     :path: "../node_modules/react-native-spotify-remote"
+  RNVectorIcons:
+    :path: "../node_modules/react-native-vector-icons"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -644,9 +649,10 @@ SPEC CHECKSUMS:
   RNFBFunctions: 6edd867deda52f7e43cc5a3d69b2720aa6ce7e05
   RNScreens: d6da2b9e29cf523832c2542f47bf1287318b1868
   RNSpotifyRemote: ab3fcbccaebead1684ba455a1d1bbdd123909faf
+  RNVectorIcons: 7923e585eaeb139b9f4531d25a125a1500162a0b
   Yoga: 9b6696970c3289e8dea34b3eda93f23e61fb8121
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 3a602ef4c0b368985cb9ab81c3e0d6b72242a74c
+PODFILE CHECKSUM: 9f7fa5e46f31ec89c9c1f9e96182c16814f02c22
 
 COCOAPODS: 1.11.2
