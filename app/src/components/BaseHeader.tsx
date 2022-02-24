@@ -64,6 +64,6 @@ const styles = StyleSheet.create({
   title: {
     flex: 1,
     fontWeight: 'bold',
-    marginHorizontal: 24,
+    marginHorizontal: 16,
   },
 });
