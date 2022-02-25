@@ -24,7 +24,7 @@ const Navigation = () => {
 
   if (!isInstalled) return <CheckAppInstalledScreen />;
   if (!accessToken) return <LoginScreen />;
-  if (!me) return <PremiumScreen />;
+  if (me.product !== 'premium') return <PremiumScreen />;
 
   return (
     <NavigationContainer
