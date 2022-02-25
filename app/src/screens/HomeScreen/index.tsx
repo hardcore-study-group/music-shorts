@@ -1,20 +1,33 @@
-import {Button, FlatList, StyleSheet, Text, View} from 'react-native';
+import {FlatList, StyleSheet} from 'react-native';
 import React, {useEffect} from 'react';
-import {useRecoilValue, useRecoilRefresher_UNSTABLE} from 'recoil';
-import {recomendationTracksQuery} from '../../recoil/tracks';
+import {useRecoilValue, useRecoilCallback} from 'recoil';
 import HomeScreenCard from './HomeScreenCard';
-import {auth} from 'react-native-spotify-remote';
+import {recommendationTracks} from '../../recoil/tracks';
+import axios from '../../config/axios';
 
 const HomeScreen = () => {
-  const tracks = useRecoilValue(recomendationTracksQuery);
-  const fetchMore = useRecoilRefresher_UNSTABLE(recomendationTracksQuery);
+  const tracks = useRecoilValue(recommendationTracks);
+
+  const fetchMoreRecommendationTracks = useRecoilCallback(
+    ({set}) =>
+      async () => {
+        const {data} = await axios.get('/tracks/recomendation');
+        set(recommendationTracks, current => [...current, ...data]);
+      },
+    [],
+  );
+
+  useEffect(() => {
+    fetchMoreRecommendationTracks();
+  }, []);
 
   return (
     <FlatList
       overScrollMode="never"
       showsVerticalScrollIndicator={false}
       pagingEnabled
-      onEndReached={fetchMore}
+      onEndReached={() => fetchMoreRecommendationTracks()}
+      onEndReachedThreshold={2}
       data={tracks}
       renderItem={({item}) => <HomeScreenCard {...item} />}
     />

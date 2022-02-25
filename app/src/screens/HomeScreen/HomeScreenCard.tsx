@@ -1,5 +1,5 @@
 import {Pressable, StyleSheet, Text, View} from 'react-native';
-import React, {useCallback} from 'react';
+import React, {useCallback, useState} from 'react';
 import {Track} from '../../recoil/tracks';
 import {COLORS, HEIGHT, STATUSBAR_HEIGHT, WIDTH} from '../../constants/styles';
 import FastImage from 'react-native-fast-image';
@@ -11,14 +11,22 @@ import Icon2 from 'react-native-vector-icons/MaterialIcons';
 import useNavigation from '../../hooks/useNavigation';
 import Typography from '../../components/Typography';
 import artistFormatter from '../../util/artistFormatter';
+import axios from '../../config/axios';
 
 const HomeScreenCard: React.FC<Track> = props => {
-  const {image, preview_url, artist_names, id, name} = props;
+  const {image, preview_url, artist_names, name, spotify_id} = props;
   const {bottom} = useSafeAreaInsets();
   const {navigate} = useNavigation();
+  const [playlistAdded, setPlaylistAdded] = useState(false);
 
   const onPauseResume = useCallback(() => {}, []);
-  const onAddToPlaylist = useCallback(() => {}, [id]);
+
+  const onAddToPlaylist = useCallback(async () => {
+    const {status} = await axios.post('me/playlist/tracks', {
+      track_id: spotify_id,
+    });
+    if (status === 201) setPlaylistAdded(true);
+  }, [spotify_id]);
 
   return (
     <View style={styles.container}>
@@ -66,12 +74,14 @@ const HomeScreenCard: React.FC<Track> = props => {
               {artistFormatter(artist_names)}
             </Typography>
           </View>
-          <BorderlessButton
-            style={styles.addToPlaylistButton}
-            onPress={onAddToPlaylist}
-          >
-            <Icon2 name="playlist-add" size={24} color={COLORS.white} />
-          </BorderlessButton>
+          {!playlistAdded && (
+            <BorderlessButton
+              style={styles.addToPlaylistButton}
+              onPress={onAddToPlaylist}
+            >
+              <Icon2 name="playlist-add" size={24} color={COLORS.white} />
+            </BorderlessButton>
+          )}
         </View>
         <View style={{height: bottom}} />
       </View>

@@ -15,6 +15,7 @@ module.exports = {
         curly: 'off',
         'comma-dangle': 'off',
         'react-hooks/exhaustive-deps': 'off',
+        'react-hooks/rules-of-hooks': 'off',
       },
     },
   ],

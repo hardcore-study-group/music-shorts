@@ -14,7 +14,7 @@ const App = () => {
       SplashScreen.hide();
     }, 2000);
   }, []);
-  auth.endSession();
+  // auth.endSession();
   return (
     <RecoilRoot>
       <SafeAreaProvider>

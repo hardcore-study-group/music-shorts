@@ -1,9 +1,8 @@
-import React from 'react';
-import {selector, atom} from 'recoil';
-import axios from '../config/axios';
+import {atom} from 'recoil';
 
 export interface Track {
   id: string;
+  uri: string;
   created_at: Date;
   spotify_id: string;
   name: string;
@@ -15,21 +14,7 @@ export interface Track {
   spotify_data: any;
 }
 
-const recommendationTracks = atom<Track[]>({
+export const recommendationTracks = atom<Track[]>({
   key: 'track/recomendation',
   default: [],
-});
-
-export const recomendationTracksQuery = selector<Track[]>({
-  key: 'query/track/recomendation',
-  get: async ({get}) => {
-    const tracks = get(recommendationTracks);
-    try {
-      const {data} = await axios.get('/tracks/recomendation');
-      return [...tracks, ...data];
-    } catch (error) {
-      console.error(error);
-      return tracks;
-    }
-  },
 });

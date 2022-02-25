@@ -11,6 +11,7 @@ export interface User {
   called_track_ids: string[];
 }
 export interface Track {
+  uri: string;
   created_at: firestore.Timestamp;
   spotify_id: string;
   name: string;

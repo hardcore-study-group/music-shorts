@@ -39,17 +39,17 @@ router.post(
   '/playlist/tracks',
   loginRequire,
   playlistRequire,
-  async (req, res) => {
+  async (req, res, next) => {
     try {
       const {track_id} = req.body;
       const {body, statusCode} = await spotify.addTracksToPlaylist(
         req.playlist_id,
-        track_id,
+        [`spotify:track:${track_id}`],
         {position: 0},
       );
       res.status(statusCode).json(body);
     } catch (error) {
-      res.status(400).send(error);
+      next(error);
     }
   },
 );

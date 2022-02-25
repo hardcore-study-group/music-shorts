@@ -9,15 +9,14 @@ const router = Router();
 
 router.get('/', loginRequire, async (req, res) => {
   try {
-    const calledTrackIds = await admin
-      .firestore()
-      .collection('user')
-      .doc(req.me.id)
-      .get()
-      .then(snapshot => snapshot.data()?.called_track_ids || []);
-
+    // const calledTrackIds = await admin
+    //   .firestore()
+    //   .collection('user')
+    //   .doc(req.me.id)
+    //   .get()
+    //   .then(snapshot => snapshot.data()?.called_track_ids || []);
+    const calledTrackIds: string[] = [];
     let result: (Track & {id: string})[] = [];
-
     const get100Tracks = () => {
       let count = 0;
       return () => {
