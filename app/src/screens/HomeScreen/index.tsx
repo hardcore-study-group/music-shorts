@@ -3,6 +3,7 @@ import React, {useEffect} from 'react';
 import {useRecoilValue, useRecoilRefresher_UNSTABLE} from 'recoil';
 import {recomendationTracksQuery} from '../../recoil/tracks';
 import HomeScreenCard from './HomeScreenCard';
+import {auth} from 'react-native-spotify-remote';
 
 const HomeScreen = () => {
   const tracks = useRecoilValue(recomendationTracksQuery);

@@ -6,6 +6,7 @@ import {COLORS} from './src/constants/styles';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {RecoilRoot} from 'recoil';
 import ActivityindicatorView from './src/components/ActivityIndicatorView';
+import {auth} from 'react-native-spotify-remote';
 
 const App = () => {
   useEffect(() => {
@@ -13,7 +14,7 @@ const App = () => {
       SplashScreen.hide();
     }, 2000);
   }, []);
-
+  auth.endSession();
   return (
     <RecoilRoot>
       <SafeAreaProvider>

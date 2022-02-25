@@ -7,7 +7,7 @@ export interface Root {
 
 export interface User {
   is_admin?: boolean;
-  playlist: Playlist;
+  playlist_id: string;
   called_track_ids: string[];
 }
 export interface Track {
@@ -20,8 +20,4 @@ export interface Track {
   duration_ms: number;
   add_user_id: string;
   spotify_data: any;
-}
-export interface Playlist {
-  created_at: firestore.Timestamp;
-  track: Track;
 }

@@ -11,7 +11,14 @@ import {accessTokenQuery} from '../../recoil/auth';
 const spotifyConfig: ApiConfig = {
   clientID: SPOTIFY_CLIENT_ID,
   redirectURL: 'musicshorts://spotify-login-callback',
-  scopes: [ApiScope.AppRemoteControlScope, ApiScope.UserReadPrivateScope],
+  scopes: [
+    ApiScope.AppRemoteControlScope,
+    ApiScope.UserReadPrivateScope,
+    ApiScope.PlaylistModifyPrivateScope,
+    ApiScope.PlaylistReadPrivateScope,
+    ApiScope.PlaylistReadCollaborativeScope,
+    ApiScope.UGCImageUploadScope,
+  ],
   tokenSwapURL: `${BASE_URL}/auth/token/swap`,
   tokenRefreshURL: `${BASE_URL}/auth/token/refresh`,
 };
