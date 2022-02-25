@@ -6,8 +6,6 @@ export interface Root {
 }
 
 export interface User {
-  access_token?: string;
-  refresh_token?: string;
   is_admin?: boolean;
   playlist: Playlist;
   called_track_ids: string[];

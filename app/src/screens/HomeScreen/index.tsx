@@ -1,15 +1,22 @@
-import {Button, StyleSheet, Text, View} from 'react-native';
+import {Button, FlatList, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect} from 'react';
-import useNavigation from '../../hooks/useNavigation';
-import {ApiConfig, ApiScope, auth, remote} from 'react-native-spotify-remote';
+import {useRecoilValue, useRecoilRefresher_UNSTABLE} from 'recoil';
+import {recomendationTracksQuery} from '../../recoil/tracks';
+import HomeScreenCard from './HomeScreenCard';
 
 const HomeScreen = () => {
-  const {navigate} = useNavigation();
+  const tracks = useRecoilValue(recomendationTracksQuery);
+  const fetchMore = useRecoilRefresher_UNSTABLE(recomendationTracksQuery);
 
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Button title="playlist" onPress={() => navigate('Playlist')} />
-    </View>
+    <FlatList
+      overScrollMode="never"
+      showsVerticalScrollIndicator={false}
+      pagingEnabled
+      onEndReached={fetchMore}
+      data={tracks}
+      renderItem={({item}) => <HomeScreenCard {...item} />}
+    />
   );
 };
 

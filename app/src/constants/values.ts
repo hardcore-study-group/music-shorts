@@ -14,18 +14,18 @@ export const SPOTIFY_PREMIUM_URL = 'https://www.spotify.com/premium';
 
 export const BASE_URL = (() => {
   const LOCAL_IP = '192.168.10.26';
-  const PROD_TEST_MODE = true;
+  const PROD_TEST_MODE = false;
   if (!__DEV__ || PROD_TEST_MODE)
     return 'https://us-central1-music-shorts.cloudfunctions.net/api';
   if (IS_ANDROID) {
     if (deviceInfoModule.isEmulatorSync())
       return 'http://10.0.2.2:5001/music-shorts/us-central1/api';
-    else return `http://${LOCAL_IP}:5001/music-shorts/us-central1/api`;
+    else return `http://${LOCAL_IP}:5000/music-shorts/us-central1/api`;
   }
   if (IS_IOS) {
     if (deviceInfoModule.isEmulatorSync())
       return 'http://localhost:5001/music-shorts/us-central1/api';
-    else return `http://${LOCAL_IP}:5001/music-shorts/us-central1/api`;
+    else return `http://${LOCAL_IP}:5000/music-shorts/us-central1/api`;
   }
   return '';
 })();
