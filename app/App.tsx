@@ -1,11 +1,10 @@
 import {LogBox, StatusBar, View} from 'react-native';
-import React, {Suspense, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import SplashScreen from 'react-native-splash-screen';
 import Navigation from './src/navigations';
 import {COLORS} from './src/constants/styles';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {RecoilRoot} from 'recoil';
-import ActivityindicatorView from './src/components/ActivityIndicatorView';
 import {auth} from 'react-native-spotify-remote';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
@@ -30,9 +29,7 @@ const App = () => {
               barStyle="light-content"
               translucent
             />
-            <Suspense fallback={<ActivityindicatorView />}>
-              <Navigation />
-            </Suspense>
+            <Navigation />
           </View>
         </SafeAreaProvider>
       </RecoilRoot>
