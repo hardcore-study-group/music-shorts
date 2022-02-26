@@ -1,4 +1,4 @@
-import {FlatList, StyleSheet} from 'react-native';
+import {FlatList, StyleSheet, Text} from 'react-native';
 import React, {useEffect} from 'react';
 import {useRecoilValue, useRecoilCallback} from 'recoil';
 import HomeScreenCard from './HomeScreenCard';
@@ -26,6 +26,7 @@ const HomeScreen = () => {
       overScrollMode="never"
       showsVerticalScrollIndicator={false}
       pagingEnabled
+      keyExtractor={(item, index) => item.id + index}
       onEndReached={() => fetchMoreRecommendationTracks()}
       onEndReachedThreshold={2}
       data={tracks}
@@ -36,4 +37,12 @@ const HomeScreen = () => {
 
 export default HomeScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  background: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+  },
+});

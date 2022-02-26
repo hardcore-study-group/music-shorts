@@ -1,10 +1,12 @@
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import {Image, Pressable, StyleSheet, View} from 'react-native';
 import React, {useCallback, useState} from 'react';
 import {Track} from '../../recoil/tracks';
-import {COLORS, HEIGHT, STATUSBAR_HEIGHT, WIDTH} from '../../constants/styles';
+import {COLORS, STATUSBAR_HEIGHT, WIDTH} from '../../constants/styles';
 import FastImage from 'react-native-fast-image';
-import {BlurView} from '@react-native-community/blur';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {
+  useSafeAreaFrame,
+  useSafeAreaInsets,
+} from 'react-native-safe-area-context';
 import BorderlessButton from '../../components/BorderlessButton';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon2 from 'react-native-vector-icons/MaterialIcons';
@@ -18,6 +20,7 @@ const HomeScreenCard: React.FC<Track> = props => {
   const {bottom} = useSafeAreaInsets();
   const {navigate} = useNavigation();
   const [playlistAdded, setPlaylistAdded] = useState(false);
+  const {height} = useSafeAreaFrame();
 
   const onPauseResume = useCallback(() => {}, []);
 
@@ -27,16 +30,15 @@ const HomeScreenCard: React.FC<Track> = props => {
   }, [spotify_id]);
 
   return (
-    <View style={styles.container}>
-      <FastImage
+    <View style={[styles.container, {height}]}>
+      <Image
         resizeMode="cover"
         style={styles.background}
         source={{uri: image}}
+        blurRadius={10}
       />
-      <BlurView
-        style={styles.background}
-        blurAmount={10}
-        reducedTransparencyFallbackColor={COLORS.black}
+      <View
+        style={[styles.background, {backgroundColor: 'rgba(0, 0, 0, 0.6)'}]}
       />
       <View style={styles.header}>
         <View style={{height: STATUSBAR_HEIGHT}} />
@@ -92,7 +94,6 @@ export default HomeScreenCard;
 const styles = StyleSheet.create({
   container: {
     width: WIDTH,
-    height: HEIGHT,
   },
   background: {
     position: 'absolute',

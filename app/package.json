@@ -32,7 +32,6 @@
     "oss": "npx license-checker --json --out ./src/assets/oss.json"
   },
   "dependencies": {
-    "@react-native-community/blur": "^3.6.0",
     "@react-navigation/native": "^6.0.8",
     "@react-navigation/native-stack": "^6.4.1",
     "axios": "^0.26.0",
