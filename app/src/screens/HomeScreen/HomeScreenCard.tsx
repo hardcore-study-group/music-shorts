@@ -22,10 +22,8 @@ const HomeScreenCard: React.FC<Track> = props => {
   const onPauseResume = useCallback(() => {}, []);
 
   const onAddToPlaylist = useCallback(async () => {
-    const {status} = await axios.post('me/playlist/tracks', {
-      track_id: spotify_id,
-    });
-    if (status === 201) setPlaylistAdded(true);
+    setPlaylistAdded(true);
+    await axios.post('me/playlist/tracks', {track_id: spotify_id});
   }, [spotify_id]);
 
   return (
@@ -44,13 +42,13 @@ const HomeScreenCard: React.FC<Track> = props => {
         <View style={{height: STATUSBAR_HEIGHT}} />
         <View style={styles.headerButtonContainer}>
           <BorderlessButton
-            onPress={() => navigate('Playlist')}
+            onPress={() => navigate('Profile')}
             style={styles.headerButton}
           >
             <Icon name="account-outline" size={24} color={COLORS.white} />
           </BorderlessButton>
           <BorderlessButton
-            onPress={() => navigate('Profile')}
+            onPress={() => navigate('Playlist')}
             style={styles.headerButton}
           >
             <Icon

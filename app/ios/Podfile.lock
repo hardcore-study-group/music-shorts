@@ -422,6 +422,8 @@ PODS:
     - Firebase/Functions (= 8.11.0)
     - React-Core
     - RNFBApp
+  - RNGestureHandler (2.2.0):
+    - React-Core
   - RNScreens (3.10.2):
     - React-Core
     - React-RCTImage
@@ -502,6 +504,7 @@ DEPENDENCIES:
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
   - "RNFBAuth (from `../node_modules/@react-native-firebase/auth`)"
   - "RNFBFunctions (from `../node_modules/@react-native-firebase/functions`)"
+  - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSpotifyRemote (from `../node_modules/react-native-spotify-remote`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
@@ -614,6 +617,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-firebase/auth"
   RNFBFunctions:
     :path: "../node_modules/@react-native-firebase/functions"
+  RNGestureHandler:
+    :path: "../node_modules/react-native-gesture-handler"
   RNScreens:
     :path: "../node_modules/react-native-screens"
   RNSpotifyRemote:
@@ -686,6 +691,7 @@ SPEC CHECKSUMS:
   RNFBApp: 16bdf8b75b84631513da3d5f5e2520a436ec9b29
   RNFBAuth: 7eb50d60c82b4a59018b0c7a1d4afdd1250eff74
   RNFBFunctions: 6edd867deda52f7e43cc5a3d69b2720aa6ce7e05
+  RNGestureHandler: bf572f552ea324acd5b5464b8d30755b2d8c1de6
   RNScreens: d6da2b9e29cf523832c2542f47bf1287318b1868
   RNSpotifyRemote: ab3fcbccaebead1684ba455a1d1bbdd123909faf
   RNVectorIcons: 7923e585eaeb139b9f4531d25a125a1500162a0b
