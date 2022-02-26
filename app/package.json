@@ -33,9 +33,6 @@
   },
   "dependencies": {
     "@react-native-community/blur": "^3.6.0",
-    "@react-native-firebase/app": "^14.3.0",
-    "@react-native-firebase/auth": "^14.3.0",
-    "@react-native-firebase/functions": "^14.3.0",
     "@react-navigation/native": "^6.0.8",
     "@react-navigation/native-stack": "^6.4.1",
     "axios": "^0.26.0",

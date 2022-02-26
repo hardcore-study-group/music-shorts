@@ -10,31 +10,6 @@ PODS:
     - React-Core (= 0.67.2)
     - React-jsi (= 0.67.2)
     - ReactCommon/turbomodule/core (= 0.67.2)
-  - Firebase/Auth (8.11.0):
-    - Firebase/CoreOnly
-    - FirebaseAuth (~> 8.11.0)
-  - Firebase/CoreOnly (8.11.0):
-    - FirebaseCore (= 8.11.0)
-  - Firebase/Functions (8.11.0):
-    - Firebase/CoreOnly
-    - FirebaseFunctions (~> 8.11.0)
-  - FirebaseAuth (8.11.0):
-    - FirebaseCore (~> 8.0)
-    - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
-    - GoogleUtilities/Environment (~> 7.7)
-    - GTMSessionFetcher/Core (~> 1.5)
-  - FirebaseCore (8.11.0):
-    - FirebaseCoreDiagnostics (~> 8.0)
-    - GoogleUtilities/Environment (~> 7.7)
-    - GoogleUtilities/Logger (~> 7.7)
-  - FirebaseCoreDiagnostics (8.11.0):
-    - GoogleDataTransport (~> 9.1)
-    - GoogleUtilities/Environment (~> 7.7)
-    - GoogleUtilities/Logger (~> 7.7)
-    - nanopb (~> 2.30908.0)
-  - FirebaseFunctions (8.11.0):
-    - FirebaseCore (~> 8.0)
-    - GTMSessionFetcher/Core (~> 1.5)
   - Flipper (0.99.0):
     - Flipper-Folly (~> 2.6)
     - Flipper-RSocket (~> 1.4)
@@ -97,26 +72,6 @@ PODS:
     - FlipperKit/FlipperKitNetworkPlugin
   - fmt (6.2.1)
   - glog (0.3.5)
-  - GoogleDataTransport (9.1.2):
-    - GoogleUtilities/Environment (~> 7.2)
-    - nanopb (~> 2.30908.0)
-    - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleUtilities/AppDelegateSwizzler (7.7.0):
-    - GoogleUtilities/Environment
-    - GoogleUtilities/Logger
-    - GoogleUtilities/Network
-  - GoogleUtilities/Environment (7.7.0):
-    - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleUtilities/Logger (7.7.0):
-    - GoogleUtilities/Environment
-  - GoogleUtilities/Network (7.7.0):
-    - GoogleUtilities/Logger
-    - "GoogleUtilities/NSData+zlib"
-    - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (7.7.0)"
-  - GoogleUtilities/Reachability (7.7.0):
-    - GoogleUtilities/Logger
-  - GTMSessionFetcher/Core (1.7.0)
   - libevent (2.1.12)
   - libwebp (1.2.1):
     - libwebp/demux (= 1.2.1)
@@ -127,13 +82,7 @@ PODS:
   - libwebp/mux (1.2.1):
     - libwebp/demux
   - libwebp/webp (1.2.1)
-  - nanopb (2.30908.0):
-    - nanopb/decode (= 2.30908.0)
-    - nanopb/encode (= 2.30908.0)
-  - nanopb/decode (2.30908.0)
-  - nanopb/encode (2.30908.0)
   - OpenSSL-Universal (1.1.180)
-  - PromisesObjC (2.0.0)
   - RCT-Folly (2021.06.28.00-v2):
     - boost
     - DoubleConversion
@@ -411,17 +360,6 @@ PODS:
     - React-Core
     - SDWebImage (~> 5.11.1)
     - SDWebImageWebPCoder (~> 0.8.4)
-  - RNFBApp (14.3.0):
-    - Firebase/CoreOnly (= 8.11.0)
-    - React-Core
-  - RNFBAuth (14.3.0):
-    - Firebase/Auth (= 8.11.0)
-    - React-Core
-    - RNFBApp
-  - RNFBFunctions (14.3.0):
-    - Firebase/Functions (= 8.11.0)
-    - React-Core
-    - RNFBApp
   - RNGestureHandler (2.2.0):
     - React-Core
   - RNScreens (3.10.2):
@@ -501,9 +439,6 @@ DEPENDENCIES:
   - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - RNEventEmitter (from `../node_modules/react-native-events`)
   - RNFastImage (from `../node_modules/react-native-fast-image`)
-  - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
-  - "RNFBAuth (from `../node_modules/@react-native-firebase/auth`)"
-  - "RNFBFunctions (from `../node_modules/@react-native-firebase/functions`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSpotifyRemote (from `../node_modules/react-native-spotify-remote`)
@@ -513,11 +448,6 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - CocoaAsyncSocket
-    - Firebase
-    - FirebaseAuth
-    - FirebaseCore
-    - FirebaseCoreDiagnostics
-    - FirebaseFunctions
     - Flipper
     - Flipper-Boost-iOSX
     - Flipper-DoubleConversion
@@ -528,14 +458,9 @@ SPEC REPOS:
     - Flipper-RSocket
     - FlipperKit
     - fmt
-    - GoogleDataTransport
-    - GoogleUtilities
-    - GTMSessionFetcher
     - libevent
     - libwebp
-    - nanopb
     - OpenSSL-Universal
-    - PromisesObjC
     - SDWebImage
     - SDWebImageWebPCoder
     - YogaKit
@@ -611,12 +536,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-events"
   RNFastImage:
     :path: "../node_modules/react-native-fast-image"
-  RNFBApp:
-    :path: "../node_modules/@react-native-firebase/app"
-  RNFBAuth:
-    :path: "../node_modules/@react-native-firebase/auth"
-  RNFBFunctions:
-    :path: "../node_modules/@react-native-firebase/functions"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
   RNScreens:
@@ -634,11 +553,6 @@ SPEC CHECKSUMS:
   DoubleConversion: 831926d9b8bf8166fd87886c4abab286c2422662
   FBLazyVector: 244195e30d63d7f564c55da4410b9a24e8fbceaa
   FBReactNativeSpec: c94002c1d93da3658f4d5119c6994d19961e3d52
-  Firebase: 44dd9724c84df18b486639e874f31436eaa9a20c
-  FirebaseAuth: d96d73aba85d192d7a7aa0b86dd6d7f8ec170b4b
-  FirebaseCore: 2f4f85b453cc8fea4bb2b37e370007d2bcafe3f0
-  FirebaseCoreDiagnostics: 64d9709d804a6c25bd77841371c1fcfd909d5601
-  FirebaseFunctions: 2bad3e4365dee72a85a6baa6ccd684f024d14696
   Flipper: 30e8eeeed6abdc98edaf32af0cda2f198be4b733
   Flipper-Boost-iOSX: fd1e2b8cbef7e662a122412d7ac5f5bea715403c
   Flipper-DoubleConversion: 57ffbe81ef95306cc9e69c4aa3aeeeeb58a6a28c
@@ -650,14 +564,9 @@ SPEC CHECKSUMS:
   FlipperKit: d8d346844eca5d9120c17d441a2f38596e8ed2b9
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: 85ecdd10ee8d8ec362ef519a6a45ff9aa27b2e85
-  GoogleDataTransport: 629c20a4d363167143f30ea78320d5a7eb8bd940
-  GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
-  GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   libwebp: 98a37e597e40bfdb4c911fc98f2c53d0b12d05fc
-  nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   OpenSSL-Universal: 1aa4f6a6ee7256b83db99ec1ccdaa80d10f9af9b
-  PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   RCT-Folly: 803a9cfd78114b2ec0f140cfa6fa2a6bafb2d685
   RCTRequired: cd47794163052d2b8318c891a7a14fcfaccc75ab
   RCTTypeSafety: 393bb40b3e357b224cde53d3fec26813c52428b1
@@ -688,9 +597,6 @@ SPEC CHECKSUMS:
   RNDeviceInfo: 4944cf8787b9c5bffaf301fda68cc1a2ec003341
   RNEventEmitter: 557106956ec2f9ccda6940afeea563936385efd3
   RNFastImage: 1f2cab428712a4baaf78d6169eaec7f622556dd7
-  RNFBApp: 16bdf8b75b84631513da3d5f5e2520a436ec9b29
-  RNFBAuth: 7eb50d60c82b4a59018b0c7a1d4afdd1250eff74
-  RNFBFunctions: 6edd867deda52f7e43cc5a3d69b2720aa6ce7e05
   RNGestureHandler: bf572f552ea324acd5b5464b8d30755b2d8c1de6
   RNScreens: d6da2b9e29cf523832c2542f47bf1287318b1868
   RNSpotifyRemote: ab3fcbccaebead1684ba455a1d1bbdd123909faf
