@@ -9,6 +9,6 @@ export const COLORS = {
   white: '#FFFFFF',
   black: '#222222',
   gray: '#888888',
-  red: '#CD6060',
+  red: '#CC4444',
   spotify: '#1DB954',
 };

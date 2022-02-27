@@ -4,6 +4,7 @@ import {COLORS, STATUSBAR_HEIGHT} from '../constants/styles';
 import BorderlessButton from './BorderlessButton';
 import Typography from './Typography';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import useNavigation from '../hooks/useNavigation';
 
 interface BaseHeaderProps {
   right?: React.ReactNode;
@@ -13,11 +14,12 @@ interface BaseHeaderProps {
 
 const BaseHeader: React.FC<BaseHeaderProps> = props => {
   const {canGoBack, right, title} = props;
+  const {goBack} = useNavigation();
 
   return (
     <View style={styles.container}>
       {canGoBack && (
-        <BorderlessButton style={styles.left}>
+        <BorderlessButton onPress={goBack} style={styles.left}>
           <Icon name="chevron-left" size={24} color={COLORS.white} />
         </BorderlessButton>
       )}
@@ -53,6 +55,7 @@ const styles = StyleSheet.create({
     left: 0,
     top: STATUSBAR_HEIGHT,
     bottom: 0,
+    zIndex: 99,
   },
   right: {
     height: 56,

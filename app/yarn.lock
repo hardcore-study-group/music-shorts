@@ -5714,6 +5714,11 @@ react-native-gradle-plugin@^0.0.3:
   dependencies:
     react-native-codegen "*"
 
+react-native-in-app-review@^3.3.2:
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/react-native-in-app-review/-/react-native-in-app-review-3.3.2.tgz#a26bb8af46d63f7659c43333075c8f4d5bd13f3c"
+  integrity sha512-P1v8i479aevGu0bcVqVV7FMWXY6jBb1EAVp2RV7bWYIEDsxc+5rTq1Zg74OGMaT2nVXM62ehx8I0xrkuQJBVyA==
+
 react-native-safe-area-context@^3.3.2:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-3.4.1.tgz#c967a52903d55fe010b2428e5368b42f1debc0a7"
