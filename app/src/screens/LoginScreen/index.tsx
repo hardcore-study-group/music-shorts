@@ -8,7 +8,7 @@ import {ApiConfig, ApiScope, auth} from 'react-native-spotify-remote';
 import {BASE_URL, SPOTIFY_CLIENT_ID} from '../../constants/values';
 import {accessTokenQuery} from '../../recoil/auth';
 
-const spotifyConfig: ApiConfig = {
+export const spotifyConfig: ApiConfig = {
   clientID: SPOTIFY_CLIENT_ID,
   redirectURL: 'musicshorts://spotify-login-callback',
   scopes: [

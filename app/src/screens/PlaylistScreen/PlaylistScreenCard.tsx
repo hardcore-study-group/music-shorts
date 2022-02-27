@@ -15,7 +15,8 @@ const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 interface PlaylistScreenCardProps {
   item: SpotifyApi.PlaylistTrackObject;
   onDelete: (id: string) => void;
-  onPlay: (id: string) => void;
+  onPlay: (id: number) => void;
+  index: number;
 }
 
 const PlaylistScreenCard: React.FC<PlaylistScreenCardProps> = props => {
@@ -32,6 +33,7 @@ const PlaylistScreenCard: React.FC<PlaylistScreenCardProps> = props => {
     },
     onDelete,
     onPlay,
+    index,
   } = props;
 
   return (
@@ -56,7 +58,7 @@ const PlaylistScreenCard: React.FC<PlaylistScreenCardProps> = props => {
         );
       }}
     >
-      <Pressable onPress={() => onPlay(id)} style={styles.container}>
+      <Pressable onPress={() => onPlay(index)} style={styles.container}>
         <FastImage source={{uri: images[0].url}} style={styles.image} />
         <View>
           <Typography numberOfLines={1} style={styles.name}>

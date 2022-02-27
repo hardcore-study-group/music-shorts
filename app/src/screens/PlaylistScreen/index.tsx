@@ -29,10 +29,10 @@ const PlaylistScreen = () => {
   }, [playlist]);
 
   const onShuffle = useCallback(() => {
-    navigate('Player', {});
+    navigate('Player', {index: -1});
   }, []);
-  const onPlay = useCallback((id: string) => {
-    navigate('Player', {id});
+  const onPlay = useCallback((index: number) => {
+    navigate('Player', {index});
   }, []);
   const onDelete = useCallback(async (id: string) => {
     const {status} = await axios.delete(`/me/playlist/tracks/${id}`);
@@ -54,8 +54,13 @@ const PlaylistScreen = () => {
         data={playlist}
         overScrollMode="never"
         onEndReached={onFetchMore}
-        renderItem={({item}) => (
-          <PlaylistScreenCard item={item} onPlay={onPlay} onDelete={onDelete} />
+        renderItem={({item, index}) => (
+          <PlaylistScreenCard
+            index={index}
+            item={item}
+            onPlay={onPlay}
+            onDelete={onDelete}
+          />
         )}
       />
     </View>

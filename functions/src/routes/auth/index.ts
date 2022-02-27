@@ -21,6 +21,7 @@ router.post('/token/swap', async (req, res, next) => {
         type: 'spotify',
       });
     }
+    console.log(body);
     res.status(statusCode).json(body);
   } catch (error) {
     next(error);
