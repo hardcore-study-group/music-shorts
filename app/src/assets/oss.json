@@ -1,5 +1,5 @@
 {
-  "@ampproject/remapping@2.0.3": {
+  "@ampproject/remapping@2.1.2": {
     "licenses": "Apache-2.0",
     "repository": "https://github.com/ampproject/remapping",
     "publisher": "Justin Ridgewell",
@@ -31,7 +31,7 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@babel/compat-data",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@babel/compat-data/LICENSE"
   },
-  "@babel/core@7.17.0": {
+  "@babel/core@7.17.5": {
     "licenses": "MIT",
     "repository": "https://github.com/babel/babel",
     "publisher": "The Babel Team",
@@ -39,7 +39,7 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@babel/core",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@babel/core/LICENSE"
   },
-  "@babel/generator@7.17.0": {
+  "@babel/generator@7.17.3": {
     "licenses": "MIT",
     "repository": "https://github.com/babel/babel",
     "publisher": "The Babel Team",
@@ -71,7 +71,7 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@babel/helper-compilation-targets",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@babel/helper-compilation-targets/LICENSE"
   },
-  "@babel/helper-create-class-features-plugin@7.17.1": {
+  "@babel/helper-create-class-features-plugin@7.17.6": {
     "licenses": "MIT",
     "repository": "https://github.com/babel/babel",
     "publisher": "The Babel Team",
@@ -149,7 +149,7 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@babel/helper-module-imports",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@babel/helper-module-imports/LICENSE"
   },
-  "@babel/helper-module-transforms@7.16.7": {
+  "@babel/helper-module-transforms@7.17.6": {
     "licenses": "MIT",
     "repository": "https://github.com/babel/babel",
     "publisher": "The Babel Team",
@@ -237,7 +237,7 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@babel/helper-wrap-function",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@babel/helper-wrap-function/LICENSE"
   },
-  "@babel/helpers@7.17.0": {
+  "@babel/helpers@7.17.2": {
     "licenses": "MIT",
     "repository": "https://github.com/babel/babel",
     "publisher": "The Babel Team",
@@ -253,7 +253,7 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@babel/highlight",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@babel/highlight/LICENSE"
   },
-  "@babel/parser@7.17.0": {
+  "@babel/parser@7.17.3": {
     "licenses": "MIT",
     "repository": "https://github.com/babel/babel",
     "publisher": "The Babel Team",
@@ -285,7 +285,7 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@babel/plugin-proposal-nullish-coalescing-operator",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@babel/plugin-proposal-nullish-coalescing-operator/LICENSE"
   },
-  "@babel/plugin-proposal-object-rest-spread@7.16.7": {
+  "@babel/plugin-proposal-object-rest-spread@7.17.3": {
     "licenses": "MIT",
     "repository": "https://github.com/babel/babel",
     "publisher": "The Babel Team",
@@ -469,7 +469,7 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@babel/plugin-transform-computed-properties",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@babel/plugin-transform-computed-properties/LICENSE"
   },
-  "@babel/plugin-transform-destructuring@7.16.7": {
+  "@babel/plugin-transform-destructuring@7.17.3": {
     "licenses": "MIT",
     "repository": "https://github.com/babel/babel",
     "publisher": "The Babel Team",
@@ -589,7 +589,7 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@babel/plugin-transform-react-jsx-source",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@babel/plugin-transform-react-jsx-source/LICENSE"
   },
-  "@babel/plugin-transform-react-jsx@7.16.7": {
+  "@babel/plugin-transform-react-jsx@7.17.3": {
     "licenses": "MIT",
     "repository": "https://github.com/babel/babel",
     "publisher": "The Babel Team",
@@ -685,7 +685,7 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@babel/register",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@babel/register/LICENSE"
   },
-  "@babel/runtime@7.17.0": {
+  "@babel/runtime@7.17.2": {
     "licenses": "MIT",
     "repository": "https://github.com/babel/babel",
     "publisher": "The Babel Team",
@@ -701,7 +701,7 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@babel/template",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@babel/template/LICENSE"
   },
-  "@babel/traverse@7.17.0": {
+  "@babel/traverse@7.17.3": {
     "licenses": "MIT",
     "repository": "https://github.com/babel/babel",
     "publisher": "The Babel Team",
@@ -733,6 +733,12 @@
     "email": "mikeal.rogers@gmail.com",
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@cnakazawa/watch",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@cnakazawa/watch/LICENSE"
+  },
+  "@egjs/hammerjs@2.0.17": {
+    "licenses": "MIT",
+    "repository": "https://github.com/naver/hammer.js",
+    "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@egjs/hammerjs",
+    "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@egjs/hammerjs/LICENSE.md"
   },
   "@eslint/eslintrc@0.4.3": {
     "licenses": "MIT",
@@ -792,7 +798,7 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@jest/core",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@jest/core/LICENSE"
   },
-  "@jest/create-cache-key-function@27.4.2": {
+  "@jest/create-cache-key-function@27.5.1": {
     "licenses": "MIT",
     "repository": "https://github.com/facebook/jest",
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@jest/create-cache-key-function",
@@ -852,13 +858,13 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@jest/types",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@jest/types/LICENSE"
   },
-  "@jest/types@27.4.2": {
+  "@jest/types@27.5.1": {
     "licenses": "MIT",
     "repository": "https://github.com/facebook/jest",
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@jest/create-cache-key-function/node_modules/@jest/types",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@jest/create-cache-key-function/node_modules/@jest/types/LICENSE"
   },
-  "@jridgewell/resolve-uri@3.0.4": {
+  "@jridgewell/resolve-uri@3.0.5": {
     "licenses": "MIT",
     "repository": "https://github.com/jridgewell/resolve-uri",
     "publisher": "Justin Ridgewell",
@@ -866,14 +872,14 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@jridgewell/resolve-uri",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@jridgewell/resolve-uri/LICENSE"
   },
-  "@jridgewell/sourcemap-codec@1.4.9": {
+  "@jridgewell/sourcemap-codec@1.4.11": {
     "licenses": "MIT",
     "repository": "https://github.com/jridgewell/sourcemap-codec",
     "publisher": "Rich Harris",
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@jridgewell/sourcemap-codec",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@jridgewell/sourcemap-codec/LICENSE"
   },
-  "@jridgewell/trace-mapping@0.2.7": {
+  "@jridgewell/trace-mapping@0.3.4": {
     "licenses": "MIT",
     "repository": "https://github.com/jridgewell/trace-mapping",
     "publisher": "Justin Ridgewell",
@@ -899,7 +905,7 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@nodelib/fs.walk",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@nodelib/fs.walk/LICENSE"
   },
-  "@react-native-community/cli-debugger-ui@6.0.0-rc.0": {
+  "@react-native-community/cli-debugger-ui@6.0.0": {
     "licenses": "MIT",
     "repository": "https://github.com/react-native-community/cli",
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@react-native-community/cli-debugger-ui",
@@ -929,11 +935,10 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@react-native-community/cli-plugin-metro",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@react-native-community/cli-plugin-metro/LICENSE"
   },
-  "@react-native-community/cli-server-api@6.4.0": {
+  "@react-native-community/cli-server-api@6.4.3": {
     "licenses": "MIT",
     "repository": "https://github.com/react-native-community/cli",
-    "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@react-native-community/cli-server-api",
-    "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@react-native-community/cli-server-api/LICENSE"
+    "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@react-native-community/cli-server-api"
   },
   "@react-native-community/cli-tools@6.2.0": {
     "licenses": "MIT",
@@ -992,7 +997,7 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@react-navigation/elements",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@react-navigation/elements/LICENSE"
   },
-  "@react-navigation/native-stack@6.4.1": {
+  "@react-navigation/native-stack@6.5.0": {
     "licenses": "MIT",
     "repository": "https://github.com/react-navigation/react-navigation",
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@react-navigation/native-stack",
@@ -1085,6 +1090,12 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@types/graceful-fs",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@types/graceful-fs/LICENSE"
   },
+  "@types/hammerjs@2.0.41": {
+    "licenses": "MIT",
+    "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+    "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@types/hammerjs",
+    "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@types/hammerjs/LICENSE"
+  },
   "@types/istanbul-lib-coverage@2.0.4": {
     "licenses": "MIT",
     "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
@@ -1115,7 +1126,7 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@types/json-schema",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@types/json-schema/LICENSE"
   },
-  "@types/node@17.0.15": {
+  "@types/node@17.0.21": {
     "licenses": "MIT",
     "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@types/node",
@@ -1127,7 +1138,7 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@types/normalize-package-data",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@types/normalize-package-data/LICENSE"
   },
-  "@types/prettier@2.4.3": {
+  "@types/prettier@2.4.4": {
     "licenses": "MIT",
     "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@types/prettier",
@@ -1139,7 +1150,13 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@types/prop-types",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@types/prop-types/LICENSE"
   },
-  "@types/react-native@0.66.15": {
+  "@types/react-native-vector-icons@6.4.10": {
+    "licenses": "MIT",
+    "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+    "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@types/react-native-vector-icons",
+    "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@types/react-native-vector-icons/LICENSE"
+  },
+  "@types/react-native@0.66.16": {
     "licenses": "MIT",
     "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@types/react-native",
@@ -1162,6 +1179,12 @@
     "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@types/scheduler",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@types/scheduler/LICENSE"
+  },
+  "@types/spotify-api@0.0.13": {
+    "licenses": "MIT",
+    "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+    "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@types/spotify-api",
+    "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@types/spotify-api/LICENSE"
   },
   "@types/stack-utils@2.0.1": {
     "licenses": "MIT",
@@ -1193,7 +1216,7 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@react-native-community/eslint-config/node_modules/@typescript-eslint/eslint-plugin",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@react-native-community/eslint-config/node_modules/@typescript-eslint/eslint-plugin/LICENSE"
   },
-  "@typescript-eslint/eslint-plugin@5.10.2": {
+  "@typescript-eslint/eslint-plugin@5.12.1": {
     "licenses": "MIT",
     "repository": "https://github.com/typescript-eslint/typescript-eslint",
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@typescript-eslint/eslint-plugin",
@@ -1211,19 +1234,19 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@react-native-community/eslint-config/node_modules/@typescript-eslint/parser",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@react-native-community/eslint-config/node_modules/@typescript-eslint/parser/LICENSE"
   },
-  "@typescript-eslint/parser@5.10.2": {
+  "@typescript-eslint/parser@5.12.1": {
     "licenses": "BSD-2-Clause",
     "repository": "https://github.com/typescript-eslint/typescript-eslint",
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@typescript-eslint/parser",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@typescript-eslint/parser/LICENSE"
   },
-  "@typescript-eslint/scope-manager@5.10.2": {
+  "@typescript-eslint/scope-manager@5.12.1": {
     "licenses": "MIT",
     "repository": "https://github.com/typescript-eslint/typescript-eslint",
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@typescript-eslint/scope-manager",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@typescript-eslint/scope-manager/LICENSE"
   },
-  "@typescript-eslint/type-utils@5.10.2": {
+  "@typescript-eslint/type-utils@5.12.1": {
     "licenses": "MIT",
     "repository": "https://github.com/typescript-eslint/typescript-eslint",
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@typescript-eslint/type-utils",
@@ -1235,7 +1258,7 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@typescript-eslint/experimental-utils/node_modules/@typescript-eslint/types",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@typescript-eslint/experimental-utils/node_modules/@typescript-eslint/types/LICENSE"
   },
-  "@typescript-eslint/types@5.10.2": {
+  "@typescript-eslint/types@5.12.1": {
     "licenses": "MIT",
     "repository": "https://github.com/typescript-eslint/typescript-eslint",
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@typescript-eslint/types",
@@ -1247,13 +1270,13 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@typescript-eslint/typescript-estree",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@typescript-eslint/typescript-estree/LICENSE"
   },
-  "@typescript-eslint/typescript-estree@5.10.2": {
+  "@typescript-eslint/typescript-estree@5.12.1": {
     "licenses": "BSD-2-Clause",
     "repository": "https://github.com/typescript-eslint/typescript-eslint",
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@typescript-eslint/utils/node_modules/@typescript-eslint/typescript-estree",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@typescript-eslint/utils/node_modules/@typescript-eslint/typescript-estree/LICENSE"
   },
-  "@typescript-eslint/utils@5.10.2": {
+  "@typescript-eslint/utils@5.12.1": {
     "licenses": "MIT",
     "repository": "https://github.com/typescript-eslint/typescript-eslint",
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@typescript-eslint/utils",
@@ -1265,7 +1288,7 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@typescript-eslint/typescript-estree/node_modules/@typescript-eslint/visitor-keys",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@typescript-eslint/typescript-estree/node_modules/@typescript-eslint/visitor-keys/LICENSE"
   },
-  "@typescript-eslint/visitor-keys@5.10.2": {
+  "@typescript-eslint/visitor-keys@5.12.1": {
     "licenses": "MIT",
     "repository": "https://github.com/typescript-eslint/typescript-eslint",
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@typescript-eslint/visitor-keys",
@@ -1614,6 +1637,13 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/atob",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/atob/LICENSE"
   },
+  "axios@0.26.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/axios/axios",
+    "publisher": "Matt Zabriskie",
+    "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/axios",
+    "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/axios/LICENSE"
+  },
   "babel-core@7.0.0-bridge.0": {
     "licenses": "MIT",
     "publisher": "Logan Smyth",
@@ -1780,7 +1810,7 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/browser-process-hrtime",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/browser-process-hrtime/LICENSE"
   },
-  "browserslist@4.19.1": {
+  "browserslist@4.19.3": {
     "licenses": "MIT",
     "repository": "https://github.com/browserslist/browserslist",
     "publisher": "Andrey Sitnik",
@@ -1882,7 +1912,7 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/jest-validate/node_modules/camelcase",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/jest-validate/node_modules/camelcase/license"
   },
-  "caniuse-lite@1.0.30001307": {
+  "caniuse-lite@1.0.30001312": {
     "licenses": "CC-BY-4.0",
     "repository": "https://github.com/browserslist/caniuse-lite",
     "publisher": "Ben Briggs",
@@ -1968,6 +1998,14 @@
     "email": "ben@npmjs.com",
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/cliui",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/cliui/LICENSE.txt"
+  },
+  "cliui@7.0.4": {
+    "licenses": "ISC",
+    "repository": "https://github.com/yargs/cliui",
+    "publisher": "Ben Coe",
+    "email": "ben@npmjs.com",
+    "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native-vector-icons/node_modules/cliui",
+    "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native-vector-icons/node_modules/cliui/LICENSE.txt"
   },
   "clone-deep@4.0.1": {
     "licenses": "MIT",
@@ -2146,7 +2184,7 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/copy-descriptor",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/copy-descriptor/LICENSE"
   },
-  "core-js-compat@3.21.0": {
+  "core-js-compat@3.21.1": {
     "licenses": "MIT",
     "repository": "https://github.com/zloirock/core-js",
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/core-js-compat",
@@ -2420,7 +2458,7 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/ee-first",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/ee-first/LICENSE"
   },
-  "electron-to-chromium@1.4.65": {
+  "electron-to-chromium@1.4.73": {
     "licenses": "ISC",
     "repository": "https://github.com/kilian/electron-to-chromium",
     "publisher": "Kilian Valkhof",
@@ -2479,7 +2517,7 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/error-ex",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/error-ex/LICENSE"
   },
-  "error-stack-parser@2.0.6": {
+  "error-stack-parser@2.0.7": {
     "licenses": "MIT",
     "repository": "https://github.com/stacktracejs/error-stack-parser",
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/error-stack-parser",
@@ -2618,7 +2656,7 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/eslint-plugin-react-native",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/eslint-plugin-react-native/LICENSE"
   },
-  "eslint-plugin-react@7.28.0": {
+  "eslint-plugin-react@7.29.1": {
     "licenses": "MIT",
     "repository": "https://github.com/yannickcr/eslint-plugin-react",
     "publisher": "Yannick Croissant",
@@ -2662,7 +2700,7 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@typescript-eslint/utils/node_modules/eslint-visitor-keys",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@typescript-eslint/utils/node_modules/eslint-visitor-keys/LICENSE"
   },
-  "eslint-visitor-keys@3.2.0": {
+  "eslint-visitor-keys@3.3.0": {
     "licenses": "Apache-2.0",
     "repository": "https://github.com/eslint/eslint-visitor-keys",
     "publisher": "Toru Nagashima",
@@ -2738,6 +2776,15 @@
     "publisher": "Toru Nagashima",
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/event-target-shim",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/event-target-shim/LICENSE"
+  },
+  "events@3.3.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/Gozala/events",
+    "publisher": "Irakli Gozalishvili",
+    "email": "rfobic@gmail.com",
+    "url": "http://jeditoolkit.com",
+    "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/events",
+    "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/events/LICENSE"
   },
   "exec-sh@0.3.6": {
     "licenses": "MIT",
@@ -2957,13 +3004,22 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/flow-parser",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/flow-parser/README.md"
   },
-  "flow-parser@0.171.0": {
+  "flow-parser@0.172.0": {
     "licenses": "MIT",
     "repository": "https://github.com/facebook/flow",
     "publisher": "Flow Team",
     "email": "flow@fb.com",
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/jscodeshift/node_modules/flow-parser",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/jscodeshift/node_modules/flow-parser/README.md"
+  },
+  "follow-redirects@1.14.9": {
+    "licenses": "MIT",
+    "repository": "https://github.com/follow-redirects/follow-redirects",
+    "publisher": "Ruben Verborgh",
+    "email": "ruben@verborgh.org",
+    "url": "https://ruben.verborgh.org/",
+    "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/follow-redirects",
+    "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/follow-redirects/LICENSE"
   },
   "for-in@1.0.2": {
     "licenses": "MIT",
@@ -3178,6 +3234,13 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/growly",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/growly/README.md"
   },
+  "hamt_plus@1.0.2": {
+    "licenses": "MIT",
+    "repository": "https://github.com/mattbierner/hamt_plus",
+    "publisher": "Matt Bierner",
+    "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/hamt_plus",
+    "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/hamt_plus/LICENSE"
+  },
   "has-bigints@1.0.1": {
     "licenses": "MIT",
     "repository": "https://github.com/ljharb/has-bigints",
@@ -3282,6 +3345,14 @@
     "url": "http://github.com/saphal1998",
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/hermes-profile-transformer",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/hermes-profile-transformer/LICENSE"
+  },
+  "hoist-non-react-statics@3.3.2": {
+    "licenses": "BSD-3-Clause",
+    "repository": "https://github.com/mridgway/hoist-non-react-statics",
+    "publisher": "Michael Ridgway",
+    "email": "mcridgway@gmail.com",
+    "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/hoist-non-react-statics",
+    "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/hoist-non-react-statics/LICENSE.md"
   },
   "hosted-git-info@2.8.9": {
     "licenses": "ISC",
@@ -3856,7 +3927,7 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/istanbul-lib-source-maps",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/istanbul-lib-source-maps/LICENSE"
   },
-  "istanbul-reports@3.1.3": {
+  "istanbul-reports@3.1.4": {
     "licenses": "BSD-3-Clause",
     "repository": "https://github.com/istanbuljs/istanbuljs",
     "publisher": "Krishnan Anantheswaran",
@@ -4075,6 +4146,13 @@
     "publisher": "Felix Kling",
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/jscodeshift",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/jscodeshift/LICENSE"
+  },
+  "jscodeshift@0.13.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/facebook/jscodeshift",
+    "publisher": "Felix Kling",
+    "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native-gradle-plugin/node_modules/jscodeshift",
+    "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native-gradle-plugin/node_modules/jscodeshift/LICENSE"
   },
   "jsdom@16.7.0": {
     "licenses": "MIT",
@@ -4526,6 +4604,12 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/mime-db",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/mime-db/LICENSE"
   },
+  "mime-db@1.52.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/jshttp/mime-db",
+    "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/compressible/node_modules/mime-db",
+    "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/compressible/node_modules/mime-db/LICENSE"
+  },
   "mime-types@2.1.34": {
     "licenses": "MIT",
     "repository": "https://github.com/jshttp/mime-types",
@@ -4568,7 +4652,7 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/mimic-fn",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/mimic-fn/license"
   },
-  "minimatch@3.0.4": {
+  "minimatch@3.1.2": {
     "licenses": "ISC",
     "repository": "https://github.com/isaacs/minimatch",
     "publisher": "Isaac Z. Schlueter",
@@ -4621,7 +4705,7 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/send/node_modules/ms",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/send/node_modules/ms/license.md"
   },
-  "nanoid@3.2.0": {
+  "nanoid@3.3.1": {
     "licenses": "MIT",
     "repository": "https://github.com/ai/nanoid",
     "publisher": "Andrey Sitnik",
@@ -4703,7 +4787,7 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/node-notifier",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/node-notifier/LICENSE"
   },
-  "node-releases@2.0.1": {
+  "node-releases@2.0.2": {
     "licenses": "MIT",
     "repository": "https://github.com/chicoxyzzy/node-releases",
     "publisher": "Sergey Rubanov",
@@ -5298,7 +5382,7 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/punycode",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/punycode/LICENSE-MIT.txt"
   },
-  "query-string@7.1.0": {
+  "query-string@7.1.1": {
     "licenses": "MIT",
     "repository": "https://github.com/sindresorhus/query-string",
     "publisher": "Sindre Sorhus",
@@ -5340,14 +5424,20 @@
   "react-is@16.13.1": {
     "licenses": "MIT",
     "repository": "https://github.com/facebook/react",
-    "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@react-navigation/core/node_modules/react-is",
-    "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@react-navigation/core/node_modules/react-is/LICENSE"
+    "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-is",
+    "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-is/LICENSE"
   },
   "react-is@17.0.2": {
     "licenses": "MIT",
     "repository": "https://github.com/facebook/react",
-    "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-is",
-    "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-is/LICENSE"
+    "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/pretty-format/node_modules/react-is",
+    "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/pretty-format/node_modules/react-is/LICENSE"
+  },
+  "react-native-codegen@0.0.13": {
+    "licenses": "MIT",
+    "repository": "https://github.com/facebook/react-native",
+    "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native-gradle-plugin/node_modules/react-native-codegen",
+    "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native-gradle-plugin/node_modules/react-native-codegen/README.md"
   },
   "react-native-codegen@0.0.8": {
     "licenses": "MIT",
@@ -5355,7 +5445,54 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native-codegen",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native-codegen/README.md"
   },
-  "react-native-safe-area-context@3.3.2": {
+  "react-native-device-info@8.4.9": {
+    "licenses": "MIT",
+    "repository": "https://github.com/react-native-device-info/react-native-device-info",
+    "publisher": "Rebecca Hughes",
+    "email": "rebecca@learnium.net",
+    "url": "https://github.com/rebeccahughes",
+    "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native-device-info",
+    "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native-device-info/LICENSE"
+  },
+  "react-native-events@1.0.21": {
+    "licenses": "MIT",
+    "repository": "https://github.com/lufinkey/react-native-events",
+    "publisher": "lufinkey",
+    "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native-events",
+    "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native-events/README.md"
+  },
+  "react-native-fast-image@8.5.11": {
+    "licenses": "(MIT AND Apache-2.0)",
+    "repository": "https://github.com/DylanVann/react-native-fast-image",
+    "publisher": "Dylan Vann",
+    "email": "dylan@dylanvann.com",
+    "url": "https://dylanvann.com",
+    "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native-fast-image",
+    "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native-fast-image/LICENSE"
+  },
+  "react-native-gesture-handler@2.2.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/software-mansion/react-native-gesture-handler",
+    "publisher": "Krzysztof Magiera",
+    "email": "krzys.magiera@gmail.com",
+    "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native-gesture-handler",
+    "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native-gesture-handler/LICENSE"
+  },
+  "react-native-gradle-plugin@0.0.3": {
+    "licenses": "MIT",
+    "repository": "https://github.com/facebook/react-native",
+    "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native-gradle-plugin",
+    "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native-gradle-plugin/README.md"
+  },
+  "react-native-in-app-review@3.3.2": {
+    "licenses": "MIT",
+    "repository": "https://github.com/MinaSamir11/react-native-in-app-review",
+    "publisher": "Mina Samir Shafik",
+    "email": "menasamer11@gmail.com",
+    "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native-in-app-review",
+    "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native-in-app-review/LICENSE"
+  },
+  "react-native-safe-area-context@3.4.1": {
     "licenses": "MIT",
     "repository": "https://github.com/th3rdwave/react-native-safe-area-context",
     "publisher": "Janic Duplessis",
@@ -5363,7 +5500,7 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native-safe-area-context",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native-safe-area-context/LICENSE"
   },
-  "react-native-screens@3.10.2": {
+  "react-native-screens@3.12.0": {
     "licenses": "MIT",
     "repository": "https://github.com/software-mansion/react-native-screens",
     "publisher": "Krzysztof Magiera",
@@ -5378,6 +5515,13 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native-splash-screen",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native-splash-screen/LICENSE"
   },
+  "react-native-spotify-remote@0.3.11-5": {
+    "licenses": "ISC",
+    "repository": "https://github.com/cjam/react-native-spotify-remote",
+    "publisher": "Colter McQuay",
+    "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native-spotify-remote",
+    "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native-spotify-remote/LICENSE.md"
+  },
   "react-native-status-bar-height@2.6.0": {
     "licenses": "MIT",
     "repository": "https://github.com/ovr/react-native-status-bar-height",
@@ -5385,6 +5529,14 @@
     "email": "talk@dmtry.me",
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native-status-bar-height",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native-status-bar-height/LICENSE"
+  },
+  "react-native-vector-icons@9.1.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/oblador/react-native-vector-icons",
+    "publisher": "Joel Arvidsson",
+    "email": "joel@oblador.se",
+    "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native-vector-icons",
+    "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native-vector-icons/LICENSE"
   },
   "react-native@0.67.2": {
     "licenses": "MIT",
@@ -5454,6 +5606,12 @@
     "email": "bn@cs.stanford.edu",
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/recast",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/recast/LICENSE"
+  },
+  "recoil@0.6.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/facebookexperimental/Recoil",
+    "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/recoil",
+    "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/recoil/LICENSE"
   },
   "regenerate-unicode-properties@10.0.1": {
     "licenses": "MIT",
@@ -6111,7 +6269,7 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/stack-utils",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/stack-utils/license"
   },
-  "stackframe@1.2.0": {
+  "stackframe@1.2.1": {
     "licenses": "MIT",
     "repository": "https://github.com/stacktracejs/stackframe",
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/stackframe",
@@ -6904,6 +7062,15 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/wrap-ansi",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/wrap-ansi/license"
   },
+  "wrap-ansi@7.0.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/chalk/wrap-ansi",
+    "publisher": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "https://sindresorhus.com",
+    "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native-vector-icons/node_modules/wrap-ansi",
+    "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native-vector-icons/node_modules/wrap-ansi/license"
+  },
   "wrappy@1.0.2": {
     "licenses": "ISC",
     "repository": "https://github.com/npm/wrappy",
@@ -6919,8 +7086,8 @@
     "publisher": "Rebecca Turner",
     "email": "me@re-becca.org",
     "url": "http://re-becca.org",
-    "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/jscodeshift/node_modules/write-file-atomic",
-    "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/jscodeshift/node_modules/write-file-atomic/LICENSE"
+    "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/write-file-atomic",
+    "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/write-file-atomic/LICENSE"
   },
   "write-file-atomic@3.0.3": {
     "licenses": "ISC",
@@ -6928,8 +7095,8 @@
     "publisher": "Rebecca Turner",
     "email": "me@re-becca.org",
     "url": "http://re-becca.org",
-    "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/write-file-atomic",
-    "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/write-file-atomic/LICENSE"
+    "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@jest/transform/node_modules/write-file-atomic",
+    "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/@jest/transform/node_modules/write-file-atomic/LICENSE"
   },
   "ws@1.1.5": {
     "licenses": "MIT",
@@ -6949,7 +7116,7 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native/node_modules/ws",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native/node_modules/ws/LICENSE"
   },
-  "ws@7.5.6": {
+  "ws@7.5.7": {
     "licenses": "MIT",
     "repository": "https://github.com/websockets/ws",
     "publisher": "Einar Otto Stangvik",
@@ -7015,6 +7182,14 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/y18n",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/y18n/LICENSE"
   },
+  "y18n@5.0.8": {
+    "licenses": "ISC",
+    "repository": "https://github.com/yargs/y18n",
+    "publisher": "Ben Coe",
+    "email": "bencoe@gmail.com",
+    "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native-vector-icons/node_modules/y18n",
+    "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native-vector-icons/node_modules/y18n/LICENSE"
+  },
   "yallist@4.0.0": {
     "licenses": "ISC",
     "repository": "https://github.com/isaacs/yallist",
@@ -7032,10 +7207,24 @@
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/yargs-parser",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/yargs-parser/LICENSE.txt"
   },
+  "yargs-parser@20.2.9": {
+    "licenses": "ISC",
+    "repository": "https://github.com/yargs/yargs-parser",
+    "publisher": "Ben Coe",
+    "email": "ben@npmjs.com",
+    "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native-vector-icons/node_modules/yargs-parser",
+    "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native-vector-icons/node_modules/yargs-parser/LICENSE.txt"
+  },
   "yargs@15.4.1": {
     "licenses": "MIT",
     "repository": "https://github.com/yargs/yargs",
     "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/yargs",
     "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/yargs/LICENSE"
+  },
+  "yargs@16.2.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/yargs/yargs",
+    "path": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native-vector-icons/node_modules/yargs",
+    "licenseFile": "/Users/hyun/Github/hardcore-study-group/music-shorts/app/node_modules/react-native-vector-icons/node_modules/yargs/LICENSE"
   }
 }
