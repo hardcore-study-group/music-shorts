@@ -4,24 +4,9 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import SpotifyButton from '../../components/SpotifyButton';
 import FastImage from 'react-native-fast-image';
 import {useRecoilRefresher_UNSTABLE} from 'recoil';
-import {ApiConfig, ApiScope, auth} from 'react-native-spotify-remote';
-import {BASE_URL, SPOTIFY_CLIENT_ID} from '../../constants/values';
+import {auth} from 'react-native-spotify-remote';
+import {SPOTIFY_CONFIG} from '../../constants/values';
 import {accessTokenQuery} from '../../recoil/auth';
-
-export const spotifyConfig: ApiConfig = {
-  clientID: SPOTIFY_CLIENT_ID,
-  redirectURL: 'musicshorts://spotify-login-callback',
-  scopes: [
-    ApiScope.AppRemoteControlScope,
-    ApiScope.UserReadPrivateScope,
-    ApiScope.PlaylistModifyPrivateScope,
-    ApiScope.PlaylistReadPrivateScope,
-    ApiScope.PlaylistReadCollaborativeScope,
-    ApiScope.UGCImageUploadScope,
-  ],
-  tokenSwapURL: `${BASE_URL}/auth/token/swap`,
-  tokenRefreshURL: `${BASE_URL}/auth/token/refresh`,
-};
 
 const LoginScreen = () => {
   const {bottom} = useSafeAreaInsets();
@@ -29,7 +14,7 @@ const LoginScreen = () => {
 
   const signin = useCallback(async () => {
     try {
-      await auth.authorize(spotifyConfig);
+      await auth.authorize(SPOTIFY_CONFIG);
       refresh();
     } catch (error) {
       console.log(error);

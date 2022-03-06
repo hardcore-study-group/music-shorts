@@ -1,5 +1,6 @@
 import {Platform} from 'react-native';
 import deviceInfoModule from 'react-native-device-info';
+import {ApiConfig, ApiScope} from 'react-native-spotify-remote';
 
 export const AGREEMENTS = [];
 export const IS_ANDROID = Platform.OS === 'android';
@@ -13,7 +14,7 @@ export const SPOTIFY_CLIENT_ID = 'babda1a147134d70b64cb301089cfeaa';
 export const SPOTIFY_PREMIUM_URL = 'https://www.spotify.com/premium';
 
 export const BASE_URL = (() => {
-  const LOCAL_IP = '192.168.10.26';
+  const LOCAL_IP = '192.168.10.20';
   const PROD_TEST_MODE = false;
   if (!__DEV__ || PROD_TEST_MODE)
     return 'https://us-central1-music-shorts.cloudfunctions.net/api';
@@ -29,3 +30,18 @@ export const BASE_URL = (() => {
   }
   return '';
 })();
+
+export const SPOTIFY_CONFIG: ApiConfig = {
+  clientID: SPOTIFY_CLIENT_ID,
+  redirectURL: 'musicshorts://spotify-login-callback',
+  scopes: [
+    ApiScope.AppRemoteControlScope,
+    ApiScope.UserReadPrivateScope,
+    ApiScope.PlaylistModifyPrivateScope,
+    ApiScope.PlaylistReadPrivateScope,
+    ApiScope.PlaylistReadCollaborativeScope,
+    ApiScope.UGCImageUploadScope,
+  ],
+  tokenSwapURL: `${BASE_URL}/auth/token/swap`,
+  tokenRefreshURL: `${BASE_URL}/auth/token/refresh`,
+};
