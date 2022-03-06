@@ -285,6 +285,8 @@ PODS:
     - React
   - react-native-safe-area-context (3.4.1):
     - React-Core
+  - react-native-slider (4.2.1):
+    - React-Core
   - react-native-splash-screen (3.3.0):
     - React-Core
   - React-perflogger (0.67.2)
@@ -423,6 +425,7 @@ DEPENDENCIES:
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - react-native-in-app-review (from `../node_modules/react-native-in-app-review`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
+  - "react-native-slider (from `../node_modules/@react-native-community/slider`)"
   - react-native-splash-screen (from `../node_modules/react-native-splash-screen`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -504,6 +507,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-in-app-review"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
+  react-native-slider:
+    :path: "../node_modules/@react-native-community/slider"
   react-native-splash-screen:
     :path: "../node_modules/react-native-splash-screen"
   React-perflogger:
@@ -581,6 +586,7 @@ SPEC CHECKSUMS:
   React-logger: 23de8ea0f44fa00ee77e96060273225607fd4d78
   react-native-in-app-review: 19f501795e776269dd216916e19e1ac4008b33d5
   react-native-safe-area-context: 9e40fb181dac02619414ba1294d6c2a807056ab9
+  react-native-slider: 241935e3ea8e47599c317f512f96ee8de607d4cb
   react-native-splash-screen: 4312f786b13a81b5169ef346d76d33bc0c6dc457
   React-perflogger: 3c9bb7372493e49036f07a82c44c8cf65cbe88db
   React-RCTActionSheet: 052606483045a408693aa7e864410b4a052f541a

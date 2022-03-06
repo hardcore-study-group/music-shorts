@@ -10,7 +10,7 @@ const createPlaylist = async () => {
   } = await spotify.createPlaylist('Music shorts', {
     public: false,
     collaborative: false,
-    description: 'Musics added by app "Music shorts"',
+    description: 'Songs that you chose',
   });
   const base64 = await fs.readFile('src/assets/icon.png', 'base64');
   await spotify.uploadCustomPlaylistCoverImage(id, base64);

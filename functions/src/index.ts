@@ -7,6 +7,7 @@ import search from './routes/search';
 import tracks from './routes/tracks';
 import auth from './routes/auth';
 import me from './routes/me';
+import albums from './routes/albums';
 // ----------------- routes ----------------- //
 
 const app = express();
@@ -21,5 +22,6 @@ app.use('/search', search);
 app.use('/auth', auth);
 app.use('/tracks', tracks);
 app.use('/me', me);
+app.use('/albums', albums);
 
 export const api = https.onRequest(app);

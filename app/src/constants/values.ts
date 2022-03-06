@@ -14,7 +14,7 @@ export const SPOTIFY_CLIENT_ID = 'babda1a147134d70b64cb301089cfeaa';
 export const SPOTIFY_PREMIUM_URL = 'https://www.spotify.com/premium';
 
 export const BASE_URL = (() => {
-  const LOCAL_IP = '192.168.10.20';
+  const LOCAL_IP = '192.168.123.105';
   const PROD_TEST_MODE = false;
   if (!__DEV__ || PROD_TEST_MODE)
     return 'https://us-central1-music-shorts.cloudfunctions.net/api';
