@@ -8,6 +8,7 @@ export const STATUSBAR_HEIGHT = getStatusBarHeight();
 export const COLORS = {
   white: '#FFFFFF',
   black: '#222222',
-  error: '#CD6060',
+  gray: '#888888',
+  red: '#CC4444',
   spotify: '#1DB954',
 };

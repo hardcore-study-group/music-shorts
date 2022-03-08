@@ -2,7 +2,7 @@
   "name": "functions",
   "private": true,
   "scripts": {
-    "dev": "npm run build:watch | firebase emulators:start --only functions",
+    "dev": "npm run build:watch | firebase serve --only functions --host 0.0.0.0",
     "build": "tsc",
     "build:watch": "tsc -w",
     "deploy": "npm run build && firebase deploy --only functions",
@@ -18,9 +18,12 @@
     "express": "^4.17.3",
     "firebase-admin": "^10.0.1",
     "firebase-functions": "^3.16.0",
+    "morgan": "^1.10.0",
     "spotify-web-api-node": "^5.0.2"
   },
   "devDependencies": {
+    "@types/morgan": "^1.9.3",
+    "@types/node": "^17.0.21",
     "@types/spotify-web-api-node": "^5.0.6",
     "@typescript-eslint/eslint-plugin": "^5.10.0",
     "@typescript-eslint/parser": "^5.10.0",

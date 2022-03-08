@@ -1,40 +1,48 @@
-import {Button, StyleSheet, Text, View} from 'react-native';
+import {FlatList, StyleSheet, Text} from 'react-native';
 import React, {useEffect} from 'react';
-import useNavigation from '../../hooks/useNavigation';
-import {ApiConfig, ApiScope, auth, remote} from 'react-native-spotify-remote';
-
-const spotifyConfig: ApiConfig = {
-  clientID: 'babda1a147134d70b64cb301089cfeaa',
-  redirectURL: 'musicshorts://spotify-login-callback',
-  scopes: [ApiScope.AppRemoteControlScope, ApiScope.UserFollowReadScope],
-};
+import {useRecoilValue, useRecoilCallback} from 'recoil';
+import HomeScreenCard from './HomeScreenCard';
+import {recommendationTracks} from '../../recoil/tracks';
+import axios from '../../config/axios';
 
 const HomeScreen = () => {
-  const {navigate} = useNavigation();
+  const tracks = useRecoilValue(recommendationTracks);
+
+  const fetchMoreRecommendationTracks = useRecoilCallback(
+    ({set}) =>
+      async () => {
+        const {data} = await axios.get('/tracks/recomendation');
+        set(recommendationTracks, current => [...current, ...data]);
+      },
+    [],
+  );
 
   useEffect(() => {
-    (async () => {
-      try {
-        // console.log((await auth.getSession())?.accessToken);
-        // await auth.endSession();
-        const session = await auth.authorize(spotifyConfig);
-        console.log(session.accessToken);
-        await remote.connect(session.accessToken);
-        await remote.playUri('spotify:track:6IA8E2Q5ttcpbuahIejO74');
-        await remote.seek(58000);
-      } catch (error) {
-        console.log(error);
-      }
-    })();
+    fetchMoreRecommendationTracks();
   }, []);
 
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Button title="playlist" onPress={() => navigate('Playlist')} />
-    </View>
+    <FlatList
+      overScrollMode="never"
+      showsVerticalScrollIndicator={false}
+      pagingEnabled
+      keyExtractor={(item, index) => item.id + index}
+      onEndReached={() => fetchMoreRecommendationTracks()}
+      onEndReachedThreshold={2}
+      data={tracks}
+      renderItem={({item}) => <HomeScreenCard {...item} />}
+    />
   );
 };
 
 export default HomeScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  background: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+  },
+});
