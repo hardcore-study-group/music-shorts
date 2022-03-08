@@ -7,12 +7,13 @@ import React, {
 } from 'react';
 import {
   auth,
+  ContentItem,
   PlayerState,
   remote,
   RepeatMode,
 } from 'react-native-spotify-remote';
 import axios from '../config/axios';
-import {SPOTIFY_CONFIG} from '../constants/values';
+import {IS_IOS, SPOTIFY_CONFIG} from '../constants/values';
 
 export type PlayerContextType = {
   // state
@@ -69,9 +70,19 @@ const PlayerProvider: React.FC = ({children}) => {
     if (index !== -1) {
       // when click playlist item
       await remote.setShuffling(false);
-      const contentItem = await remote.getContentItemForUri(
-        `spotify:playlist:${playlist_id}`,
-      );
+      const contentItem: ContentItem | undefined = IS_IOS
+        ? await remote.getContentItemForUri(`spotify:playlist:${playlist_id}`)
+        : {
+            availableOffline: false,
+            children: [],
+            container: false,
+            id: `spotify:playlist:${playlist_id}`,
+            playable: true,
+            subtitle: 'Made by Music shorts',
+            title: 'Music shorts',
+            uri: `spotify:playlist:${playlist_id}`,
+          };
+
       if (!contentItem) throw Error('no content item'); // android TODO
       await remote.playItemWithIndex(contentItem, index); // play current playlist and seak to clicked item index
     } else {
