@@ -31,7 +31,8 @@
   "hosting": [
     {
       "target": "auth",
-      "public": "auth"
+      "public": "auth",
+      "cleanUrls": true
     },
     {
       "target": "admin",
