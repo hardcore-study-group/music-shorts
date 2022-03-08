@@ -2,6 +2,8 @@ import express from 'express';
 import {https} from 'firebase-functions';
 import morgan from 'morgan';
 import cors from 'cors';
+import swaggerUi from 'swagger-ui-express';
+import {specs} from './config/swagger';
 // ----------------- routes ----------------- //
 import playlists from './routes/playlists';
 import search from './routes/search';
@@ -12,18 +14,21 @@ import albums from './routes/albums';
 // ----------------- routes ----------------- //
 
 const app = express();
-
+// --------------- middlewares -------------- //
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(morgan('dev'));
 app.use(cors({origin: '*'}));
-
-app.get('/isrunning', (req, res) => res.send('Server is running!!!'));
+app.use(swaggerUi.serve);
+// ----------------- routes ----------------- //
+app.use('/docs', swaggerUi.setup(specs)); // swagger
+app.get('/isrunning', (req, res) => res.send('Server is running!!!')); // health checker
 app.use('/playlists', playlists);
 app.use('/search', search);
 app.use('/auth', auth);
 app.use('/tracks', tracks);
 app.use('/me', me);
 app.use('/albums', albums);
+// ----------------- routes ----------------- //
 
 export const api = https.onRequest(app);
