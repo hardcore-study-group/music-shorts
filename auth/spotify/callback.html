@@ -24,10 +24,11 @@
     }
     )
       .then((res) => {
-        console.log(res.data)
+        console.log(res)
+        console.log(typeof res)
         window.addEventListener("message", event => {
           if (['https://admin.music-shorts.com'].indexOf(event.origin) === -1) return
-          event.source.postMessage(res.data, event.origin)
+          event.source.postMessage(JSON.stringify(res), event.origin)
         }, false);
       })
   </script>
