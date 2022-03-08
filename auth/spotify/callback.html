@@ -15,11 +15,12 @@
 
   <script>
     var code = window.location.href.split('code=')[1].split('&')[0]
-    console.log(code)
+    var state = window.location.href.split('state=')[1].split('&')[0]
+
     fetch('https://us-central1-music-shorts.cloudfunctions.net/api/auth/token/swap', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ code })
+      body: JSON.stringify({ code, state })
     }
     )
       .then((res) => {
