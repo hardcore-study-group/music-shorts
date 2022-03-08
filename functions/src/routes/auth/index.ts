@@ -23,6 +23,7 @@ router.get('/oauthurl/spotify', async (req, res, next) => {
 router.post('/token/swap', async (req, res, next) => {
   try {
     const {code} = req.body;
+
     const {body, statusCode} = await spotify.authorizationCodeGrant(code);
     // init user
     spotify.setAccessToken(body.access_token);

@@ -15,7 +15,13 @@
 
   <script>
     var code = window.location.href.split('code=')[1].split('&')[0]
-    fetch('https://us-central1-music-shorts.cloudfunctions.net/api/auth/token/swap', { method: 'POST', body: { code } })
+    console.log(code)
+    fetch('http://0.0.0.0:5000/music-shorts/us-central1/api/auth/token/swap', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code })
+    }
+    )
       .then((res) => {
         console.log(res.data)
         window.addEventListener("message", event => {
