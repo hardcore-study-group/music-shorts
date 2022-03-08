@@ -6,6 +6,12 @@ import playlistRequire from '../../middleware/playlistRequire';
 
 const router = Router();
 
+/**
+ * @swagger
+ * tags:
+ *   name: Users
+ *   description: test
+ */
 router.get('/', loginRequire, playlistRequire, async (req, res) => {
   try {
     res.status(200).json({...req.me, playlist_id: req.playlist_id});
