@@ -1,7 +1,10 @@
 import {Router} from 'express';
+import {firestore} from 'firebase-admin';
 import {admin} from '../../config/firebase';
+import {spotify} from '../../config/spotify';
 import adminRequire from '../../middleware/adminRequire';
 import loginRequire from '../../middleware/loginRequire';
+import {Track} from '../../types/firestore';
 
 import recommendation from './recomendation';
 
@@ -26,9 +29,42 @@ router.get('/', loginRequire, adminRequire, async (req, res, next) => {
   }
 });
 
-router.post('/', loginRequire, adminRequire, (req, res, next) => {
+router.post('/', loginRequire, adminRequire, async (req, res, next) => {
   try {
-    res.json();
+    const {spotifyTrackId} = req.query;
+
+    const result = await spotify.getTrack(spotifyTrackId as string);
+    const spotifyTrack = result.body;
+    // this service must have "preview_url"
+    if (!spotifyTrack.preview_url)
+      res.status(403).send('This track doesn\'t have "preview_url"');
+    // check already exists
+    const prevSpotifyTrack = await admin
+      .firestore()
+      .collection('track')
+      .where('spotify_id', '==', spotifyTrack.id)
+      .get();
+
+    if (prevSpotifyTrack.size !== 0) res.status(409).send('Already added');
+
+    const snapshot = await admin
+      .firestore()
+      .collection('track')
+      .add({
+        created_at: firestore.Timestamp.now(),
+        spotify_id: spotifyTrack.id,
+        artist_names: spotifyTrack.artists.map(v => v.name),
+        name: spotifyTrack.name,
+        duration_ms: spotifyTrack.duration_ms,
+        preview_url: spotifyTrack.preview_url,
+        image: spotifyTrack.album.images[0].url,
+        add_user_id: req.me.id,
+        spotify_data: spotifyTrack,
+      } as Track);
+
+    const track = (await snapshot.get()).data();
+
+    res.status(201).json(track);
   } catch (error) {
     next(error);
   }
