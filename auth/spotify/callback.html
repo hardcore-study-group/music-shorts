@@ -21,14 +21,13 @@
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ code, state })
-    }
-    )
-      .then((res) => {
-        console.log(res)
-        console.log(typeof res)
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
         window.addEventListener("message", event => {
           if (['https://admin.music-shorts.com'].indexOf(event.origin) === -1) return
-          event.source.postMessage(JSON.stringify(res), event.origin)
+          event.source.postMessage(JSON.stringify(data), event.origin)
         }, false);
       })
   </script>
