@@ -1,9 +1,24 @@
 import {Router} from 'express';
-import {logger} from 'firebase-functions/v1';
+import {config, logger} from 'firebase-functions/v1';
+import SpotifyWebApi from 'spotify-web-api-node';
 import {admin} from '../../config/firebase';
 import {spotify} from '../../config/spotify';
 
 const router = Router();
+
+router.get('/oauthurl/spotify', async (req, res, next) => {
+  try {
+    const spotifyAdmin = new SpotifyWebApi({
+      clientId: config().spotify.client_id,
+      clientSecret: config().spotify.client_secret,
+      redirectUri: config().spotify.admin_redirect_uri,
+    });
+    const url = spotifyAdmin.createAuthorizeURL(['user-read-email'], 'admin');
+    res.send(url);
+  } catch (error) {
+    next(error);
+  }
+});
 
 router.post('/token/swap', async (req, res, next) => {
   try {
