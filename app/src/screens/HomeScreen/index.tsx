@@ -1,25 +1,25 @@
 import {FlatList, StyleSheet, Text} from 'react-native';
 import React, {useEffect} from 'react';
-import {useRecoilValue, useRecoilCallback} from 'recoil';
 import HomeScreenCard from './HomeScreenCard';
-import {recommendationTracks} from '../../recoil/tracks';
 import axios from '../../config/axios';
+import {} from 'react-query';
 
 const HomeScreen = () => {
-  const tracks = useRecoilValue(recommendationTracks);
+  // const {} = useQuery();
+  // const tracks = useRecoilValue(recommendationTracks);
 
-  const fetchMoreRecommendationTracks = useRecoilCallback(
-    ({set}) =>
-      async () => {
-        const {data} = await axios.get('/tracks/recommendation');
-        set(recommendationTracks, current => [...current, ...data]);
-      },
-    [],
-  );
+  // const fetchMoreRecommendationTracks = useRecoilCallback(
+  //   ({set}) =>
+  //     async () => {
+  //       const {data} = await axios.get('/tracks/recommendation');
+  //       set(recommendationTracks, current => [...current, ...data]);
+  //     },
+  //   [],
+  // );
 
-  useEffect(() => {
-    fetchMoreRecommendationTracks();
-  }, []);
+  // useEffect(() => {
+  //   fetchMoreRecommendationTracks();
+  // }, []);
 
   return (
     <FlatList

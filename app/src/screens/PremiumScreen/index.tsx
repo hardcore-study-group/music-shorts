@@ -1,25 +1,18 @@
 import {Linking, Pressable, StyleSheet, Text, View} from 'react-native';
-import React, {useCallback} from 'react';
+import React, {useCallback, useContext} from 'react';
 import BaseHeader from '../../components/BaseHeader';
 import SpotifyButton from '../../components/SpotifyButton';
 import Typography from '../../components/Typography';
 import {SPOTIFY_PREMIUM_URL} from '../../constants/values';
 import {COLORS} from '../../constants/styles';
-import {useRecoilRefresher_UNSTABLE} from 'recoil';
-import {meQuery} from '../../recoil/me';
 import {auth} from 'react-native-spotify-remote';
-import {accessTokenQuery} from '../../recoil/auth';
+import {AuthContext} from '../../context/AuthContex';
+
 const PremiumScreen = () => {
-  const meRefresher = useRecoilRefresher_UNSTABLE(meQuery);
-  const accessTokenReferesher = useRecoilRefresher_UNSTABLE(accessTokenQuery);
+  const {signOut, checkPremium} = useContext(AuthContext);
 
   const onUpgradeToPremium = useCallback(() => {
     Linking.openURL(SPOTIFY_PREMIUM_URL);
-  }, []);
-
-  const signOut = useCallback(async () => {
-    await auth.endSession();
-    accessTokenReferesher();
   }, []);
 
   return (
@@ -34,7 +27,7 @@ const PremiumScreen = () => {
           title="Upgrade to premium"
         />
         <View style={styles.options}>
-          <Pressable onPress={meRefresher}>
+          <Pressable onPress={checkPremium}>
             <Typography style={styles.option}>recheck</Typography>
           </Pressable>
           <View style={styles.divider} />

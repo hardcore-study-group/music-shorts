@@ -2,7 +2,6 @@ import {Platform} from 'react-native';
 import deviceInfoModule from 'react-native-device-info';
 import {ApiConfig, ApiScope} from 'react-native-spotify-remote';
 
-export const AGREEMENTS = [];
 export const IS_ANDROID = Platform.OS === 'android';
 export const IS_IOS = Platform.OS === 'ios';
 
