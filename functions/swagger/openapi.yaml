@@ -14,7 +14,13 @@ paths:
     $ref: './auth.yaml#/~1auth~1token~1swap'
   /auth/token/refresh:
     $ref: './auth.yaml#/~1auth~1token~1refresh'
+  /albums/{id}:
+    $ref: './albums.yaml#/~1albums~1{id}'
 components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
   responses:
     successResponse:
       description: successful request
