@@ -7,6 +7,7 @@ info:
     name: GLP 3.0
 servers:
   - url: https://us-central1-music-shorts.cloudfunctions.net/api
+  - url: http://0.0.0.0:5000/music-shorts/us-central1/api
 paths:
   /auth/oauthurl/spotify: 
     $ref: './auth.yaml#/~1auth~1oauthurl~1spotify'
@@ -24,6 +25,12 @@ paths:
     $ref: './me.yaml#/~1me~1playlist~1tracks~1{id}'
   /search:
     $ref: './search.yaml#/~1search'
+  /tracks:
+    $ref: './tracks.yaml#/~1tracks'
+  /tracks/{id}:
+    $ref: './tracks.yaml#/~1tracks~1{id}'
+  /tracks/recommendation:
+    $ref: './tracks.yaml#/~1tracks~1recommendation'
 components:
   securitySchemes:
     BearerAuth:
