@@ -40,7 +40,6 @@ router.post('/token/refresh', async (req, res, next) => {
   try {
     const {refresh_token} = req.body;
     spotify.setRefreshToken(refresh_token);
-    console.log(refresh_token);
     const {body, statusCode} = await spotify.refreshAccessToken();
     res.status(statusCode).json(body);
   } catch (error) {

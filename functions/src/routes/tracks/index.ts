@@ -6,11 +6,11 @@ import adminRequire from '../../middleware/adminRequire';
 import loginRequire from '../../middleware/loginRequire';
 import {Track} from '../../types/firestore';
 
-import recommendation from './recomendation';
+import recommendation from './recommendation';
 
 const router = Router();
 
-router.use('/recomendation', recommendation);
+router.use('/recommendation', recommendation);
 
 router.get('/', loginRequire, adminRequire, async (req, res, next) => {
   try {
@@ -31,7 +31,7 @@ router.get('/', loginRequire, adminRequire, async (req, res, next) => {
 
 router.post('/', loginRequire, adminRequire, async (req, res, next) => {
   try {
-    const {spotifyTrackId} = req.query;
+    const {spotifyTrackId} = req.body;
 
     const result = await spotify.getTrack(spotifyTrackId as string);
     const spotifyTrack = result.body;
