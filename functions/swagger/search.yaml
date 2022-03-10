@@ -1,0 +1,73 @@
+/search:
+  get:
+    tags:
+      - /search
+    summary: search tracks
+    security: 
+      - BearerAuth: []
+    parameters:
+      - in: query
+        name: q
+        schema:
+          type: string
+        description: query for search
+    responses:
+      '200':
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tracks:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      limit: 
+                        type: integer
+                      offset: 
+                        type: integer
+                      total:
+                        type: integer
+                      items:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            artists:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                      uri:
+                                        type: string
+                                      name:
+                                        type: string
+                            id:
+                              type: string
+                            uri:
+                              type: string
+                            name:
+                              type: string
+                            preview_url:
+                              type: string
+                            duration_ms:
+                              type: integer
+                            album:
+                              type: object
+                              properties:
+                                name:
+                                  type: string
+                                images:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      url:
+                                        type: string
+                                      width:
+                                        type: integer
+                                      height:
+                                        type: integer

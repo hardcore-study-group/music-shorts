@@ -22,6 +22,8 @@ paths:
     $ref: './me.yaml#/~1me~1playlist~1tracks'
   /me/playlist/tracks/{id}:
     $ref: './me.yaml#/~1me~1playlist~1tracks~1{id}'
+  /search:
+    $ref: './search.yaml#/~1search'
 components:
   securitySchemes:
     BearerAuth:
