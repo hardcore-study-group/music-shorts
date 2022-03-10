@@ -6,27 +6,22 @@ import {
   Text,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {useContext} from 'react';
 import BaseHeader from '../../components/BaseHeader';
 import useNavigation from '../../hooks/useNavigation';
-import {auth} from 'react-native-spotify-remote';
-import {useRecoilRefresher_UNSTABLE} from 'recoil';
-import {accessTokenQuery} from '../../recoil/auth';
 import InAppReview from 'react-native-in-app-review';
 import Typography from '../../components/Typography';
 import BaseButton from '../../components/BaseButton';
+import {AuthContext} from '../../context/AuthContext';
 
 const ProfileScreen = () => {
   const {navigate} = useNavigation();
-  const accessTokenRefresher = useRecoilRefresher_UNSTABLE(accessTokenQuery);
+  const {signOut} = useContext(AuthContext);
 
   const Options = [
     {
       title: 'Sign out',
-      onPress: async () => {
-        await auth.endSession();
-        accessTokenRefresher();
-      },
+      onPress: signOut,
     },
     {title: 'Rate us', onPress: () => InAppReview.RequestInAppReview()},
     {

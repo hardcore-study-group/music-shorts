@@ -1,6 +1,5 @@
 import {Image, Pressable, StyleSheet, View} from 'react-native';
 import React, {useCallback, useState} from 'react';
-import {Track} from '../../recoil/tracks';
 import {COLORS, STATUSBAR_HEIGHT, WIDTH} from '../../constants/styles';
 import FastImage from 'react-native-fast-image';
 import {
@@ -14,6 +13,7 @@ import useNavigation from '../../hooks/useNavigation';
 import Typography from '../../components/Typography';
 import artistFormatter from '../../util/artistFormatter';
 import axios from '../../config/axios';
+import {Track} from '../../constants/types';
 
 const HomeScreenCard: React.FC<Track> = props => {
   const {image, preview_url, artist_names, name, spotify_id} = props;
