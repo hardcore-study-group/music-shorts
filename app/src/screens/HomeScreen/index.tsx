@@ -11,7 +11,7 @@ const HomeScreen = () => {
   const fetchMoreRecommendationTracks = useRecoilCallback(
     ({set}) =>
       async () => {
-        const {data} = await axios.get('/tracks/recomendation');
+        const {data} = await axios.get('/tracks/recommendation');
         set(recommendationTracks, current => [...current, ...data]);
       },
     [],
