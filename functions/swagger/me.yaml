@@ -1,0 +1,145 @@
+/me:
+  get:
+    tags:
+      - /me
+    summary: get me info
+    security: 
+      - BearerAuth: []
+    responses:
+      '200':
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id: 
+                  type: string
+                uri: 
+                  type: string
+                birthdate:
+                  type: string
+                country:
+                  type: string
+                email: 
+                  type: string
+                product: 
+                  type: string
+                playlist_id:
+                  type: string
+/me/playlist/tracks:
+  get:
+    tags:
+      - /me
+    summary: get my playlist
+    security: 
+      - BearerAuth: []
+    parameters:
+      - in: query
+        name: offset
+        schema:
+          type: integer
+        description: The number of items to skip before starting to collect the result set
+      - in: query
+        name: limit
+        schema:
+          type: integer
+        description: The numbers of items to return
+    responses:
+      '200':
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                limit: 
+                  type: integer
+                offset: 
+                  type: integer
+                total:
+                  type: integer
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      added_at:
+                        type: string
+                      track:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                          uri:
+                            type: string
+                          name:
+                            type: string
+                          preview_url:
+                            type: string
+                          duration_ms:
+                            type: integer
+                          album:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                              images:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    url:
+                                      type: string
+                                    width:
+                                      type: integer
+                                    height:
+                                      type: integer
+                          artists:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: string
+                                uri:
+                                  type: string
+                                name:
+                                  type: string
+  post:
+    tags:
+      - /me
+    summary: add one track to my playlist
+    security: 
+      - BearerAuth: []
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              track_id:
+                type: string
+    responses:
+      '200':
+        content:
+          application/json:
+            schema:
+              type: object
+/me/playlist/tracks/{id}:
+  delete:
+    tags:
+      - /me
+    summary: delete one track from my playlist
+    security: 
+      - BearerAuth: []
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+    responses:
+      '200':
+        content:
+          application/json:
+            schema:
+              type: object

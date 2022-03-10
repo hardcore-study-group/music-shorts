@@ -16,6 +16,12 @@ paths:
     $ref: './auth.yaml#/~1auth~1token~1refresh'
   /albums/{id}:
     $ref: './albums.yaml#/~1albums~1{id}'
+  /me:
+    $ref: './me.yaml#/~1me'
+  /me/playlist/tracks:
+    $ref: './me.yaml#/~1me~1playlist~1tracks'
+  /me/playlist/tracks/{id}:
+    $ref: './me.yaml#/~1me~1playlist~1tracks~1{id}'
 components:
   securitySchemes:
     BearerAuth:
