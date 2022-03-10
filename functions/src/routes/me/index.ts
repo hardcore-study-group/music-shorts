@@ -1,17 +1,10 @@
 import {Router} from 'express';
-import {nextTick} from 'process';
 import {spotify} from '../../config/spotify';
 import loginRequire from '../../middleware/loginRequire';
 import playlistRequire from '../../middleware/playlistRequire';
 
 const router = Router();
 
-/**
- * @swagger
- * tags:
- *   name: Users
- *   description: test
- */
 router.get('/', loginRequire, playlistRequire, async (req, res) => {
   try {
     res.status(200).json({...req.me, playlist_id: req.playlist_id});

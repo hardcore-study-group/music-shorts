@@ -1,0 +1,79 @@
+/auth/oauthurl/spotify:
+  get:
+    tags:
+      - /auth
+    summary: get spotify OAuth url
+    responses:
+      '200':
+        content:
+          text/plain:
+            schema:
+              type: string
+              example: https://accounts.spotify.com/authorize?client_id=babda1a147134d70b64cb301089cfeaa&response_type=code&redirect_uri=https://auth.music-shorts.com/spotify/callback&scope=user-read-email&state=admin
+/auth/token/swap:
+  post:
+    tags:
+      - /auth
+    summary: The code from "/auth/oauthurl/spotify" api's result swap to refresh & access token
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+              state:
+                type: string
+                nullable: true
+    responses:
+      '200':
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                access_token:
+                  type: string
+                refresh_token:
+                  type: string
+                expires_in:
+                  type: integer
+                scope:
+                  type: string
+                token_type:
+                  type: string
+/auth/token/refresh:
+  post:
+    tags:
+      - /auth
+    summary: refresh access_token by refresh_token
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              refresh_token:
+                type: string
+                required: true
+    responses:
+      '200':
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                access_token:
+                  type: string
+                refresh_token:
+                  type: string
+                  nullable: true
+                expires_in:
+                  type: integer
+                scope:
+                  type: string
+                token_type:
+                  type: string

@@ -3,7 +3,6 @@ import {https} from 'firebase-functions';
 import morgan from 'morgan';
 import cors from 'cors';
 import swaggerUi from 'swagger-ui-express';
-import {specs} from './config/swagger';
 // ----------------- routes ----------------- //
 import playlists from './routes/playlists';
 import search from './routes/search';
@@ -11,6 +10,7 @@ import tracks from './routes/tracks';
 import auth from './routes/auth';
 import me from './routes/me';
 import albums from './routes/albums';
+import {specs} from './config/swagger';
 // ----------------- routes ----------------- //
 
 const app = express();

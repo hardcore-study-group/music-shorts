@@ -1,0 +1,24 @@
+openapi: '3.0.0'
+info:
+  version: 0.0.1
+  title: Music shorts
+  description: Music shorts app & admin api docs
+  license:
+    name: GLP 3.0
+servers:
+  - url: https://us-central1-music-shorts.cloudfunctions.net/api
+paths:
+  /auth/oauthurl/spotify: 
+    $ref: './auth.yaml#/~1auth~1oauthurl~1spotify'
+  /auth/token/swap:
+    $ref: './auth.yaml#/~1auth~1token~1swap'
+  /auth/token/refresh:
+    $ref: './auth.yaml#/~1auth~1token~1refresh'
+components:
+  responses:
+    successResponse:
+      description: successful request
+      content:
+        application/json:
+          schema:
+            type: object
