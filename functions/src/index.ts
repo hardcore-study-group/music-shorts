@@ -4,7 +4,6 @@ import morgan from 'morgan';
 import cors from 'cors';
 import swaggerUi from 'swagger-ui-express';
 // ----------------- routes ----------------- //
-import playlists from './routes/playlists';
 import search from './routes/search';
 import tracks from './routes/tracks';
 import auth from './routes/auth';
@@ -23,7 +22,6 @@ app.use(swaggerUi.serve);
 // ----------------- routes ----------------- //
 app.use('/docs', swaggerUi.setup(specs)); // swagger
 app.get('/isrunning', (req, res) => res.send('Server is running!!!')); // health checker
-app.use('/playlists', playlists);
 app.use('/search', search);
 app.use('/auth', auth);
 app.use('/tracks', tracks);
