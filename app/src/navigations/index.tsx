@@ -2,19 +2,13 @@ import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
 import RootStackNavigation, {RootStackParamList} from './RootStackNavigation';
 import React, {useContext} from 'react';
 import {COLORS} from '../constants/styles';
-import CheckAppInstalledScreen from '../screens/CheckAppInstalledScreen';
-import LoginScreen from '../screens/LoginScreen';
-import PremiumScreen from '../screens/PremiumScreen';
-import {AuthContext} from '../context/AuthContex';
+import {AuthContext} from '../context/AuthContext';
+import AuthStackNavigation, {AuthStackParamList} from './AuthStackNavigation';
 
-export type NavigationParamList = RootStackParamList;
+export type NavigationParamList = RootStackParamList & AuthStackParamList;
 
 const Navigation = () => {
   const {accessToken, isInstalled, isPremium} = useContext(AuthContext);
-
-  if (!isInstalled) return <CheckAppInstalledScreen />;
-  if (!accessToken) return <LoginScreen />;
-  if (!isPremium) return <PremiumScreen />;
 
   return (
     <NavigationContainer
@@ -23,7 +17,11 @@ const Navigation = () => {
         colors: {...DefaultTheme.colors, background: COLORS.black},
       }}
     >
-      <RootStackNavigation />
+      {accessToken && isInstalled && isPremium ? (
+        <RootStackNavigation />
+      ) : (
+        <AuthStackNavigation />
+      )}
     </NavigationContainer>
   );
 };

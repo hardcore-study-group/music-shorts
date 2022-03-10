@@ -6,7 +6,7 @@ import {COLORS} from './src/constants/styles';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import PlayerProvider from './src/context/PlayerContext';
-import AuthProvider from './src/context/AuthContex';
+import AuthProvider from './src/context/AuthContext';
 import {QueryClientProvider} from 'react-query';
 import {queryClient} from './src/config/reactQuery';
 

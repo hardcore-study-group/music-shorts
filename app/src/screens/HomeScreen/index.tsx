@@ -1,25 +1,21 @@
 import {FlatList, StyleSheet, Text} from 'react-native';
-import React, {useEffect} from 'react';
+import React from 'react';
 import HomeScreenCard from './HomeScreenCard';
 import axios from '../../config/axios';
-import {} from 'react-query';
+import {useInfiniteQuery} from 'react-query';
+import {Track} from '../../constants/types';
+import ActivityindicatorView from '../../components/ActivityIndicatorView';
 
 const HomeScreen = () => {
-  // const {} = useQuery();
-  // const tracks = useRecoilValue(recommendationTracks);
-
-  // const fetchMoreRecommendationTracks = useRecoilCallback(
-  //   ({set}) =>
-  //     async () => {
-  //       const {data} = await axios.get('/tracks/recommendation');
-  //       set(recommendationTracks, current => [...current, ...data]);
-  //     },
-  //   [],
-  // );
-
-  // useEffect(() => {
-  //   fetchMoreRecommendationTracks();
-  // }, []);
+  const {data, fetchNextPage} = useInfiniteQuery(
+    '/tracks/recommendation',
+    () =>
+      axios.get<Track[]>('/tracks/recommendation').then(result => result.data),
+    {
+      getNextPageParam: (lastPage, pages) => pages.length,
+    },
+  );
+  if (!data) return <ActivityindicatorView />;
 
   return (
     <FlatList
@@ -27,9 +23,9 @@ const HomeScreen = () => {
       showsVerticalScrollIndicator={false}
       pagingEnabled
       keyExtractor={(item, index) => item.id + index}
-      onEndReached={() => fetchMoreRecommendationTracks()}
+      onEndReached={() => fetchNextPage()}
       onEndReachedThreshold={2}
-      data={tracks}
+      data={data.pages.reduce((tracks, crnt) => [...crnt, ...tracks], [])}
       renderItem={({item}) => <HomeScreenCard {...item} />}
     />
   );

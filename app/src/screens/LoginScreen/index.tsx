@@ -3,7 +3,7 @@ import React, {useCallback, useContext} from 'react';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import SpotifyButton from '../../components/SpotifyButton';
 import FastImage from 'react-native-fast-image';
-import {AuthContext} from '../../context/AuthContex';
+import {AuthContext} from '../../context/AuthContext';
 
 const LoginScreen = () => {
   const {signIn} = useContext(AuthContext);

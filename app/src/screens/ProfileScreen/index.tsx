@@ -9,11 +9,10 @@ import {
 import React, {useContext} from 'react';
 import BaseHeader from '../../components/BaseHeader';
 import useNavigation from '../../hooks/useNavigation';
-import {auth} from 'react-native-spotify-remote';
 import InAppReview from 'react-native-in-app-review';
 import Typography from '../../components/Typography';
 import BaseButton from '../../components/BaseButton';
-import {AuthContext} from '../../context/AuthContex';
+import {AuthContext} from '../../context/AuthContext';
 
 const ProfileScreen = () => {
   const {navigate} = useNavigation();

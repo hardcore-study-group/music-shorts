@@ -31,7 +31,8 @@ const AuthProvider: React.FC = ({children}) => {
   const {data: isPremium, refetch} = useQuery('/me', () =>
     axios
       .get<SpotifyApi.CurrentUsersProfileResponse>('/me')
-      .then(result => result.data.product === 'premium'),
+      .then(result => result.data.product === 'premium')
+      .catch(() => false),
   );
 
   useEffect(() => {
@@ -50,12 +51,12 @@ const AuthProvider: React.FC = ({children}) => {
   }, []);
 
   useEffect(() => {
-    // refetch premium
-    checkPremium();
     // replace axios header with new accessToken
     axios.defaults.headers.common.Authorization = accessToken
       ? `Bearer ${accessToken}`
       : '';
+    // refetch premium, after apply axios header's access token, timeout is trick
+    setTimeout(checkPremium, 500);
   }, [accessToken]);
 
   const initializeAccessToken = useCallback(async () => {

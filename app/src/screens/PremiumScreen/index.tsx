@@ -6,7 +6,7 @@ import Typography from '../../components/Typography';
 import {SPOTIFY_PREMIUM_URL} from '../../constants/values';
 import {COLORS} from '../../constants/styles';
 import {auth} from 'react-native-spotify-remote';
-import {AuthContext} from '../../context/AuthContex';
+import {AuthContext} from '../../context/AuthContext';
 
 const PremiumScreen = () => {
   const {signOut, checkPremium} = useContext(AuthContext);
