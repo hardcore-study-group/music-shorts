@@ -25,7 +25,7 @@ const HomeScreen = () => {
       keyExtractor={(item, index) => item.id + index}
       onEndReached={() => fetchNextPage()}
       onEndReachedThreshold={2}
-      data={data.pages.reduce((tracks, crnt) => [...crnt, ...tracks], [])}
+      data={data.pages.reduce((prev, crnt) => [...prev, ...crnt], [])}
       renderItem={({item}) => <HomeScreenCard {...item} />}
     />
   );

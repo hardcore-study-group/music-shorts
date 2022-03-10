@@ -7,38 +7,50 @@ import {COLORS} from '../../constants/styles';
 import axios from '../../config/axios';
 import PlaylistScreenCard from './PlaylistScreenCard';
 import useNavigation from '../../hooks/useNavigation';
+import {useInfiniteQuery, useMutation, useQueryClient} from 'react-query';
+import ActivityindicatorView from '../../components/ActivityIndicatorView';
 
 const PlaylistScreen = () => {
   const {navigate} = useNavigation();
-  const [playlist, setPlaylist] = useState<SpotifyApi.PlaylistTrackObject[]>(
-    [],
+  const client = useQueryClient();
+
+  const {data, fetchNextPage} = useInfiniteQuery(
+    '/me/playlist/tracks',
+    ({pageParam = 0}) =>
+      axios
+        .get<SpotifyApi.PlaylistTrackResponse>('/me/playlist/tracks', {
+          params: {offset: pageParam, limit: 20},
+        })
+        .then(result => result.data.items),
+    {
+      getNextPageParam: (_, pages) =>
+        pages.reduce((prev, crnt) => prev + crnt.length, 0),
+      cacheTime: 0,
+    },
   );
 
-  useEffect(() => {
-    onFetchMore();
-  }, []);
-
-  const onFetchMore = useCallback(async () => {
-    const {data} = await axios.get<SpotifyApi.PlaylistTrackResponse>(
-      '/me/playlist/tracks',
-      {
-        params: {offset: playlist.length, limit: 20},
+  const {mutate} = useMutation<unknown, unknown, string>(
+    id => axios.delete(`/me/playlist/tracks/${id}`).then(result => result.data),
+    {
+      onSuccess: (_, id) => {
+        if (!data) return;
+        data.pages = data.pages.map(tracks =>
+          tracks.filter(track => track.track.id !== id),
+        );
+        client.setQueryData('/me/playlist/tracks', data);
       },
-    );
-    setPlaylist(prev => [...prev, ...data.items]);
-  }, [playlist]);
+    },
+  );
 
   const onShuffle = useCallback(() => {
     navigate('Player', {index: -1});
   }, []);
+
   const onPlay = useCallback((index: number) => {
     navigate('Player', {index});
   }, []);
-  const onDelete = useCallback(async (id: string) => {
-    const {status} = await axios.delete(`/me/playlist/tracks/${id}`);
-    if (status === 200)
-      setPlaylist(prev => prev.filter(v => v.track.id !== id));
-  }, []);
+
+  if (!data) return <ActivityindicatorView />;
 
   return (
     <View style={{flex: 1}}>
@@ -51,15 +63,15 @@ const PlaylistScreen = () => {
         }
       />
       <FlatList
-        data={playlist}
+        data={data.pages.reduce((prev, crnt) => [...prev, ...crnt], [])}
         overScrollMode="never"
-        onEndReached={onFetchMore}
+        onEndReached={() => fetchNextPage()}
         renderItem={({item, index}) => (
           <PlaylistScreenCard
             index={index}
             item={item}
             onPlay={onPlay}
-            onDelete={onDelete}
+            onDelete={id => mutate(id)}
           />
         )}
       />
