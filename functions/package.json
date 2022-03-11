@@ -8,7 +8,8 @@
     "deploy": "npm run build && firebase deploy --only functions",
     "firebase:config": "firebase functions:config:get > .runtimeconfig.json",
     "lint": "eslint --ext .js,.ts .",
-    "test": "ls",
+    "test": "NODE_ENV=test jest",
+    "test:coverage": "npm run test -- --coverage --watchAll=false",
     "api-docs": "swagger-cli bundle ./swagger/openapi.yaml --outfile ./swagger.yaml --type yaml"
   },
   "engines": {
