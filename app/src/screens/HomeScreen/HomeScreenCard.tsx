@@ -1,5 +1,5 @@
-import {Image, Pressable, StyleSheet, View} from 'react-native';
-import React, {useCallback, useState} from 'react';
+import {Animated, Image, Pressable, StyleSheet, View} from 'react-native';
+import React, {useCallback, useContext, useEffect, useState} from 'react';
 import {COLORS, STATUSBAR_HEIGHT, WIDTH} from '../../constants/styles';
 import FastImage from 'react-native-fast-image';
 import {
@@ -14,15 +14,34 @@ import Typography from '../../components/Typography';
 import artistFormatter from '../../util/artistFormatter';
 import axios from '../../config/axios';
 import {Track} from '../../constants/types';
+import {ShortsPlayerContext} from '../../context/ShortsPlayerContext';
 
 const HomeScreenCard: React.FC<Track> = props => {
-  const {image, preview_url, artist_names, name, spotify_id} = props;
+  const {image, artist_names, name, spotify_id, preview_url} = props;
+  const {pause, resume, paused, uri} = useContext(ShortsPlayerContext);
   const {bottom} = useSafeAreaInsets();
   const {navigate} = useNavigation();
   const [playlistAdded, setPlaylistAdded] = useState(false);
   const {height} = useSafeAreaFrame();
+  const [pauseAnimation] = useState(new Animated.Value(0));
 
-  const onPauseResume = useCallback(() => {}, []);
+  const isPlaying = preview_url === uri;
+
+  const onPauseResume = useCallback(() => {
+    if (paused) resume();
+    else pause();
+  }, [paused]);
+
+  useEffect(() => {
+    if (!isPlaying) return; // only animate focused item
+    if (paused)
+      Animated.spring(pauseAnimation, {
+        toValue: 1,
+        useNativeDriver: true,
+        speed: 40,
+      }).start();
+    else pauseAnimation.setValue(0);
+  }, [paused]);
 
   const onAddToPlaylist = useCallback(async () => {
     setPlaylistAdded(true);
@@ -63,6 +82,13 @@ const HomeScreenCard: React.FC<Track> = props => {
       </View>
       <Pressable onPress={onPauseResume}>
         <FastImage source={{uri: image}} style={styles.cover} />
+        <View style={styles.pauseContainer}>
+          <Animated.View style={{transform: [{scale: pauseAnimation}]}}>
+            {paused && (
+              <Icon name="pause-circle" size={80} color={COLORS.white} />
+            )}
+          </Animated.View>
+        </View>
       </Pressable>
       <View style={[styles.footer]}>
         <View style={styles.infoContainer}>
@@ -151,5 +177,15 @@ const styles = StyleSheet.create({
     height: 56,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  pauseContainer: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    left: 0,
+    bottom: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+    opacity: 0.5,
   },
 });
