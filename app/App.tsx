@@ -9,6 +9,7 @@ import PlayerProvider from './src/context/PlayerContext';
 import AuthProvider from './src/context/AuthContext';
 import {QueryClientProvider} from 'react-query';
 import {queryClient} from './src/config/reactQuery';
+import ShortsPlayerProvider from './src/context/ShortsPlayerContext';
 
 LogBox.ignoreLogs([
   "[react-native-gesture-handler] Seems like you're using an old API with gesture components, check out new Gestures system!",
@@ -25,18 +26,20 @@ const App = () => {
     <GestureHandlerRootView style={{flex: 1}}>
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
-          <PlayerProvider>
-            <SafeAreaProvider>
-              <View style={{flex: 1, backgroundColor: COLORS.black}}>
-                <StatusBar
-                  backgroundColor="transparent"
-                  barStyle="light-content"
-                  translucent
-                />
-                <Navigation />
-              </View>
-            </SafeAreaProvider>
-          </PlayerProvider>
+          <ShortsPlayerProvider>
+            <PlayerProvider>
+              <SafeAreaProvider>
+                <View style={{flex: 1, backgroundColor: COLORS.black}}>
+                  <StatusBar
+                    backgroundColor="transparent"
+                    barStyle="light-content"
+                    translucent
+                  />
+                  <Navigation />
+                </View>
+              </SafeAreaProvider>
+            </PlayerProvider>
+          </ShortsPlayerProvider>
         </AuthProvider>
       </QueryClientProvider>
     </GestureHandlerRootView>
