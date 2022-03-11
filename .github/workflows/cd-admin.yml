@@ -4,6 +4,7 @@ on:
   push:
     branches: 
       - main
+      - admin*
     paths:
       - "admin/**"
 
@@ -24,11 +25,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node }}
-
-      - name: Install packages and build
-        run: |
-          yarn
-          yarn build
 
       - name: Install firebase
         run: npm i firebase-tools -g
