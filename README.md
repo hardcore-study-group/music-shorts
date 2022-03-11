@@ -5,7 +5,6 @@
 [![CD Functions](https://github.com/hardcore-study-group/music-shorts/actions/workflows/cd-functions.yml/badge.svg)](https://github.com/hardcore-study-group/music-shorts/actions/workflows/cd-functions.yml)
 [![CD Auth](https://github.com/hardcore-study-group/music-shorts/actions/workflows/cd-auth.yml/badge.svg)](https://github.com/hardcore-study-group/music-shorts/actions/workflows/cd-auth.yml)
 [![CD Homepage](https://github.com/hardcore-study-group/music-shorts/actions/workflows/cd-homepage.yml/badge.svg)](https://github.com/hardcore-study-group/music-shorts/actions/workflows/cd-homepage.yml)
-
 [![codecov](https://codecov.io/gh/hardcore-study-group/music-shorts/branch/main/graph/badge.svg)](https://codecov.io/gh/hardcore-study-group/music-shorts)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
 
