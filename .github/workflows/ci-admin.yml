@@ -24,11 +24,11 @@ jobs:
         working-directory: admin
        
 
-    # steps:
-    #   - uses: actions/checkout@v2
-    #   - uses: actions/setup-node@v1
-    #     with:
-    #       node-version: ${{ matrix.node }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
 
     #   - name: Install modules
     #     run: yarn
@@ -39,5 +39,5 @@ jobs:
     #   - name: Run test
     #     run: yarn test:coverage
 
-    #   - name: Upload coverage to Codecov
-    #     uses: codecov/codecov-action@v2
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
