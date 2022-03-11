@@ -15,7 +15,7 @@
 
 ### Introduction
 
-`Music Shorts` is short music streaming service using `spotify api`
+`Music Shorts` is short music streaming service using `spotify api & sdk`
 
 ### Product
 - App
