@@ -25,7 +25,7 @@
       .then(res => res.json())
       .then(data => {
         window.addEventListener("message", event => {
-          console.log(event.origin);
+          console.log(event);
           if (['https://admin.music-shorts.com'].indexOf(event.origin) === -1) return
           event.source.postMessage(JSON.stringify(data), event.origin)
         }, false);
