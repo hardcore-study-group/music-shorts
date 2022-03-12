@@ -33,3 +33,29 @@
 - UI/UX
 
   [figma](https://www.figma.com/file/aFiVrI4vWb7B02eWnKT4db/Music-shorts?node-id=0%3A1)
+
+### Setup
+##### Third party setup
+1. [Fork this repository](./document/setup/fork.md) (optional)
+2. [Regist spotify developer](./document/setup/spotify-developer.md)
+3. [Create firebase project](./document/setup/firebase.md)
+##### Project setup
+4. [Setup functions](./document/setup/functions.md)
+5. [Setup app](./document/setup/app.md)
+6. [Setup admin](./document/setup/admin.md)
+
+### Specification
+#### App
+| language | framework | third party | state management | networking | testing |
+|-|-|-|-|-|-|
+| typescript | react-native@0.67 | [react-native-spotify-remote](https://github.com/cjam/react-native-spotify-remote) | react-context-api | react-query, axios | jest |
+
+#### Server
+| language | framework | third party | documentation | testing |
+|-|-|-|-|-|
+| typescript | express, firebase-functions | [spotify-web-api-node](https://github.com/thelinmichael/spotify-web-api-node) | [swagger](https://us-central1-music-shorts.cloudfunctions.net/api/docs) | jest |
+
+#### Server
+| language | framework | hosting |
+|-|-|-|
+| javascript@es6, html, css | vanilla | firebase-hosting |
