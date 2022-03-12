@@ -7,6 +7,8 @@ firebase login
 ```
 ![화면 기록 2022-03-12 오후 4 36 03](https://user-images.githubusercontent.com/48207131/158008829-c8e3d43b-8ba0-4747-96fb-3bd04dda3d26.gif)
 
+---
+
 ## Update `.firebaserc`
 Access the [firebase console](./firebase.md#create-firebase-project) and get your `project id`
 <img width="1118" alt="image" src="https://user-images.githubusercontent.com/48207131/158008369-45bb6192-4794-49ad-94f0-1a3cf56fda9d.png">
