@@ -40,6 +40,7 @@
 2. [Regist spotify developer](./document/setup/spotify-developer.md)
 3. [Create firebase project](./document/setup/firebase.md)
 ##### Project setup
+4. [Setup basic](./document/setup/basic.md)
 4. [Setup functions](./document/setup/functions.md)
 5. [Setup app](./document/setup/app.md)
 6. [Setup admin](./document/setup/admin.md)
