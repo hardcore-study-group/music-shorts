@@ -41,9 +41,9 @@
 3. [Create firebase project](./document/setup/firebase.md)
 ##### Project setup
 4. [Setup basic](./document/setup/basic.md)
-4. [Setup functions](./document/setup/functions.md)
-5. [Setup app](./document/setup/app.md)
-6. [Setup admin](./document/setup/admin.md)
+5. [Setup functions](./document/setup/functions.md)
+6. [Setup app](./document/setup/app.md)
+7. [Setup admin](./document/setup/admin.md)
 ---
 ### Specification
 #### App

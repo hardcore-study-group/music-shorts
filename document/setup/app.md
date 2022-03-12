@@ -14,7 +14,6 @@ return 'your server url';
 ```
 - [client id reference](./spotify-developer.md#copy-client-id--secret-key)
 - [server url reference](./functions.md#get-server-url)
-#### 
 
 --- 
 
