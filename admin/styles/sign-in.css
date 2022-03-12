@@ -1,0 +1,37 @@
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #222222;
+}
+
+#title {
+    font-size: 40px;
+    color: #ffffff;
+}
+
+#description {
+    font-size: 24px;
+    color: #888888;
+}
+
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 56px;
+    border-radius: 28px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px 20px;
+    border: none;
+    background-color: #1DB954;
+    color: white;
+    font-size: 14px;
+}
