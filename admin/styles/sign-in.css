@@ -34,4 +34,5 @@ button {
     background-color: #1DB954;
     color: white;
     font-size: 14px;
+    cursor: pointer;
 }
