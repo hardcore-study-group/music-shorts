@@ -33,7 +33,7 @@
 - UI/UX
 
   [figma](https://www.figma.com/file/aFiVrI4vWb7B02eWnKT4db/Music-shorts?node-id=0%3A1)
-
+---
 ### Setup
 ##### Third party setup
 1. [Fork this repository](./document/setup/fork.md) (optional)
@@ -43,7 +43,7 @@
 4. [Setup functions](./document/setup/functions.md)
 5. [Setup app](./document/setup/app.md)
 6. [Setup admin](./document/setup/admin.md)
-
+---
 ### Specification
 #### App
 | language | framework | third party | state management | networking | testing |
