@@ -55,7 +55,7 @@
 |-|-|-|-|-|
 | typescript | express, firebase-functions | [spotify-web-api-node](https://github.com/thelinmichael/spotify-web-api-node) | [swagger](https://us-central1-music-shorts.cloudfunctions.net/api/docs) | jest |
 
-#### Server
-| language | framework | hosting |
+#### Admin
+| language | hosting |
 |-|-|-|
-| javascript@es6, html, css | vanilla | firebase-hosting |
+| javascript@es6, html, css | firebase-hosting |
