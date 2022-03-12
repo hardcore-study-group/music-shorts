@@ -57,5 +57,5 @@
 
 #### Admin
 | language | hosting |
-|-|-|-|
+|-|-|
 | javascript@es6, html, css | firebase-hosting |
