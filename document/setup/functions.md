@@ -21,7 +21,7 @@ firebase functions:config:set spotify.client_id="..." spotify.client_secret="...
 
 ## Serve script
 ```bash
-# terminer location is ./functions
+# terminal location is ./functions
 # install packages
 yarn
 # migrate to firebase config only call config changed
@@ -34,13 +34,16 @@ yarn dev
 
 ## Test script
 ```bash
-# terminer location is ./functions
+# terminal location is ./functions
 yarn test
 ```
 ---
 
 ## Menual deploy script
 ```bash
-# terminer location is ./functions
+# terminal location is ./functions
 yarn deploy
 ```
+
+## Get server url
+<img width="1671" alt="image" src="https://user-images.githubusercontent.com/48207131/158010911-5f64865e-9923-4677-bbf6-3a190fe31133.png">
