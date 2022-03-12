@@ -17,12 +17,11 @@ button.addEventListener('click', function() {
                     const data = JSON.parse(event.data);
                     if (data) {
                         clearInterval(interval);
-                        console.log(data.access_token);
-                        console.log(data.refresh_token);
-                        // location.href('home.html');
+                        sessionStorage.setItem('at', data.access_token);
+                        location.href = 'home.html';
                     }
                     else {
-
+                        document.getElementById('fail').style = 'color:red;';
                     }
                 },
                 false,

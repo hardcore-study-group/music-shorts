@@ -1,3 +1,6 @@
+let access_token = sessionStorage.getItem('at');
+console.log(access_token);
+
 let musicList = document.getElementById('music-list');
 
 let musicItem = null;

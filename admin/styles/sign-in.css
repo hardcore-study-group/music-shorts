@@ -21,6 +21,10 @@ body {
     color: #888888;
 }
 
+#fail {
+    color: #222222;
+}
+
 button {
     display: flex;
     justify-content: center;
