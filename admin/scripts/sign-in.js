@@ -14,10 +14,16 @@ button.addEventListener('click', function() {
                 async event => {
                     if (event.origin !== 'https://auth.music-shorts.com') return;
                     popup?.close();
-                    console.log(event);
-                    await this.auth.signInWithCustomToken(event.data);
-                    this.router.navigate(['/']);
-                    clearInterval(interval);
+                    const data = JSON.parse(event.data);
+                    if (data) {
+                        clearInterval(interval);
+                        console.log(data.access_token);
+                        console.log(data.refresh_token);
+                        // location.href('home.html');
+                    }
+                    else {
+
+                    }
                 },
                 false,
             );
