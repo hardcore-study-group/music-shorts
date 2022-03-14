@@ -19,10 +19,10 @@ Open the `Edit settings` modal
 - https://auth.music-shorts.com/spotify/callback
 
 **Bundle IDs**
-- com.hardcorestudygroup.musicshorts
+- com.hardcorestudygroup.musicshort
 
 **Android Packages**
-- com.hardcorestudygroup.musicshorts 
+- com.hardcorestudygroup.musicshorts (Added 's' is different from bundle id)
 - 5E:8F:16:06:2E:A3:CD:2C:4A:0D:54:78:76:BA:A6:F3:8C:AB:F6:25
 
 ---
