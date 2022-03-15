@@ -36,8 +36,10 @@ router.post('/', loginRequire, adminRequire, async (req, res, next) => {
     const result = await spotify.getTrack(spotifyTrackId as string);
     const spotifyTrack = result.body;
     // this service must have "preview_url"
-    if (!spotifyTrack.preview_url)
+    if (!spotifyTrack.preview_url) {
       res.status(403).send('This track doesn\'t have "preview_url"');
+      return;
+    }
     // check already exists
     const prevSpotifyTrack = await admin
       .firestore()
@@ -45,7 +47,10 @@ router.post('/', loginRequire, adminRequire, async (req, res, next) => {
       .where('spotify_id', '==', spotifyTrack.id)
       .get();
 
-    if (prevSpotifyTrack.size !== 0) res.status(409).send('Already added');
+    if (prevSpotifyTrack.size !== 0) {
+      res.status(409).send('Already added');
+      return;
+    }
 
     const snapshot = await admin
       .firestore()
