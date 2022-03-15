@@ -2,6 +2,7 @@ import {app} from '../..';
 import request from 'supertest';
 import {admin} from '../../config/firebase';
 import {spotify} from '../../config/spotify';
+import {firestore} from 'firebase-admin';
 
 describe('/tracks', () => {
   let trackId: string;
@@ -56,6 +57,13 @@ describe('/tracks', () => {
 
   describe('/recommendation', () => {
     it('/', async () => {
+      // add over three default data
+      for (let i = 0; i < 5; i++) {
+        await admin
+          .firestore()
+          .collection('track')
+          .add({data: 'dummy', created_at: firestore.Timestamp.now()});
+      }
       const res = await request(app)
         .get(`/tracks/recommendation`)
         .set('Authorization', 'token');
