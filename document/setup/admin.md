@@ -10,12 +10,12 @@ fetch('[your server url]/auth/token/swap',
 ```
 - [server url reference](./functions.md#get-server-url)
 
-#### `admin/scripts/values.js`
+#### `admin/scripts/home.js` & `admin/scripts/sign-in.js`
 ```ts
 // line 1
-export const baseUrl = 'https://us-central1-music-shorts.cloudfunctions.net/api';
+const baseUrl = 'https://us-central1-music-shorts.cloudfunctions.net/api';
 // to 
-export const baseUrl = '[your server url]';
+const baseUrl = '[your server url]';
 ```
 - [server url reference](./functions.md#get-server-url)
 

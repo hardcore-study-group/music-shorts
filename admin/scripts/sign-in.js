@@ -1,4 +1,4 @@
-import {baseUrl} from "./values.js";
+const baseUrl = 'https://us-central1-music-shorts.cloudfunctions.net/api';
 
 const oauthUrl = `${baseUrl}/auth/oauthurl/spotify`;
 
