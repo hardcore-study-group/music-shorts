@@ -19,8 +19,7 @@
   "exclude": [
     ".eslintrc.js",
     ".prettierrc.js",
-    "test",
-    "type",
-    "module"
+    "module",
+    "**/__tests__/**/*"
   ]
 }
