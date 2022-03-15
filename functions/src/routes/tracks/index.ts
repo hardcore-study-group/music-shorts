@@ -62,9 +62,9 @@ router.post('/', loginRequire, adminRequire, async (req, res, next) => {
         spotify_data: spotifyTrack,
       } as Track);
 
-    const track = (await snapshot.get()).data();
+    const track = await snapshot.get();
 
-    res.status(201).json(track);
+    res.status(201).json({...track.data(), id: track.id});
   } catch (error) {
     next(error);
   }
