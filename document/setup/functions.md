@@ -43,7 +43,7 @@ yarn deploy
 
 ---
 
-## Test
+## Test (Optional)
 1. Create another firebase project like `music-shorts-test`
 2. Acitve only `Firestore Database` [refrence](./firebase.md#active-firestore-database)
 3. Download `serviceAccountKey.json`
