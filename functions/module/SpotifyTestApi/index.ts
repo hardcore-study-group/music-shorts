@@ -32,6 +32,9 @@ class SpotifyTestApi extends SpotifyWebApi {
   uploadCustomPlaylistCoverImage(): any {
     return require('./uploadCustomPlaylistCoverImage_mock.json');
   }
+  getAlbum(): any {
+    return require('./getAlbum_mock.json');
+  }
 }
 
 export default SpotifyTestApi;
