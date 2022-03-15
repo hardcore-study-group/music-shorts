@@ -1,9 +1,9 @@
 // initialize api keys
 const baseUrl = 'https://us-central1-music-shorts.cloudfunctions.net/api';
 
-// const access_token = sessionStorage.getItem('at');
-// console.log(access_token);
-access_token = 'BQAnIAZe81H2vhXfilEYrM1BEQFSxPEWCMG0QCzooPMN62Ub_x1Aq2iZ99JE5ijFa4irOsFRn2F8i0BfdAuZbvO4RRLVnZiaabTHzLzdkxfawVMKP52C6pxPy8KWXPr0Za0JYwwKXOeOHsrl7euXlP-n9LmnDvav2JLCAlaelFs';
+const access_token = sessionStorage.getItem('at');
+console.log(access_token);
+// access_token = 'BQAnIAZe81H2vhXfilEYrM1BEQFSxPEWCMG0QCzooPMN62Ub_x1Aq2iZ99JE5ijFa4irOsFRn2F8i0BfdAuZbvO4RRLVnZiaabTHzLzdkxfawVMKP52C6pxPy8KWXPr0Za0JYwwKXOeOHsrl7euXlP-n9LmnDvav2JLCAlaelFs';
 
 
 // get tracks
