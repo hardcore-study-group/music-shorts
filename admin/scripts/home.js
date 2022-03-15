@@ -1,5 +1,5 @@
 // initialize api keys
-const {baseUrl} = require('./values')
+import { baseUrl } from './values'
 
 const access_token = sessionStorage.getItem('at');
 console.log(access_token);
@@ -58,36 +58,36 @@ search.addEventListener('input', e => {
                 'Authorization': 'Bearer ' + access_token,
             }
         }).then(res => res.json())
-        .then(data => {
-            searchBox.innerHTML = '';
-            let searchItem = null;
-            data.tracks.items.forEach(track => {
-                searchItem = document.createElement('search-item');
-                searchItem.setAttribute('track-id', track.id);
-                searchItem.setAttribute('src', track.album.images[2].url);
-                if (!track.preview_url) {
-                    searchItem.setAttribute('src', 'sources/test.jpeg');
-                }
-                searchItem.setAttribute('title', track.name);
-                searchItem.setAttribute('artist', track.artists[0].name);
-                searchBox.appendChild(searchItem);
+            .then(data => {
+                searchBox.innerHTML = '';
+                let searchItem = null;
+                data.tracks.items.forEach(track => {
+                    searchItem = document.createElement('search-item');
+                    searchItem.setAttribute('track-id', track.id);
+                    searchItem.setAttribute('src', track.album.images[2].url);
+                    if (!track.preview_url) {
+                        searchItem.setAttribute('src', 'sources/test.jpeg');
+                    }
+                    searchItem.setAttribute('title', track.name);
+                    searchItem.setAttribute('artist', track.artists[0].name);
+                    searchBox.appendChild(searchItem);
+                });
+            })
+            .then(_ => {
+                let searchItems = searchBox.childNodes;
+                searchItems.forEach(searchItem => {
+                    searchItem.addEventListener('click', event => addTrack(event, {
+                        'trackId': searchItem.getAttribute('track-id'),
+                        'src': searchItem.getAttribute('src'),
+                        'title': searchItem.getAttribute('title'),
+                        'artist': searchItem.getAttribute('artist'),
+                    }));
+                });
+            })
+            .catch(error => {
+                console.log('error: ' + error)
+                searchBox.style.display = 'none';
             });
-        })
-        .then(_ => {
-            let searchItems = searchBox.childNodes;
-            searchItems.forEach(searchItem => {
-                searchItem.addEventListener('click', event => addTrack(event, {
-                    'trackId': searchItem.getAttribute('track-id'),
-                    'src': searchItem.getAttribute('src'),
-                    'title': searchItem.getAttribute('title'),
-                    'artist': searchItem.getAttribute('artist'),
-                }));
-            });
-        })
-        .catch(error => {
-            console.log('error: ' + error)
-            searchBox.style.display = 'none';
-        });
     }
     else {
         searchBox.style.display = 'none';
@@ -107,14 +107,14 @@ function addTrack(event, searchItem) {
             'spotifyTrackId': searchItem.trackId
         }),
     })
-    .then(res => {
-        musicItem = document.createElement('music-item');
-        musicItem.setAttribute('track-id', searchItem.trackId);
-        musicItem.setAttribute('src', searchItem.src);
-        musicItem.setAttribute('title', searchItem.title);
-        musicItem.setAttribute('artist', searchItem.artist);
-        musicList.prepend(musicItem)
-    });
+        .then(res => {
+            musicItem = document.createElement('music-item');
+            musicItem.setAttribute('track-id', searchItem.trackId);
+            musicItem.setAttribute('src', searchItem.src);
+            musicItem.setAttribute('title', searchItem.title);
+            musicItem.setAttribute('artist', searchItem.artist);
+            musicList.prepend(musicItem)
+        });
 }
 
 // delete track
@@ -127,7 +127,7 @@ function deleteTrack(event, musicItem) {
             'Authorization': 'Bearer ' + access_token,
         }
     })
-    .then(res => {
-        musicItem.remove();
-    });
+        .then(res => {
+            musicItem.remove();
+        });
 }

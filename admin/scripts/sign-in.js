@@ -1,4 +1,4 @@
-const {baseUrl} = require('./values')
+import { baseUrl } from "./values";
 
 const oauthUrl = `${baseUrl}/auth/oauthurl/spotify`;
 
