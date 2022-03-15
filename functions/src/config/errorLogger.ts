@@ -1,8 +1,8 @@
 import {ErrorRequestHandler} from 'express';
-import {logger} from 'firebase-functions/v1';
 
 const errorLogger: ErrorRequestHandler = async (err, req, res, next) => {
-  logger.error(err);
+  if (process.env.NODE_ENV === 'test') console.error(err);
+  else require('firebase-functions/v1').logger.error(err);
   res.status(500).json(err);
 };
 

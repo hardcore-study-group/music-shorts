@@ -13,7 +13,7 @@ import albums from './routes/albums';
 import {specs} from './config/swagger';
 // ----------------- routes ----------------- //
 
-const app = express();
+export const app = express();
 // --------------- middlewares -------------- //
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));

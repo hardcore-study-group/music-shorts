@@ -1,6 +1,5 @@
 import {RequestHandler} from 'express';
 import {admin} from '../config/firebase';
-import {spotify} from '../config/spotify';
 
 const adminRequire: RequestHandler = async (req, res, next) => {
   try {
