@@ -10,7 +10,7 @@ import tracks from './routes/tracks';
 import auth from './routes/auth';
 import me from './routes/me';
 import albums from './routes/albums';
-import {specs} from './config/swagger';
+
 // ----------------- routes ----------------- //
 
 export const app = express();
@@ -19,10 +19,13 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(morgan('dev'));
 app.use(cors({origin: '*'}));
-app.use(swaggerUi.serve);
+// ----------------- swagger ---------------- //
+if (process.env.NODE_ENV !== 'test') {
+  app.use(swaggerUi.serve);
+  app.use('/docs', swaggerUi.setup(require('./config/swagger').specs));
+}
 
 // ----------------- routes ----------------- //
-app.use('/docs', swaggerUi.setup(specs)); // swagger
 app.get('/isrunning', (req, res) => res.send('Server is running!!!')); // health checker
 app.use('/search', search);
 app.use('/auth', auth);
