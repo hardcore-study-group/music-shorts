@@ -1,0 +1,33 @@
+{
+  "body": {
+    "href": "https://api.spotify.com/v1/me/shows?offset=0&limit=20\n",
+    "items": [
+      {}
+    ],
+    "limit": 20,
+    "next": "https://api.spotify.com/v1/me/shows?offset=1&limit=1",
+    "offset": 0,
+    "previous": "https://api.spotify.com/v1/me/shows?offset=1&limit=1",
+    "total": 4
+  },
+  "headers": {
+    "content-type": "application/json; charset=utf-8",
+    "cache-control": "public, max-age=74768",
+    "x-robots-tag": "noindex, nofollow",
+    "access-control-allow-origin": "*",
+    "access-control-allow-headers": "Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version, X-Cloud-Trace-Context, client-token, content-access-token",
+    "access-control-allow-methods": "GET, POST, OPTIONS, PUT, DELETE, PATCH",
+    "access-control-allow-credentials": "true",
+    "access-control-max-age": "604800",
+    "content-encoding": "gzip",
+    "strict-transport-security": "max-age=31536000",
+    "x-content-type-options": "nosniff",
+    "date": "Tue, 25 Jan 2022 06:49:57 GMT",
+    "server": "envoy",
+    "via": "HTTP/2 edgeproxy, 1.1 google",
+    "alt-svc": "clear",
+    "connection": "close",
+    "transfer-encoding": "chunked"
+  },
+  "statusCode": 200
+}

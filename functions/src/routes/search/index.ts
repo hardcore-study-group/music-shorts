@@ -1,6 +1,5 @@
 import {Router} from 'express';
 import {spotify} from '../../config/spotify';
-import adminRequire from '../../middleware/adminRequire';
 import loginRequire from '../../middleware/loginRequire';
 
 const router = Router();

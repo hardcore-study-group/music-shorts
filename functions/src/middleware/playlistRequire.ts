@@ -32,8 +32,8 @@ const playlistRequire: RequestHandler = async (req, res, next) => {
       req.playlist_id = await createPlaylist();
     } else {
       // check exist playlist
-      const {statusCode} = await spotify.getPlaylist(user.playlist_id);
-      if (statusCode === 200) req.playlist_id = user.playlist_id;
+      const {statusCode, body} = await spotify.getPlaylist(user.playlist_id);
+      if (statusCode === 200) req.playlist_id = body.id;
       // when invlaid id create again
       else req.playlist_id = await createPlaylist();
     }

@@ -5,11 +5,11 @@ import playlistRequire from '../../middleware/playlistRequire';
 
 const router = Router();
 
-router.get('/', loginRequire, playlistRequire, async (req, res) => {
+router.get('/', loginRequire, playlistRequire, async (req, res, next) => {
   try {
     res.status(200).json({...req.me, playlist_id: req.playlist_id});
   } catch (error) {
-    res.status(400).send(error);
+    next(error);
   }
 });
 

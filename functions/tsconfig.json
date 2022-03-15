@@ -19,8 +19,6 @@
   "exclude": [
     ".eslintrc.js",
     ".prettierrc.js",
-    "test",
-    "type",
     "module"
   ]
 }

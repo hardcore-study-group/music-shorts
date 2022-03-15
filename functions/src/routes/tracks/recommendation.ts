@@ -1,13 +1,12 @@
 import {Router} from 'express';
 import {firestore} from 'firebase-admin';
-import {logger} from 'firebase-functions/v1';
 import {admin} from '../../config/firebase';
 import loginRequire from '../../middleware/loginRequire';
 import {Track} from '../../types/firestore';
 
 const router = Router();
 
-router.get('/', loginRequire, async (req, res) => {
+router.get('/', loginRequire, async (req, res, next) => {
   try {
     // const calledTrackIds = await admin
     //   .firestore()
@@ -60,8 +59,7 @@ router.get('/', loginRequire, async (req, res) => {
     }
     res.status(200).json(result);
   } catch (error) {
-    logger.error(error);
-    res.status(400).send(error);
+    next(error);
   }
 });
 
