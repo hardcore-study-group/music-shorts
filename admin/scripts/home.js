@@ -3,7 +3,6 @@ const baseUrl = 'https://us-central1-music-shorts.cloudfunctions.net/api';
 
 const access_token = sessionStorage.getItem('at');
 console.log(access_token);
-// access_token = 'BQAnIAZe81H2vhXfilEYrM1BEQFSxPEWCMG0QCzooPMN62Ub_x1Aq2iZ99JE5ijFa4irOsFRn2F8i0BfdAuZbvO4RRLVnZiaabTHzLzdkxfawVMKP52C6pxPy8KWXPr0Za0JYwwKXOeOHsrl7euXlP-n9LmnDvav2JLCAlaelFs';
 
 
 // get tracks
@@ -48,7 +47,7 @@ search.addEventListener('focus', e => {
 });
 
 search.addEventListener('blur', e => {
-    searchBox.style.display = 'none';
+    // searchBox.style.display = 'none';
 });
 
 search.addEventListener('input', e => {
@@ -70,7 +69,17 @@ search.addEventListener('input', e => {
                 searchItem.setAttribute('title', track.name);
                 searchItem.setAttribute('artist', track.artists[0].name);
                 searchBox.appendChild(searchItem);
-                searchItem.addEventListener('click', addTrack);
+            });
+        })
+        .then(_ => {
+            let searchItems = searchBox.childNodes;
+            searchItems.forEach(searchItem => {
+                searchItem.addEventListener('click', event => addTrack(event, {
+                    'trackId': searchItem.getAttribute('track-id'),
+                    'src': searchItem.getAttribute('src'),
+                    'title': searchItem.getAttribute('title'),
+                    'artist': searchItem.getAttribute('artist'),
+                }));
             });
         })
         .catch(error => {
@@ -85,22 +94,38 @@ search.addEventListener('input', e => {
 
 
 // add track
-function addTrack(event) {
-    console.log('added');
+function addTrack(event, searchItem) {
+    fetch(baseUrl + '/tracks', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + access_token,
+        },
+        body: JSON.stringify({
+            'spotifyTrackId': searchItem.trackId
+        }),
+    })
+    .then(res => {
+        musicItem = document.createElement('music-item');
+        musicItem.setAttribute('track-id', searchItem.trackId);
+        musicItem.setAttribute('src', searchItem.src);
+        musicItem.setAttribute('title', searchItem.title);
+        musicItem.setAttribute('artist', searchItem.artist);
+        musicList.prepend(musicItem)
+    });
 }
 
 // delete track
 function deleteTrack(event, musicItem) {
     console.log(musicItem.getAttribute('track-id'));
-    fetch(baseUrl + '/tracks?id=' + musicItem.getAttribute('track-id'), {
-        method: 'PUT',
+    fetch(baseUrl + '/tracks/' + musicItem.getAttribute('track-id'), {
+        method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + access_token,
         }
     })
     .then(res => {
-        console.log(res);
         musicItem.remove();
     });
 }
