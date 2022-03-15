@@ -4,11 +4,10 @@ const baseUrl = 'https://us-central1-music-shorts.cloudfunctions.net/api';
 const access_token = sessionStorage.getItem('at');
 console.log(access_token);
 
-
 // get tracks
 let musicList = document.getElementById('music-list');
 
-fetch(baseUrl + '/tracks' + '/?offset=0&limit=10', {
+fetch(baseUrl + '/tracks' + '/?offset=0&limit=20', {
     headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + access_token,
