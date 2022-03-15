@@ -5,7 +5,7 @@ import loginRequire from '../../middleware/loginRequire';
 
 const router = Router();
 
-router.get('/', loginRequire, adminRequire, async (req, res, next) => {
+router.get('/', loginRequire, async (req, res, next) => {
   try {
     const {q}: any = req.query;
     const {body, statusCode} = await spotify.searchTracks(q, {limit: 15});

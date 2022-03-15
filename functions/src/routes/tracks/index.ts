@@ -12,7 +12,7 @@ const router = Router();
 
 router.use('/recommendation', recommendation);
 
-router.get('/', loginRequire, adminRequire, async (req, res, next) => {
+router.get('/', loginRequire, async (req, res, next) => {
   try {
     const offset = Number(req.query.offset || 0);
     const limit = Number(req.query.limit || 10);
