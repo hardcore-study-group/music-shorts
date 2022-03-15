@@ -1,5 +1,5 @@
 // initialize api keys
-import { baseUrl } from './values'
+import { baseUrl } from './values.js'
 
 const access_token = sessionStorage.getItem('at');
 console.log(access_token);
