@@ -1,5 +1,5 @@
 // initialize api keys
-const baseUrl = 'https://us-central1-music-shorts.cloudfunctions.net/api';
+import {baseUrl} from './values'
 
 const access_token = sessionStorage.getItem('at');
 console.log(access_token);

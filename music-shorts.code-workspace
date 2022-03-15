@@ -19,6 +19,10 @@
 		{
 			"name": "auth",
 			"path": "auth"
+		},
+		{
+			"name": "document",
+			"path": "document"
 		}
 	],
 	"settings": {}

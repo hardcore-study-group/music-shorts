@@ -10,6 +10,15 @@ fetch('[your server url]/auth/token/swap',
 ```
 - [server url reference](./functions.md#get-server-url)
 
+#### `admin/scripts/values.js`
+```ts
+// line 1
+export const baseUrl = 'https://us-central1-music-shorts.cloudfunctions.net/api';
+// to 
+export const baseUrl = '[your server url]';
+```
+- [server url reference](./functions.md#get-server-url)
+
 --- 
 
 ## Regist spotify callback url

@@ -1,7 +1,9 @@
-const oauthUrl = 'https://us-central1-music-shorts.cloudfunctions.net/api/auth/oauthurl/spotify';
+import { baseUrl } from "./values";
+
+const oauthUrl = `${baseUrl}/auth/oauthurl/spotify`;
 
 let button = document.getElementById('sign-in');
-button.addEventListener('click', function() {
+button.addEventListener('click', function () {
     fetch(oauthUrl)
         .then(response => response.text())
         .then(url => {
