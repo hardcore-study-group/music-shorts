@@ -35,6 +35,16 @@ class SpotifyTestApi extends SpotifyWebApi {
   getAlbum(): any {
     return require('./getAlbum_mock.json');
   }
+  getPlaylistTracks(): any {
+    return require('./getPlaylistTracks_mock.json');
+  }
+  addTracksToPlaylist(): any {
+    return require('./addTracksToPlaylist_mock.json');
+  }
+
+  removeTracksFromPlaylist(): any {
+    return require('./removeTracksFromPlaylist_mock.json');
+  }
 }
 
 export default SpotifyTestApi;
