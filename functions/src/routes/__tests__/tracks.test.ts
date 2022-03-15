@@ -53,4 +53,14 @@ describe('/tracks', () => {
 
     expect(res.status).toBe(204);
   });
+
+  describe('/recommendation', () => {
+    it('/', async () => {
+      const res = await request(app)
+        .get(`/tracks/recommendation`)
+        .set('Authorization', 'token');
+
+      expect(res.status).toBe(200);
+    });
+  });
 });
