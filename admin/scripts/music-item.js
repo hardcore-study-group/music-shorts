@@ -32,16 +32,23 @@ class MusicItem extends HTMLElement {
 
 
         let deleteButton = document.createElement('button');
-        deleteButton.innerHTML = '삭제';
+        deleteButton.innerHTML = 'delete';
         deleteButton.style = `border: none;
                             margin: 0px 10px; 
                             cursor: pointer;
                             color: white;
                             background-color:${this.mainBackgroundColor}`;
         container.appendChild(deleteButton);
+        deleteButton.addEventListener('mouseenter', event => {
+            event.target.style.textDecoration = 'underline';
+        })
+        deleteButton.addEventListener('mouseleave', event => {
+            event.target.style.textDecoration = 'none';
+        })
 
         this.appendChild(container);
     }
 }
 
 customElements.define('music-item', MusicItem);
+

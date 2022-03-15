@@ -47,6 +47,16 @@ header {
     font-size: 14px;
 }
 
+#search-box {
+    display: none;
+    position: absolute;
+    top: 63px;
+    right: 22px;
+    width: 280px;
+    padding: 12px;
+    background-color: #c4c4c4;
+}
+
 #music-list {
     background-color: var(--main-bg-color); 
     width: 60%;
