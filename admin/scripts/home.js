@@ -7,7 +7,7 @@ console.log(access_token);
 // get tracks
 let musicList = document.getElementById('music-list');
 
-fetch(baseUrl + '/tracks' + '/?offset=0&limit=20', {
+fetch(baseUrl + '/tracks' + '/?offset=0&limit=50', {
     headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + access_token,
@@ -65,6 +65,9 @@ search.addEventListener('input', e => {
                 searchItem = document.createElement('search-item');
                 searchItem.setAttribute('track-id', track.id);
                 searchItem.setAttribute('src', track.album.images[2].url);
+                if (!track.preview_url) {
+                    searchItem.setAttribute('src', 'sources/test.jpeg');
+                }
                 searchItem.setAttribute('title', track.name);
                 searchItem.setAttribute('artist', track.artists[0].name);
                 searchBox.appendChild(searchItem);

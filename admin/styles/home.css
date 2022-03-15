@@ -97,6 +97,10 @@ header {
     background-color: #848484;
 }
 
+.no-preview {
+    font-size: 10px;
+}
+
 #music-list {
     background-color: var(--main-bg-color); 
     width: 60%;
