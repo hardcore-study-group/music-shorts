@@ -7,7 +7,7 @@ app.get('/test', loginRequire, playlistRequire, (req, res) => {
   res.status(200).send(req.playlist_id);
 });
 
-describe.only('playlistRequire', () => {
+describe('playlistRequire', () => {
   it('200', async () => {
     const res = await request(app).get('/test').set('Authorization', 'token');
     expect(res.text).toBe('string');
