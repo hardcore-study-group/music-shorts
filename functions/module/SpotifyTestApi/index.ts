@@ -23,6 +23,15 @@ class SpotifyTestApi extends SpotifyWebApi {
   getMe(): any {
     return require('./getMe_mock.json');
   }
+  getPlaylist(): any {
+    return require('./getPlaylist_mock.json');
+  }
+  createPlaylist(): any {
+    return require('./createPlaylist_mock.json');
+  }
+  uploadCustomPlaylistCoverImage(): any {
+    return require('./uploadCustomPlaylistCoverImage_mock.json');
+  }
 }
 
 export default SpotifyTestApi;
