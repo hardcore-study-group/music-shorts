@@ -32,6 +32,7 @@ router.get('/', loginRequire, async (req, res, next) => {
     const getTracks = get100Tracks();
     while (result.length < 3) {
       const tracks = await getTracks();
+      if (!tracks.size) break;
 
       const notCalledTracks = tracks.docs.filter(
         doc => !calledTrackIds.includes(doc.id),
