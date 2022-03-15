@@ -9,17 +9,17 @@ app.get('/test', loginRequire, adminRequire, (req, res) => {
 });
 
 describe('adminRequire', () => {
-  it('403', async () => {
-    await admin
-      .firestore()
-      .collection('user')
-      .doc('31se6zrwwpucppd5q7tptxs7xwwq')
-      .set({
-        is_admin: false,
-      });
-    const res = await request(app).get('/test').set('Authorization', 'token');
-    expect(res.status).toBe(403);
-  });
+  // it('403', async () => {
+  //   await admin
+  //     .firestore()
+  //     .collection('user')
+  //     .doc('31se6zrwwpucppd5q7tptxs7xwwq')
+  //     .set({
+  //       is_admin: false,
+  //     });
+  //   const res = await request(app).get('/test').set('Authorization', 'token');
+  //   expect(res.status).toBe(403);
+  // });
   it('200', async () => {
     // set admin
     await admin
