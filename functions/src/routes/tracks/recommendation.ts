@@ -29,10 +29,17 @@ router.get('/', loginRequire, async (req, res, next) => {
       };
     };
 
-    const getTracks = get100Tracks();
+    let getTracks = get100Tracks();
     while (result.length < 3) {
       const tracks = await getTracks();
-      if (tracks.size === 0) break;
+      // if no more tracks clear cache
+      if (tracks.size === 0) {
+        await admin.firestore().collection('user').doc(req.me.id).update({
+          called_track_ids: [],
+        });
+        getTracks = get100Tracks();
+        continue;
+      }
 
       const notCalledTracks = tracks.docs.filter(
         doc => !calledTrackIds.includes(doc.id),
