@@ -29,17 +29,9 @@ router.get('/', loginRequire, async (req, res, next) => {
       };
     };
 
-    let getTracks = get100Tracks();
+    const getTracks = get100Tracks();
     while (result.length < 3) {
       const tracks = await getTracks();
-      // if no more tracks clear cache
-      if (tracks.size === 0) {
-        await admin.firestore().collection('user').doc(req.me.id).update({
-          called_track_ids: [],
-        });
-        getTracks = get100Tracks();
-        continue;
-      }
 
       const notCalledTracks = tracks.docs.filter(
         doc => !calledTrackIds.includes(doc.id),
@@ -62,6 +54,18 @@ router.get('/', loginRequire, async (req, res, next) => {
           called_track_ids: firestore.FieldValue.arrayUnion(
             ...result.map(v => v.id),
           ),
+        });
+    } else {
+      // if no more tracks clear cache
+      result = (await get100Tracks()()).docs
+        .map(v => ({...v.data(), id: v.id} as any))
+        .slice(0, 3);
+      await admin
+        .firestore()
+        .collection('user')
+        .doc(req.me.id)
+        .update({
+          called_track_ids: result.map(v => v.id),
         });
     }
     res.status(200).json(result);
