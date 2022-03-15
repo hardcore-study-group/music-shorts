@@ -1,4 +1,4 @@
-import { baseUrl } from "./values";
+import {baseUrl} from "./values.js";
 
 const oauthUrl = `${baseUrl}/auth/oauthurl/spotify`;
 
