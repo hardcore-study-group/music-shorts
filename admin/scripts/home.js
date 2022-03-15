@@ -3,7 +3,7 @@ const baseUrl = 'https://us-central1-music-shorts.cloudfunctions.net/api';
 
 // const access_token = sessionStorage.getItem('at');
 // console.log(access_token);
-access_token = 'BQAESVryFOb2nids7Oq83zT3AdhP1Wlc4CtI9DqCgxZnQcXSXaZ7nHGMQQilJi6C1droR-aJ2Kyutx1LJQV2lQe7mbB4DhPjcRmS78SBElDPtD4bPYVrniSpSGo06Z6szH-L08YKpt4ViJYCUbf2Mr1jvGKfAA9vdnsGVHVrnrg';
+access_token = 'BQD-2tWwlhAtxgIumDcLr-90SiDucHZigKy5jTrE2onDc7_AtJqUx0-WNIpd8Zuw0imTROCSxItIpBdznpne0_wspKPnOelHSoZ9db3RKF94YNBX1BtPySKFQ_kzSl5bhaSFmyVLl-cJkIlar-Tn_cgS9SsBJCIjKI6DPNbf8Zc';
 
 
 // get tracks
@@ -18,7 +18,7 @@ fetch(baseUrl + '/tracks' + '/?offset=0&limit=10', {
     .then(res => res.json())
     .then(data => {
         let musicItem = null;
-
+        musicList.innerHTML = '';
         data.forEach(track => {
             musicItem = document.createElement('music-item');
             musicItem.setAttribute('src', track.image);
@@ -34,7 +34,9 @@ let search = document.getElementById('search');
 let searchBox = document.getElementById('search-box');
 
 search.addEventListener('focus', e => {
-    searchBox.style.display = 'block';
+    if (search.value != '') {
+        searchBox.style.display = 'block';
+    }
 });
 
 search.addEventListener('blur', e => {
@@ -42,19 +44,31 @@ search.addEventListener('blur', e => {
 });
 
 search.addEventListener('input', e => {
-    fetch(baseUrl + '/search' + '/?q=' + e.target.value, {
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + access_token,
-        }
-    }).then(res => res.json())
-    .then(data => {
-        data.tracks.items.forEach(track => {
-            console.log('id: ' + track.id);
-            console.log('name: ' + track.name);
-            console.log('artist: ' + track.artists[0].name)
-            console.log('image: ' + track.album.images[2].url);
+    if (e.target.value != '') {
+        searchBox.style.display = 'block';
+        fetch(baseUrl + '/search' + '/?q=' + e.target.value, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + access_token,
+            }
+        }).then(res => res.json())
+        .then(data => {
+            searchBox.innerHTML = '';
+            data.tracks.items.forEach(track => {
+                searchItem = document.createElement('search-item');
+                searchItem.setAttribute('item-id', track.id);
+                searchItem.setAttribute('src', track.album.images[2].url);
+                searchItem.setAttribute('title', track.name);
+                searchItem.setAttribute('artist', track.artists[0].name);
+                searchBox.appendChild(searchItem);
+            });
+        })
+        .catch(error => {
+            console.log('error: ' + error)
+            searchBox.style.display = 'none';
         });
-    })
-    .catch(error => console.log('error: ' + error));
+    }
+    else {
+        searchBox.style.display = 'none';
+    }
 });
