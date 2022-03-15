@@ -1,0 +1,1 @@
+location.href = 'sign-in.html';
