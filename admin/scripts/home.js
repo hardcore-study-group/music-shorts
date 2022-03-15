@@ -3,7 +3,7 @@ const baseUrl = 'https://us-central1-music-shorts.cloudfunctions.net/api';
 
 // const access_token = sessionStorage.getItem('at');
 // console.log(access_token);
-access_token = 'BQD-2tWwlhAtxgIumDcLr-90SiDucHZigKy5jTrE2onDc7_AtJqUx0-WNIpd8Zuw0imTROCSxItIpBdznpne0_wspKPnOelHSoZ9db3RKF94YNBX1BtPySKFQ_kzSl5bhaSFmyVLl-cJkIlar-Tn_cgS9SsBJCIjKI6DPNbf8Zc';
+access_token = 'BQAnIAZe81H2vhXfilEYrM1BEQFSxPEWCMG0QCzooPMN62Ub_x1Aq2iZ99JE5ijFa4irOsFRn2F8i0BfdAuZbvO4RRLVnZiaabTHzLzdkxfawVMKP52C6pxPy8KWXPr0Za0JYwwKXOeOHsrl7euXlP-n9LmnDvav2JLCAlaelFs';
 
 
 // get tracks
@@ -21,10 +21,18 @@ fetch(baseUrl + '/tracks' + '/?offset=0&limit=10', {
         musicList.innerHTML = '';
         data.forEach(track => {
             musicItem = document.createElement('music-item');
+            musicItem.setAttribute('track-id', track.id);
             musicItem.setAttribute('src', track.image);
             musicItem.setAttribute('title', track.name);
             musicItem.setAttribute('artist', track.artist_names);
             musicList.appendChild(musicItem);
+        });
+    })
+    .then(_ => {
+        let musicItems = musicList.childNodes;
+        musicItems.forEach(musicItem => {
+            let deleteButton = musicItem.getElementsByTagName('button')[0];
+            deleteButton.addEventListener('click', event => deleteTrack(event, musicItem));
         });
     });
 
@@ -54,13 +62,15 @@ search.addEventListener('input', e => {
         }).then(res => res.json())
         .then(data => {
             searchBox.innerHTML = '';
+            let searchItem = null;
             data.tracks.items.forEach(track => {
                 searchItem = document.createElement('search-item');
-                searchItem.setAttribute('item-id', track.id);
+                searchItem.setAttribute('track-id', track.id);
                 searchItem.setAttribute('src', track.album.images[2].url);
                 searchItem.setAttribute('title', track.name);
                 searchItem.setAttribute('artist', track.artists[0].name);
                 searchBox.appendChild(searchItem);
+                searchItem.addEventListener('click', addTrack);
             });
         })
         .catch(error => {
@@ -72,3 +82,25 @@ search.addEventListener('input', e => {
         searchBox.style.display = 'none';
     }
 });
+
+
+// add track
+function addTrack(event) {
+    console.log('added');
+}
+
+// delete track
+function deleteTrack(event, musicItem) {
+    console.log(musicItem.getAttribute('track-id'));
+    fetch(baseUrl + '/tracks?id=' + musicItem.getAttribute('track-id'), {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + access_token,
+        }
+    })
+    .then(res => {
+        console.log(res);
+        musicItem.remove();
+    });
+}
