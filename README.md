@@ -10,7 +10,11 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
 ![Stars](https://img.shields.io/github/stars/hardcore-study-group/music-shorts?style=social)
 
-<img src="https://img.shields.io/badge/ReactNative-222222?style=for-the-badge&logo=React&logoColor=#61DAFB"> <img src="https://img.shields.io/badge/Typescript-222222?style=for-the-badge&logo=Typescript&logoColor=#3178C6"> <img src="https://img.shields.io/badge/Jest-222222?style=for-the-badge&logo=Jest&logoColor=#C21325"> <img src="https://img.shields.io/badge/firebase-222222?style=for-the-badge&logo=Firebase&logoColor=#C21325"> <img src="https://img.shields.io/badge/spotify-222222?style=for-the-badge&logo=spotify&logoColor=#C21325">
+![Typescript](https://img.shields.io/badge/Typescript-222222?style=for-the-badge&logo=Typescript&logoColor=#3178C6)
+![ReactNative](https://img.shields.io/badge/ReactNative-222222?style=for-the-badge&logo=React&logoColor=#61DAFB)
+![Jest](https://img.shields.io/badge/Jest-222222?style=for-the-badge&logo=Jest&logoColor=#C21325)
+![Firebase](https://img.shields.io/badge/firebase-222222?style=for-the-badge&logo=Firebase&logoColor=#C21325)
+![Spotify](https://img.shields.io/badge/spotify-222222?style=for-the-badge&logo=spotify&logoColor=#C21325)
 
 <img width="300" src="https://user-images.githubusercontent.com/48207131/157844702-356aeccc-0b79-4f5b-bd9d-14abef3bddf0.gif">
 
