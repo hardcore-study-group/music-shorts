@@ -6,8 +6,9 @@
 [![CD Auth](https://github.com/hardcore-study-group/music-shorts/actions/workflows/cd-auth.yml/badge.svg)](https://github.com/hardcore-study-group/music-shorts/actions/workflows/cd-auth.yml)
 [![CD Homepage](https://github.com/hardcore-study-group/music-shorts/actions/workflows/cd-homepage.yml/badge.svg)](https://github.com/hardcore-study-group/music-shorts/actions/workflows/cd-homepage.yml)
 [![codecov](https://codecov.io/gh/hardcore-study-group/music-shorts/branch/main/graph/badge.svg)](https://codecov.io/gh/hardcore-study-group/music-shorts)
+[![License GPL3.0](https://img.shields.io/github/license/hardcore-study-group/music-shorts?style=plat)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
-
+![Stars](https://img.shields.io/github/stars/hardcore-study-group/music-shorts?style=social)
 
 <img src="https://img.shields.io/badge/ReactNative-222222?style=for-the-badge&logo=React&logoColor=#61DAFB"> <img src="https://img.shields.io/badge/Typescript-222222?style=for-the-badge&logo=Typescript&logoColor=#3178C6"> <img src="https://img.shields.io/badge/Jest-222222?style=for-the-badge&logo=Jest&logoColor=#C21325"> <img src="https://img.shields.io/badge/firebase-222222?style=for-the-badge&logo=Firebase&logoColor=#C21325"> <img src="https://img.shields.io/badge/spotify-222222?style=for-the-badge&logo=spotify&logoColor=#C21325">
 
