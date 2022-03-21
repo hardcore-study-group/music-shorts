@@ -18,11 +18,15 @@
   },
   "main": "lib/index.js",
   "dependencies": {
+    "@types/fluent-ffmpeg": "^2.1.20",
+    "dayjs": "^1.11.0",
     "express": "^4.17.3",
     "firebase-admin": "^10.0.1",
     "firebase-functions": "^3.16.0",
+    "fluent-ffmpeg": "^2.1.2",
     "morgan": "^1.10.0",
-    "spotify-web-api-node": "^5.0.2"
+    "spotify-web-api-node": "^5.0.2",
+    "youtube-mp3-downloader": "^0.7.10"
   },
   "devDependencies": {
     "@types/jest": "^27.4.1",

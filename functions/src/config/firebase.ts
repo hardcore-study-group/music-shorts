@@ -5,5 +5,6 @@ export const admin =
         credential: _admin.credential.cert(
           require('../../testServiceAccountKey.json'),
         ),
+        storageBucket: 'music-shorts-test.appspot.com',
       })
     : _admin.initializeApp();

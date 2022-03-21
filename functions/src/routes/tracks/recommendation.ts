@@ -3,6 +3,7 @@ import {firestore} from 'firebase-admin';
 import {admin} from '../../config/firebase';
 import deviceRequire from '../../middleware/deviceRequire';
 import {Track} from '../../types/firestore';
+import dayjs from 'dayjs';
 
 const router = Router();
 
@@ -69,7 +70,21 @@ router.get('/', deviceRequire, async (req, res, next) => {
           called_track_ids: result.map(v => v.id),
         });
     }
-    res.status(200).json(result);
+
+    const data = await Promise.all(
+      result.map(v =>
+        admin
+          .storage()
+          .bucket()
+          .file(`climax/${v.climax_file_name}`)
+          .getSignedUrl({
+            action: 'read',
+            expires: dayjs().add(1, 'hour').toDate(),
+          })
+          .then(url => ({...v, climax_url: url[0]})),
+      ),
+    );
+    res.status(200).json(data);
   } catch (error) {
     next(error);
   }

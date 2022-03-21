@@ -57,8 +57,14 @@
           schema:
             type: object
             properties:
-              spotifyTrackId:
+              spotify_id:
                 type: string
+              youtube_id:
+                type: string
+              start_time:
+                type: integer
+              end_time:
+                type: integer
     responses:
       '201':
         content:

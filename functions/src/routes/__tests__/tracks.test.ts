@@ -3,6 +3,7 @@ import request from 'supertest';
 import {admin} from '../../config/firebase';
 import {spotify} from '../../config/spotify';
 import {firestore} from 'firebase-admin';
+import path from 'path';
 
 describe('/tracks', () => {
   let trackId: string;
@@ -40,12 +41,18 @@ describe('/tracks', () => {
     const res = await request(app)
       .post('/tracks')
       .set('Authorization', 'token')
-      .send({spotifyTrackId: 'test_id'});
+      .send({
+        spotifyTrackId: 'test_id',
+        youtube_id: 'ZzbNM2l-AAA',
+        start_time: 30,
+        end_time: 50,
+      });
 
-    expect(JSON.parse(res.text)).toHaveProperty('id');
-    trackId = JSON.parse(res.text).id;
     expect(res.status).toBe(201);
-  });
+    expect(JSON.parse(res.text)).toHaveProperty('id');
+    expect(JSON.parse(res.text)).toHaveProperty('climax_file_name');
+    trackId = JSON.parse(res.text).id;
+  }, 10000);
 
   it('/:id (DELETE)', async () => {
     const res = await request(app)
@@ -57,18 +64,32 @@ describe('/tracks', () => {
 
   describe('/recommendation', () => {
     it('/', async () => {
+      // create dummy file to storage
+      try {
+        await admin
+          .storage()
+          .bucket()
+          .upload(path.join('../../../package.json'), {
+            destination: 'climax/temp',
+          });
+      } catch (error) {
+        // exist
+      }
+
       // add over three default data
       for (let i = 0; i < 5; i++) {
-        await admin
-          .firestore()
-          .collection('track')
-          .add({data: 'dummy', created_at: firestore.Timestamp.now()});
+        await admin.firestore().collection('track').add({
+          data: 'dummy',
+          created_at: firestore.Timestamp.now(),
+          climax_file_name: 'temp',
+        });
       }
       const res = await request(app)
         .get(`/tracks/recommendation`)
         .set('device_id', '123');
 
       expect(res.status).toBe(200);
+      expect(JSON.parse(res.text)[0]).toHaveProperty('climax_url');
     });
   });
 });

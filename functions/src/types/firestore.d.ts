@@ -17,9 +17,9 @@ export interface Track {
   name: string;
   artist_names: string[];
   image: string;
-  preview_url: string;
   duration_ms: number;
   add_user_id: string;
+  climax_file_name: string;
   spotify_data: any;
 }
 export interface Device {

@@ -1,5 +1,5 @@
 import express from 'express';
-import {https} from 'firebase-functions';
+import {runWith} from 'firebase-functions';
 import morgan from 'morgan';
 import cors from 'cors';
 import swaggerUi from 'swagger-ui-express';
@@ -35,4 +35,6 @@ app.use('/albums', albums);
 // ----------------- error handler ----------------- //
 app.use(errorLogger);
 
-export const api = https.onRequest(app);
+export const api = runWith({memory: '2GB', timeoutSeconds: 60}).https.onRequest(
+  app,
+);
