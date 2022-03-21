@@ -89,8 +89,12 @@
     tags:
       - /tracks
     summary: get recommendation tracks
-    security: 
-      - BearerAuth: []
+    parameters:   
+      - in: header
+        name: device_id
+        schema:
+          type: string
+        required: true
     responses:
       '200':
         content:
