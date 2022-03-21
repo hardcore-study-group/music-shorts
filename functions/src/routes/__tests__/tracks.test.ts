@@ -66,7 +66,7 @@ describe('/tracks', () => {
       }
       const res = await request(app)
         .get(`/tracks/recommendation`)
-        .set('Authorization', 'token');
+        .set('device_id', '123');
 
       expect(res.status).toBe(200);
     });

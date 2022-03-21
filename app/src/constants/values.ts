@@ -38,7 +38,6 @@ export const SPOTIFY_CONFIG: ApiConfig = {
     ApiScope.UserReadPrivateScope,
     ApiScope.PlaylistModifyPrivateScope,
     ApiScope.PlaylistReadPrivateScope,
-    ApiScope.PlaylistReadCollaborativeScope,
     ApiScope.UGCImageUploadScope,
   ],
   tokenSwapURL: `${BASE_URL}/auth/token/swap`,

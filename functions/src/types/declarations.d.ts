@@ -22,6 +22,7 @@ declare module 'http' {
   interface IncomingMessage {
     me: SpotifyApi.CurrentUsersProfileResponse;
     playlist_id: string;
+    device_id: string;
   }
 }
 
