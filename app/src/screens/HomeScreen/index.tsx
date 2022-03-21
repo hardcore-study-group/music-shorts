@@ -1,9 +1,4 @@
-import {
-  FlatList,
-  NativeScrollEvent,
-  NativeSyntheticEvent,
-  StyleSheet,
-} from 'react-native';
+import {FlatList, NativeScrollEvent, NativeSyntheticEvent} from 'react-native';
 import React, {useCallback, useContext, useEffect} from 'react';
 import HomeScreenCard from './HomeScreenCard';
 import axios from '../../config/axios';
