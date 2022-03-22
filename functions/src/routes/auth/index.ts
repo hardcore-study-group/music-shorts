@@ -6,7 +6,11 @@ const router = Router();
 
 router.get('/oauthurl/spotify', async (req, res, next) => {
   try {
-    const url = spotifyAdmin.createAuthorizeURL(['user-read-email'], 'admin');
+    const {state} = req.query;
+    const url = spotifyAdmin.createAuthorizeURL(
+      ['ugc-image-upload', 'playlist-read-private', 'playlist-modify-private'],
+      state as string,
+    );
     res.send(url);
   } catch (error) {
     next(error);
