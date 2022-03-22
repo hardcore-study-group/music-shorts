@@ -4,6 +4,7 @@ import {admin} from '../../config/firebase';
 import deviceRequire from '../../middleware/deviceRequire';
 import {Track} from '../../types/firestore';
 import dayjs from 'dayjs';
+import _ from 'lodash';
 
 const router = Router();
 
@@ -41,7 +42,7 @@ router.get('/', deviceRequire, async (req, res, next) => {
       const trackData = notCalledTracks.map(
         v => ({...v.data(), id: v.id} as any),
       );
-      result.push(...trackData);
+      result.push(..._.shuffle(trackData));
     }
 
     result = result.slice(0, 3);

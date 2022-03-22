@@ -24,6 +24,7 @@
     "firebase-admin": "^10.0.1",
     "firebase-functions": "^3.16.0",
     "fluent-ffmpeg": "^2.1.2",
+    "lodash": "^4.17.21",
     "morgan": "^1.10.0",
     "spotify-web-api-node": "^5.0.2",
     "youtube-mp3-downloader": "^0.7.10"
