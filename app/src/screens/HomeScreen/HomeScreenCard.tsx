@@ -15,17 +15,19 @@ import artistFormatter from '../../util/artistFormatter';
 import axios from '../../config/axios';
 import {Track} from '../../constants/types';
 import {ShortsPlayerContext} from '../../context/ShortsPlayerContext';
+import {AuthContext} from '../../context/AuthContext';
 
 const HomeScreenCard: React.FC<Track> = props => {
-  const {image, artist_names, name, spotify_id, preview_url} = props;
+  const {image, artist_names, name, spotify_id, climax_url} = props;
   const {pause, resume, paused, uri} = useContext(ShortsPlayerContext);
+  const {isAuthorized} = useContext(AuthContext);
   const {bottom} = useSafeAreaInsets();
   const {navigate} = useNavigation();
   const [playlistAdded, setPlaylistAdded] = useState(false);
   const {height} = useSafeAreaFrame();
   const [pauseAnimation] = useState(new Animated.Value(0));
 
-  const isPlaying = preview_url === uri;
+  const isPlaying = climax_url === uri;
 
   const onPauseResume = useCallback(() => {
     if (paused) resume();
@@ -44,21 +46,14 @@ const HomeScreenCard: React.FC<Track> = props => {
   }, [paused]);
 
   const onAddToPlaylist = useCallback(async () => {
+    if (!isAuthorized) return navigate('SignIn');
     setPlaylistAdded(true);
     await axios.post('me/playlist/tracks', {track_id: spotify_id});
-  }, [spotify_id]);
+  }, [spotify_id, isAuthorized]);
 
   return (
     <View style={[styles.container, {height}]}>
-      <Image
-        resizeMode="cover"
-        style={styles.background}
-        source={{uri: image}}
-        blurRadius={10}
-      />
-      <View
-        style={[styles.background, {backgroundColor: 'rgba(0, 0, 0, 0.6)'}]}
-      />
+      <View style={[styles.background, {backgroundColor: '#222'}]} />
       <View style={styles.header}>
         <View style={{height: STATUSBAR_HEIGHT}} />
         <View style={styles.headerButtonContainer}>
@@ -69,7 +64,9 @@ const HomeScreenCard: React.FC<Track> = props => {
             <Icon name="account-outline" size={24} color={COLORS.white} />
           </BorderlessButton>
           <BorderlessButton
-            onPress={() => navigate('Playlist')}
+            onPress={() =>
+              isAuthorized ? navigate('Playlist') : navigate('SignIn')
+            }
             style={styles.headerButton}
           >
             <Icon
@@ -127,6 +124,7 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     left: 0,
+    opacity: 0.5,
   },
   cover: {
     width: WIDTH,

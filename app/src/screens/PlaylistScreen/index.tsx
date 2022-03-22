@@ -1,18 +1,32 @@
-import {FlatList, Pressable, StyleSheet, Text, View} from 'react-native';
-import React, {useCallback, useEffect, useState} from 'react';
+import {
+  FlatList,
+  Linking,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
+import React, {useCallback} from 'react';
 import BaseHeader from '../../components/BaseHeader';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import BorderlessButton from '../../components/BorderlessButton';
 import {COLORS} from '../../constants/styles';
 import axios from '../../config/axios';
 import PlaylistScreenCard from './PlaylistScreenCard';
-import useNavigation from '../../hooks/useNavigation';
-import {useInfiniteQuery, useMutation, useQueryClient} from 'react-query';
+import {
+  useInfiniteQuery,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from 'react-query';
 import ActivityindicatorView from '../../components/ActivityIndicatorView';
 
 const PlaylistScreen = () => {
-  const {navigate} = useNavigation();
   const client = useQueryClient();
+
+  const {data: me} = useQuery('/me', () =>
+    axios.get('/me').then(({data}) => data),
+  );
 
   const {data, fetchNextPage} = useInfiniteQuery(
     '/me/playlist/tracks',
@@ -42,13 +56,10 @@ const PlaylistScreen = () => {
     },
   );
 
-  const onShuffle = useCallback(() => {
-    navigate('Player', {index: -1});
-  }, []);
-
-  const onPlay = useCallback((index: number) => {
-    navigate('Player', {index});
-  }, []);
+  const onRightButtonPress = useCallback(() => {
+    if (!me) return;
+    Linking.openURL(`https://open.spotify.com/playlist/${me.playlist_id}`);
+  }, [me]);
 
   if (!data) return <ActivityindicatorView />;
 
@@ -57,8 +68,11 @@ const PlaylistScreen = () => {
       <BaseHeader
         title="Playlist"
         right={
-          <BorderlessButton onPress={onShuffle} style={styles.rightButton}>
-            <Icon name="shuffle" size={20} color={COLORS.white} />
+          <BorderlessButton
+            onPress={onRightButtonPress}
+            style={styles.rightButton}
+          >
+            <Icon name="spotify" size={20} color={COLORS.spotify} />
           </BorderlessButton>
         }
       />
@@ -66,13 +80,10 @@ const PlaylistScreen = () => {
         data={data.pages.reduce((prev, crnt) => [...prev, ...crnt], [])}
         overScrollMode="never"
         onEndReached={() => fetchNextPage()}
-        renderItem={({item, index}) => (
-          <PlaylistScreenCard
-            index={index}
-            item={item}
-            onPlay={onPlay}
-            onDelete={id => mutate(id)}
-          />
+        showsVerticalScrollIndicator={false}
+        ListFooterComponent={<View style={{height: 80}} />}
+        renderItem={({item}) => (
+          <PlaylistScreenCard item={item} onDelete={id => mutate(id)} />
         )}
       />
     </View>

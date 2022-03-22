@@ -1,17 +1,19 @@
 import {Router} from 'express';
 import {firestore} from 'firebase-admin';
 import {admin} from '../../config/firebase';
-import loginRequire from '../../middleware/loginRequire';
+import deviceRequire from '../../middleware/deviceRequire';
 import {Track} from '../../types/firestore';
+import dayjs from 'dayjs';
+import _ from 'lodash';
 
 const router = Router();
 
-router.get('/', loginRequire, async (req, res, next) => {
+router.get('/', deviceRequire, async (req, res, next) => {
   try {
     const calledTrackIds = await admin
       .firestore()
-      .collection('user')
-      .doc(req.me.id)
+      .collection('device')
+      .doc(req.device_id)
       .get()
       .then(snapshot => snapshot.data()?.called_track_ids || []);
     // const calledTrackIds: string[] = [];
@@ -40,7 +42,7 @@ router.get('/', loginRequire, async (req, res, next) => {
       const trackData = notCalledTracks.map(
         v => ({...v.data(), id: v.id} as any),
       );
-      result.push(...trackData);
+      result.push(..._.shuffle(trackData));
     }
 
     result = result.slice(0, 3);
@@ -49,8 +51,8 @@ router.get('/', loginRequire, async (req, res, next) => {
     if (result.length) {
       await admin
         .firestore()
-        .collection('user')
-        .doc(req.me.id)
+        .collection('device')
+        .doc(req.device_id)
         .update({
           called_track_ids: firestore.FieldValue.arrayUnion(
             ...result.map(v => v.id),
@@ -63,14 +65,29 @@ router.get('/', loginRequire, async (req, res, next) => {
         .slice(0, 3);
       await admin
         .firestore()
-        .collection('user')
-        .doc(req.me.id)
+        .collection('device')
+        .doc(req.device_id)
         .update({
           called_track_ids: result.map(v => v.id),
         });
     }
-    res.status(200).json(result);
+
+    const data = await Promise.all(
+      result.map(v =>
+        admin
+          .storage()
+          .bucket()
+          .file(`climax/${v.climax_file_name}`)
+          .getSignedUrl({
+            action: 'read',
+            expires: dayjs().add(1, 'hour').toDate(),
+          })
+          .then(url => ({...v, climax_url: url[0]})),
+      ),
+    );
+    res.status(200).json(data);
   } catch (error) {
+    console.error(error);
     next(error);
   }
 });

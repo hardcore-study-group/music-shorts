@@ -6,101 +6,69 @@ import React, {
   useState,
 } from 'react';
 import axios from '../config/axios';
-import {useQuery} from 'react-query';
-import {auth} from 'react-native-spotify-remote';
-import {Linking} from 'react-native';
-import {SPOTIFY_CONFIG} from '../constants/values';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {AUTH_CONFIG} from '../constants/values';
+import {authorize} from 'react-native-app-auth';
 
 export type AuthContextType = {
   // state
-  isInstalled: boolean;
-  accessToken?: string;
-  isPremium?: boolean;
+  isAuthorized: boolean;
   // method
-  initializeAccessToken: () => Promise<void>;
   signIn: () => Promise<void>;
   signOut: () => Promise<void>;
-  checkPremium: () => Promise<void>;
 };
 
 export const AuthContext = createContext<AuthContextType>({} as any);
 
 const AuthProvider: React.FC = ({children}) => {
-  const [isInstalled, setIsInstalled] = useState(false);
-  const [accessToken, setAccessToken] = useState<string>();
-  const {data: isPremium, refetch} = useQuery('/me', () =>
-    axios
-      .get<SpotifyApi.CurrentUsersProfileResponse>('/me')
-      .then(result => result.data.product === 'premium')
-      .catch(() => false),
-  );
+  const [isAuthorized, setIsAuthorized] = useState(false);
 
   useEffect(() => {
-    // initialize accessToken
-    initializeAccessToken();
-    // check spotify app installed every second
-    const interval = setInterval(
-      () =>
-        Linking.canOpenURL('spotify://').then(canOpen =>
-          setIsInstalled(canOpen),
-        ),
-      1000,
-    );
+    // login with cached refresh_token
+    refreshToken().catch(() => null /* no refresh token */);
+    // refresh token every 30min
+    const refreshTokenInterval = setInterval(refreshToken, 30 * 60 * 1000);
     // claer interval when app exit
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(refreshTokenInterval);
+    };
   }, []);
 
-  useEffect(() => {
-    // replace axios header with new accessToken
-    axios.defaults.headers.common.Authorization = accessToken
-      ? `Bearer ${accessToken}`
-      : '';
-    // refetch premium, after apply axios header's access token, timeout is trick
-    setTimeout(checkPremium, 500);
-  }, [accessToken]);
-
-  const initializeAccessToken = useCallback(async () => {
-    const session = await auth.getSession();
-    setAccessToken(session?.accessToken);
+  const refreshToken = useCallback(async () => {
+    const refresh_token = await AsyncStorage.getItem('refresh_token');
+    // signed out
+    if (!refreshToken) return await signOut();
+    // pre signed in
+    const {data} = await axios.post('auth/token/refresh', {refresh_token});
+    axios.defaults.headers.common.Authorization = `Bearer ${data.access_token}`;
+    setIsAuthorized(true);
   }, []);
 
   const signIn = useCallback(async () => {
     try {
-      await auth.authorize(SPOTIFY_CONFIG);
-      initializeAccessToken();
+      // only use react-native-app-auth when first sign in
+      const token = await authorize(AUTH_CONFIG);
+      axios.defaults.headers.common.Authorization = `Bearer ${token.accessToken}`;
+      await AsyncStorage.setItem('refresh_token', token.refreshToken);
+      setIsAuthorized(true);
     } catch (error) {
       console.log(error);
     }
   }, []);
 
   const signOut = useCallback(async () => {
-    await auth.endSession();
-    initializeAccessToken();
+    await AsyncStorage.removeItem('refresh_token');
+    axios.defaults.headers.common.Authorization = '';
+    setIsAuthorized(false);
   }, []);
-
-  const checkPremium = useCallback(async () => {
-    await refetch();
-  }, [refetch]);
 
   const contextValue = useMemo<AuthContextType>(
     () => ({
-      isInstalled,
-      accessToken,
-      isPremium,
-      initializeAccessToken,
+      isAuthorized,
       signIn,
       signOut,
-      checkPremium,
     }),
-    [
-      isInstalled,
-      accessToken,
-      isPremium,
-      initializeAccessToken,
-      signIn,
-      signOut,
-      checkPremium,
-    ],
+    [isAuthorized, signIn, signOut],
   );
 
   return (

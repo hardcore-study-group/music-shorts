@@ -1,11 +1,4 @@
-import {
-  FlatList,
-  Linking,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {FlatList, Linking, StyleSheet, View} from 'react-native';
 import React, {useContext} from 'react';
 import BaseHeader from '../../components/BaseHeader';
 import useNavigation from '../../hooks/useNavigation';
@@ -16,12 +9,12 @@ import {AuthContext} from '../../context/AuthContext';
 
 const ProfileScreen = () => {
   const {navigate} = useNavigation();
-  const {signOut} = useContext(AuthContext);
+  const {signOut, isAuthorized} = useContext(AuthContext);
 
   const Options = [
     {
-      title: 'Sign out',
-      onPress: signOut,
+      title: isAuthorized ? 'Sign out' : 'Sign in',
+      onPress: isAuthorized ? signOut : () => navigate('SignIn'),
     },
     {title: 'Rate us', onPress: () => InAppReview.RequestInAppReview()},
     {

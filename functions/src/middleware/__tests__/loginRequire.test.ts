@@ -6,7 +6,7 @@ app.get('/test', loginRequire, (req, res) => {
   res.status(200).json(req.me);
 });
 
-describe('loginReuqire', () => {
+describe('loginRequire', () => {
   it('without "authorization" header', async () => {
     const res = await request(app).get('/test');
     expect(res.status).toBe(401);

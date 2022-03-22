@@ -2,8 +2,8 @@
   "name": "functions",
   "private": true,
   "scripts": {
-    "dev": "npm run api-docs && npm run build:watch | firebase serve --only functions --host 0.0.0.0",
-    "express": "npm run api-docs && npm run build && node lib/express.js",
+    "dev": "npm run api-docs && npm run build:watch | NODE_ENV=development firebase serve --only functions --host 0.0.0.0",
+    "express": "NODE_ENV=development npm run api-docs && npm run build && node lib/express.js",
     "build": "npm run api-docs && tsc",
     "build:watch": "tsc -w",
     "deploy": "npm run build && firebase deploy --only functions",
@@ -18,11 +18,16 @@
   },
   "main": "lib/index.js",
   "dependencies": {
+    "@types/fluent-ffmpeg": "^2.1.20",
+    "dayjs": "^1.11.0",
     "express": "^4.17.3",
     "firebase-admin": "^10.0.1",
     "firebase-functions": "^3.16.0",
+    "fluent-ffmpeg": "^2.1.2",
+    "lodash": "^4.17.21",
     "morgan": "^1.10.0",
-    "spotify-web-api-node": "^5.0.2"
+    "spotify-web-api-node": "^5.0.2",
+    "youtube-mp3-downloader": "^0.7.10"
   },
   "devDependencies": {
     "@types/jest": "^27.4.1",

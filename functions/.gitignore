@@ -7,3 +7,4 @@ testServiceAccountKey.json
 # firebase production config
 .runtimeconfig.json
 swagger.yaml
+*.mp3

@@ -1,9 +1,4 @@
-import {
-  FlatList,
-  NativeScrollEvent,
-  NativeSyntheticEvent,
-  StyleSheet,
-} from 'react-native';
+import {FlatList, NativeScrollEvent, NativeSyntheticEvent} from 'react-native';
 import React, {useCallback, useContext, useEffect} from 'react';
 import HomeScreenCard from './HomeScreenCard';
 import axios from '../../config/axios';
@@ -37,7 +32,7 @@ const HomeScreen = () => {
   useEffect(() => {
     // first time auto play trigger
     if (!data || data.pages.length !== 1) return;
-    play(data.pages[0][0].preview_url);
+    play(data.pages[0][0].climax_url);
   }, [data]);
 
   const onScroll = useCallback(
@@ -46,7 +41,7 @@ const HomeScreen = () => {
       if (!data || !isFocused) return;
       const tracks = data.pages.reduce((prev, crnt) => [...prev, ...crnt], []);
       const index = Math.round(event.nativeEvent.contentOffset.y / height);
-      play(tracks[index].preview_url);
+      play(tracks[index].climax_url);
     },
     [height, data, isFocused],
   );

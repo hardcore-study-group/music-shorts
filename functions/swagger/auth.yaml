@@ -3,6 +3,12 @@
     tags:
       - /auth
     summary: get spotify OAuth url
+    parameters:
+      - in: query
+        name: state
+        schema:
+          type: string
+        description: \"app\" or \"admin\"
     responses:
       '200':
         content:
@@ -26,7 +32,6 @@
                 type: string
               state:
                 type: string
-                nullable: true
     responses:
       '200':
         content:
