@@ -20,8 +20,6 @@
 		<string>$(MARKETING_VERSION)</string>
 		<key>CFBundleSignature</key>
 		<string>????</string>
-		<key>ITSAppUsesNonExemptEncryption</key>
-		<false/>
 		<key>CFBundleURLTypes</key>
 		<array>
 			<dict>
@@ -36,7 +34,9 @@
 			</dict>
 		</array>
 		<key>CFBundleVersion</key>
-		<string>1</string>
+		<string>$(CURRENT_PROJECT_VERSION)</string>
+		<key>ITSAppUsesNonExemptEncryption</key>
+		<false/>
 		<key>LSApplicationQueriesSchemes</key>
 		<array>
 			<string>spotify</string>
