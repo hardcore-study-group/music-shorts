@@ -5,7 +5,6 @@ import Navigation from './src/navigations';
 import {COLORS} from './src/constants/styles';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import PlayerProvider from './src/context/PlayerContext';
 import AuthProvider from './src/context/AuthContext';
 import {QueryClientProvider} from 'react-query';
 import {queryClient} from './src/config/reactQuery';
@@ -27,18 +26,16 @@ const App = () => {
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
           <ShortsPlayerProvider>
-            <PlayerProvider>
-              <SafeAreaProvider>
-                <View style={{flex: 1, backgroundColor: COLORS.black}}>
-                  <StatusBar
-                    backgroundColor="transparent"
-                    barStyle="light-content"
-                    translucent
-                  />
-                  <Navigation />
-                </View>
-              </SafeAreaProvider>
-            </PlayerProvider>
+            <SafeAreaProvider>
+              <View style={{flex: 1, backgroundColor: COLORS.black}}>
+                <StatusBar
+                  backgroundColor="transparent"
+                  barStyle="light-content"
+                  translucent
+                />
+                <Navigation />
+              </View>
+            </SafeAreaProvider>
           </ShortsPlayerProvider>
         </AuthProvider>
       </QueryClientProvider>

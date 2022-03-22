@@ -6,7 +6,6 @@ import BorderlessButton from '../../components/BorderlessButton';
 import {COLORS} from '../../constants/styles';
 import axios from '../../config/axios';
 import PlaylistScreenCard from './PlaylistScreenCard';
-import useNavigation from '../../hooks/useNavigation';
 import {useInfiniteQuery, useMutation, useQueryClient} from 'react-query';
 import ActivityindicatorView from '../../components/ActivityIndicatorView';
 
@@ -57,6 +56,8 @@ const PlaylistScreen = () => {
         data={data.pages.reduce((prev, crnt) => [...prev, ...crnt], [])}
         overScrollMode="never"
         onEndReached={() => fetchNextPage()}
+        showsVerticalScrollIndicator={false}
+        ListFooterComponent={<View style={{height: 80}} />}
         renderItem={({item}) => (
           <PlaylistScreenCard item={item} onDelete={id => mutate(id)} />
         )}

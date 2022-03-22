@@ -5,6 +5,7 @@ import OssScreen from '../screens/OssScreen';
 import PlaylistScreen from '../screens/PlaylistScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import SignInScreen from '../screens/SignInScreen';
+import SignInWithSpotifyScreen from '../screens/SignInWithSpotifyScreen';
 
 export type RootStackParamList = {
   Home: undefined;
@@ -12,6 +13,7 @@ export type RootStackParamList = {
   Profile: undefined;
   Oss: undefined;
   SignIn: undefined;
+  SignInWithSpotify: undefined;
 };
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
@@ -27,6 +29,10 @@ const RootStackNavigation = () => {
       <RootStack.Screen name="Profile" component={ProfileScreen} />
       <RootStack.Screen name="Oss" component={OssScreen} />
       <RootStack.Screen name="SignIn" component={SignInScreen} />
+      <RootStack.Screen
+        name="SignInWithSpotify"
+        component={SignInWithSpotifyScreen}
+      />
     </RootStack.Navigator>
   );
 };

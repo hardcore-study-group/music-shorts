@@ -24,11 +24,17 @@
     })
       .then(res => res.json())
       .then(data => {
-        window.addEventListener("message", event => {
-          console.log(event);
-          if (['https://admin.music-shorts.com'].indexOf(event.origin) === -1) return
-          event.source.postMessage(JSON.stringify(data), event.origin)
-        }, false);
+        if (state === 'admin') {
+          // admin
+          window.addEventListener("message", event => {
+            console.log(event);
+            if (['https://admin.music-shorts.com'].indexOf(event.origin) === -1) return
+            event.source.postMessage(JSON.stringify(data), event.origin)
+          }, false);
+        } else {
+          // app
+          window.ReactNativeWebView.postMessage(JSON.stringify(data))
+        }
       })
   </script>
 </body>
