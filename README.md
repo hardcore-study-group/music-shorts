@@ -53,7 +53,7 @@
 ### Specification
 #### App
 | language | framework | state management | networking | testing |
-|-|-|-|-|-|-|
+|-|-|-|-|-|
 | typescript | react-native@0.67 | react-context-api | react-query, axios | jest |
 
 #### Server
