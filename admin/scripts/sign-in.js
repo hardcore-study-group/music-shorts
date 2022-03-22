@@ -1,6 +1,6 @@
 const baseUrl = 'https://us-central1-music-shorts.cloudfunctions.net/api';
 
-const oauthUrl = `${baseUrl}/auth/oauthurl/spotify`;
+const oauthUrl = `${baseUrl}/auth/oauthurl/spotify?state=admin`;
 
 let button = document.getElementById('sign-in');
 button.addEventListener('click', function () {
