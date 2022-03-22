@@ -21,13 +21,13 @@ const baseUrl = '[your server url]';
 
 --- 
 
-## Regist spotify callback url
+<!-- ## Regist spotify callback url
 Add new spotify callback url `[your-auth-domain]/spotify/callback`.
 #### Spotify dashboard result
 <img width="583" alt="image" src="https://user-images.githubusercontent.com/48207131/158011739-70ee86fe-f944-46c1-b905-c25edf15c7bb.png">
 
 - [regist callback url reference](./spotify-developer.md#insert-these-three-infos)
-- [auth domain reference](./functions.md#get-your-auth-domain)
+- [auth domain reference](./functions.md#get-your-auth-domain) -->
 
 ---
 
@@ -43,5 +43,5 @@ firebase deploy --only hosting:admin
 ---
 
 ## Upgrade user to admin
-Change current user's data like that
+After sign in to admin and change current user's data like that
 <img width="1652" alt="image" src="https://user-images.githubusercontent.com/48207131/158011518-8f235116-2be4-43df-98ee-59b8412a11b9.png">

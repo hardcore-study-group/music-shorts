@@ -42,8 +42,8 @@
 ### Setup
 ##### Third party setup
 1. [Fork this repository](./document/setup/fork.md) (optional)
-2. [Regist spotify developer](./document/setup/spotify-developer.md)
-3. [Create firebase project](./document/setup/firebase.md)
+2. [Create firebase project](./document/setup/firebase.md)
+3. [Regist spotify developer](./document/setup/spotify-developer.md)
 ##### Project setup
 4. [Setup basic](./document/setup/basic.md)
 5. [Setup functions](./document/setup/functions.md)
@@ -52,9 +52,9 @@
 ---
 ### Specification
 #### App
-| language | framework | third party | state management | networking | testing |
+| language | framework | state management | networking | testing |
 |-|-|-|-|-|-|
-| typescript | react-native@0.67 | [react-native-spotify-remote](https://github.com/cjam/react-native-spotify-remote) | react-context-api | react-query, axios | jest |
+| typescript | react-native@0.67 | react-context-api | react-query, axios | jest |
 
 #### Server
 | language | framework | third party | documentation | testing |
