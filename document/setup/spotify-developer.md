@@ -13,18 +13,10 @@
 Open the `Edit settings` modal
 <img width="1775" alt="image" src="https://user-images.githubusercontent.com/48207131/158006040-e1f0970a-f1ec-4371-b361-96aa3cb7aa3d.png">
 
-### Insert these three infos
+### Insert infos
 **Redirect URIs**
-- musicshorts://spotify-login-callback
-- https://auth.music-shorts.com/spotify/callback
-
-**Bundle IDs**
-- com.hardcorestudygroup.musicshort
-
-**Android Packages**
-- com.hardcorestudygroup.musicshorts (Added 's' is different from bundle id)
-- 5E:8F:16:06:2E:A3:CD:2C:4A:0D:54:78:76:BA:A6:F3:8C:AB:F6:25
-
+- musicshorts:/oauth
+- https://[(auth-domain)](./firebase.md#get-your-auth-domain)/spotify/callback
 ---
 
 ## Regist account
