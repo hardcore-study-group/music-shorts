@@ -1,6 +1,5 @@
 import {Platform} from 'react-native';
 import deviceInfoModule from 'react-native-device-info';
-import {ApiConfig, ApiScope} from 'react-native-spotify-remote';
 
 export const IS_ANDROID = Platform.OS === 'android';
 export const IS_IOS = Platform.OS === 'ios';
@@ -29,17 +28,3 @@ export const BASE_URL = (() => {
   }
   return '';
 })();
-
-export const SPOTIFY_CONFIG: ApiConfig = {
-  clientID: SPOTIFY_CLIENT_ID,
-  redirectURL: 'musicshorts://spotify-login-callback',
-  scopes: [
-    ApiScope.AppRemoteControlScope,
-    ApiScope.UserReadPrivateScope,
-    ApiScope.PlaylistModifyPrivateScope,
-    ApiScope.PlaylistReadPrivateScope,
-    ApiScope.UGCImageUploadScope,
-  ],
-  tokenSwapURL: `${BASE_URL}/auth/token/swap`,
-  tokenRefreshURL: `${BASE_URL}/auth/token/refresh`,
-};

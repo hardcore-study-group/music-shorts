@@ -32,7 +32,6 @@ const SignInWithSpotifyScreen = () => {
       {!url && <ActivityIndicatorView />}
       {url && (
         <WebView
-          cacheEnabled
           source={{uri: url}}
           onMessage={event => onSignIn(JSON.parse(event.nativeEvent.data))}
         />

@@ -6,7 +6,6 @@ import React, {
   useState,
 } from 'react';
 import axios from '../config/axios';
-import {SPOTIFY_CONFIG} from '../constants/values';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export type AuthContextType = {
@@ -26,6 +25,8 @@ const AuthProvider: React.FC = ({children}) => {
   const [isAuthorized, setIsAuthorized] = useState(false);
 
   useEffect(() => {
+    // login with cached refresh_token
+    refreshToken().catch(() => null /* no refresh token */);
     // refresh token every 30min
     const refreshTokenInterval = setInterval(refreshToken, 30 * 60 * 1000);
     // claer interval when app exit
