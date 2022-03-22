@@ -5,7 +5,6 @@ import OssScreen from '../screens/OssScreen';
 import PlaylistScreen from '../screens/PlaylistScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import SignInScreen from '../screens/SignInScreen';
-import SignInWithSpotifyScreen from '../screens/SignInWithSpotifyScreen';
 
 export type RootStackParamList = {
   Home: undefined;
@@ -29,10 +28,6 @@ const RootStackNavigation = () => {
       <RootStack.Screen name="Profile" component={ProfileScreen} />
       <RootStack.Screen name="Oss" component={OssScreen} />
       <RootStack.Screen name="SignIn" component={SignInScreen} />
-      <RootStack.Screen
-        name="SignInWithSpotify"
-        component={SignInWithSpotifyScreen}
-      />
     </RootStack.Navigator>
   );
 };

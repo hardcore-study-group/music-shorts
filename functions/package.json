@@ -2,8 +2,8 @@
   "name": "functions",
   "private": true,
   "scripts": {
-    "dev": "npm run api-docs && npm run build:watch | firebase serve --only functions --host 0.0.0.0",
-    "express": "npm run api-docs && npm run build && node lib/express.js",
+    "dev": "npm run api-docs && npm run build:watch | NODE_ENV=development firebase serve --only functions --host 0.0.0.0",
+    "express": "NODE_ENV=development npm run api-docs && npm run build && node lib/express.js",
     "build": "npm run api-docs && tsc",
     "build:watch": "tsc -w",
     "deploy": "npm run build && firebase deploy --only functions",

@@ -7,15 +7,14 @@ import React, {
 } from 'react';
 import axios from '../config/axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {AUTH_CONFIG} from '../constants/values';
+import {authorize} from 'react-native-app-auth';
 
 export type AuthContextType = {
   // state
   isAuthorized: boolean;
   // method
-  signIn: (token: {
-    access_token: string;
-    refresh_token: string;
-  }) => Promise<void>;
+  signIn: () => Promise<void>;
   signOut: () => Promise<void>;
 };
 
@@ -45,24 +44,17 @@ const AuthProvider: React.FC = ({children}) => {
     setIsAuthorized(true);
   }, []);
 
-  const signIn = useCallback(
-    async ({
-      access_token,
-      refresh_token,
-    }: {
-      access_token: string;
-      refresh_token: string;
-    }) => {
-      try {
-        axios.defaults.headers.common.Authorization = `Bearer ${access_token}`;
-        await AsyncStorage.setItem('refresh_token', refresh_token);
-        setIsAuthorized(true);
-      } catch (error) {
-        console.log(error);
-      }
-    },
-    [],
-  );
+  const signIn = useCallback(async () => {
+    try {
+      // only use react-native-app-auth when first sign in
+      const token = await authorize(AUTH_CONFIG);
+      axios.defaults.headers.common.Authorization = `Bearer ${token.accessToken}`;
+      await AsyncStorage.setItem('refresh_token', token.refreshToken);
+      setIsAuthorized(true);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
   const signOut = useCallback(async () => {
     await AsyncStorage.removeItem('refresh_token');

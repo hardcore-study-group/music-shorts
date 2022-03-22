@@ -10,5 +10,10 @@ export const spotify: SpotifyWebApi =
     : new SpotifyWebApi({
         clientId: config().spotify.client_id,
         clientSecret: config().spotify.client_secret,
-        redirectUri: config().spotify.redirect_uri,
+        redirectUri: config().spotify.app_redirect_uri,
       });
+
+export const app_redirect_uri =
+  process.env.NODE_ENV === 'test' ? '' : config().spotify.app_redirect_uri;
+export const admin_redirect_uri =
+  process.env.NODE_ENV === 'test' ? '' : config().spotify.admin_redirect_uri;

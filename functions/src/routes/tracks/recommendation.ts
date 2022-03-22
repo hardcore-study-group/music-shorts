@@ -86,6 +86,7 @@ router.get('/', deviceRequire, async (req, res, next) => {
     );
     res.status(200).json(data);
   } catch (error) {
+    console.error(error);
     next(error);
   }
 });

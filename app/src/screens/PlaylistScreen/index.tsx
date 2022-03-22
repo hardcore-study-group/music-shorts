@@ -1,16 +1,32 @@
-import {FlatList, Pressable, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import {
+  FlatList,
+  Linking,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
+import React, {useCallback} from 'react';
 import BaseHeader from '../../components/BaseHeader';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import BorderlessButton from '../../components/BorderlessButton';
 import {COLORS} from '../../constants/styles';
 import axios from '../../config/axios';
 import PlaylistScreenCard from './PlaylistScreenCard';
-import {useInfiniteQuery, useMutation, useQueryClient} from 'react-query';
+import {
+  useInfiniteQuery,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from 'react-query';
 import ActivityindicatorView from '../../components/ActivityIndicatorView';
 
 const PlaylistScreen = () => {
   const client = useQueryClient();
+
+  const {data: me} = useQuery('/me', () =>
+    axios.get('/me').then(({data}) => data),
+  );
 
   const {data, fetchNextPage} = useInfiniteQuery(
     '/me/playlist/tracks',
@@ -40,6 +56,11 @@ const PlaylistScreen = () => {
     },
   );
 
+  const onRightButtonPress = useCallback(() => {
+    if (!me) return;
+    Linking.openURL(`https://open.spotify.com/playlist/${me.playlist_id}`);
+  }, [me]);
+
   if (!data) return <ActivityindicatorView />;
 
   return (
@@ -47,7 +68,10 @@ const PlaylistScreen = () => {
       <BaseHeader
         title="Playlist"
         right={
-          <BorderlessButton style={styles.rightButton}>
+          <BorderlessButton
+            onPress={onRightButtonPress}
+            style={styles.rightButton}
+          >
             <Icon name="spotify" size={20} color={COLORS.spotify} />
           </BorderlessButton>
         }

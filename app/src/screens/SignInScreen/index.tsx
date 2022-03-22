@@ -1,12 +1,19 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useCallback, useContext} from 'react';
 import BaseHeader from '../../components/BaseHeader';
 import SpotifyButton from '../../components/SpotifyButton';
 import useNavigation from '../../hooks/useNavigation';
 import Typography from '../../components/Typography';
+import {AuthContext} from '../../context/AuthContext';
 
 const SignInScreen = () => {
-  const {replace} = useNavigation();
+  const {goBack} = useNavigation();
+  const {signIn} = useContext(AuthContext);
+
+  const onSignInWithSpotify = useCallback(async () => {
+    await signIn();
+    goBack();
+  }, []);
 
   return (
     <View style={{flex: 1}}>
@@ -21,7 +28,7 @@ const SignInScreen = () => {
         </Typography>
         <SpotifyButton
           title="Sign in with spotify"
-          onPress={() => replace('SignInWithSpotify')}
+          onPress={onSignInWithSpotify}
         />
       </View>
     </View>

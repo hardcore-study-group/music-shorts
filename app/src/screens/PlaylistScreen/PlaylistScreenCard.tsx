@@ -1,8 +1,7 @@
-import {Animated, Pressable, StyleSheet, Text, View} from 'react-native';
-import React, {useRef} from 'react';
+import {Animated, Linking, Pressable, StyleSheet, View} from 'react-native';
+import React, {useCallback, useRef} from 'react';
 
 import Swipeable from 'react-native-gesture-handler/Swipeable';
-import BaseButton from '../../components/BaseButton';
 import FastImage from 'react-native-fast-image';
 import {COLORS} from '../../constants/styles';
 import Typography from '../../components/Typography';
@@ -32,6 +31,10 @@ const PlaylistScreenCard: React.FC<PlaylistScreenCardProps> = props => {
     onDelete,
   } = props;
 
+  const onPress = useCallback(() => {
+    Linking.openURL(`https://open.spotify.com/track/${id}`);
+  }, [id]);
+
   return (
     <Swipeable
       ref={swipeableRef}
@@ -54,7 +57,7 @@ const PlaylistScreenCard: React.FC<PlaylistScreenCardProps> = props => {
         );
       }}
     >
-      <Pressable style={styles.container}>
+      <Pressable onPress={onPress} style={styles.container}>
         <FastImage source={{uri: images[0].url}} style={styles.image} />
         <View>
           <Typography numberOfLines={1} style={styles.name}>
