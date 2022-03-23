@@ -5,6 +5,8 @@ info:
   description: Music shorts app & admin api docs
   license:
     name: GLP 3.0
+    identifier: GLP 3.0
+    url: https://github.com/hardcore-study-group/music-shorts/blob/main/LICENSE
 servers:
   - url: https://us-central1-music-shorts.cloudfunctions.net/api
   - url: http://0.0.0.0:5000/music-shorts/us-central1/api
@@ -23,8 +25,8 @@ paths:
     $ref: './me.yaml#/~1me~1playlist~1tracks'
   /me/playlist/tracks/{id}:
     $ref: './me.yaml#/~1me~1playlist~1tracks~1{id}'
-  /search:
-    $ref: './search.yaml#/~1search'
+  /search/spotify:
+    $ref: './search.yaml#/~1search~1spotify'
   /tracks:
     $ref: './tracks.yaml#/~1tracks'
   /tracks/{id}:

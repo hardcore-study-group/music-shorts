@@ -1,10 +1,8 @@
-/search:
+/search/spotify:
   get:
     tags:
       - /search
     summary: search tracks
-    security: 
-      - BearerAuth: []
     parameters:
       - in: query
         name: q
