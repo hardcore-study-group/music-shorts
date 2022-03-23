@@ -45,6 +45,9 @@ class SpotifyTestApi extends SpotifyWebApi {
   removeTracksFromPlaylist(): any {
     return require('./removeTracksFromPlaylist_mock.json');
   }
+  clientCredentialsGrant(): any {
+    return require('./clientCredentialsGrant_mock.json');
+  }
 }
 
 export default SpotifyTestApi;
