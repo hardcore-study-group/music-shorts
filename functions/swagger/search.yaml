@@ -2,7 +2,7 @@
   get:
     tags:
       - /search
-    summary: search tracks
+    summary: search spotify tracks
     parameters:
       - in: query
         name: q

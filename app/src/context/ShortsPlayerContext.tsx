@@ -49,6 +49,7 @@ const ShortsPlayerProvider: React.FC = ({children}) => {
         <Video
           style={{width: 0, height: 0}}
           source={{uri}}
+          ignoreSilentSwitch="ignore"
           paused={paused}
           repeat
           audioOnly

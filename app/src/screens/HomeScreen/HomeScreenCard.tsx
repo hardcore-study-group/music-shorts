@@ -53,6 +53,12 @@ const HomeScreenCard: React.FC<Track> = props => {
 
   return (
     <View style={[styles.container, {height}]}>
+      {/* <Image
+        resizeMode="cover"
+        style={styles.background}
+        source={{uri: image}}
+        blurRadius={10}
+      /> */}
       <View style={[styles.background, {backgroundColor: '#222'}]} />
       <View style={styles.header}>
         <View style={{height: STATUSBAR_HEIGHT}} />
@@ -124,7 +130,6 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     left: 0,
-    opacity: 0.5,
   },
   cover: {
     width: WIDTH,

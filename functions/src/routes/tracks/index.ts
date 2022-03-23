@@ -2,7 +2,6 @@ import {Router} from 'express';
 import {firestore} from 'firebase-admin';
 import {admin} from '../../config/firebase';
 import {spotify} from '../../config/spotify';
-import youtubeMp3Downloader from '../../config/youtubeMp3Downloader';
 import adminRequire from '../../middleware/adminRequire';
 import loginRequire from '../../middleware/loginRequire';
 import {Track} from '../../types/firestore';
@@ -11,6 +10,7 @@ import ffmpeg from 'fluent-ffmpeg';
 import path from 'path';
 import fs from 'fs';
 import os from 'os';
+import youtubeMp3Downloader from '../../config/youtubeMp3Downloader';
 
 const router = Router();
 router.use('/recommendation', recommendation);
@@ -32,21 +32,32 @@ router.get('/', loginRequire, async (req, res, next) => {
   }
 });
 
-router.post('/', loginRequire, adminRequire, async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
     // ------------ params ------------ //
     const {youtube_id, start_time, end_time, spotify_id} = req.body;
 
-    // ------------ check already exist ------------ //
+    // ------------ spotify ------------ //
+    const {
+      body: {access_token},
+    } = await spotify.clientCredentialsGrant();
+    spotify.setAccessToken(access_token);
     const result = await spotify.getTrack(spotify_id as string);
     const spotifyTrack = result.body;
+
+    if (result.statusCode !== 200) {
+      res.status(result.statusCode).json(result.body);
+      return;
+    }
+
+    // ------------ check exist ------------ //
     const prevSpotifyTrack = await admin
       .firestore()
       .collection('track')
       .where('spotify_id', '==', spotifyTrack.id)
       .get();
     if (prevSpotifyTrack.size !== 0) {
-      res.status(409).send('Already added');
+      res.status(409).send('spotify already added');
       return;
     }
 
@@ -73,6 +84,7 @@ router.post('/', loginRequire, adminRequire, async (req, res, next) => {
     const fileName = `${spotifyTrack.artists
       .map(v => v.name.replace(/\//gi, ''))
       .join(', ')} - ${spotifyTrack.name}.mp3`;
+
     await admin
       .storage()
       .bucket()
@@ -85,15 +97,16 @@ router.post('/', loginRequire, adminRequire, async (req, res, next) => {
       .firestore()
       .collection('track')
       .add({
+        // add_user_id: req.me.id,
         created_at: firestore.Timestamp.now(),
-        spotify_id: spotifyTrack.id,
         artist_names: spotifyTrack.artists.map(v => v.name),
         name: spotifyTrack.name,
-        duration_ms: spotifyTrack.duration_ms,
         image: spotifyTrack.album.images[0].url,
-        add_user_id: req.me.id,
         climax_file_name: fileName,
+        youtube_id,
+        spotify_id,
         spotify_data: spotifyTrack,
+        youtube_data: {},
       } as Track);
 
     // ------------ Remove uploaded files ------------ //
@@ -104,6 +117,7 @@ router.post('/', loginRequire, adminRequire, async (req, res, next) => {
     const track = await snapshot.get();
     res.status(201).json({...track.data(), id: track.id});
   } catch (error) {
+    console.log(error);
     next(error);
   }
 });
