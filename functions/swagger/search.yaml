@@ -2,7 +2,7 @@
   get:
     tags:
       - /search
-    summary: search tracks
+    summary: search spotify tracks
     parameters:
       - in: query
         name: q
@@ -69,3 +69,20 @@
                                         type: integer
                                       height:
                                         type: integer
+/search/apple:
+  get:
+    tags:
+      - /search
+    summary: search apple tracks
+    parameters:
+      - in: query
+        name: q
+        schema:
+          type: string
+        description: query for search
+    responses:
+      '200':
+        content:
+          application/json:
+            schema:
+              type: object

@@ -18,7 +18,7 @@ import {ShortsPlayerContext} from '../../context/ShortsPlayerContext';
 import {AuthContext} from '../../context/AuthContext';
 
 const HomeScreenCard: React.FC<Track> = props => {
-  const {image, artist_names, name, spotify_id, climax_url} = props;
+  const {image, artist_names, name, spotify_id, preview_url} = props;
   const {pause, resume, paused, uri} = useContext(ShortsPlayerContext);
   const {isAuthorized} = useContext(AuthContext);
   const {bottom} = useSafeAreaInsets();
@@ -27,7 +27,7 @@ const HomeScreenCard: React.FC<Track> = props => {
   const {height} = useSafeAreaFrame();
   const [pauseAnimation] = useState(new Animated.Value(0));
 
-  const isPlaying = climax_url === uri;
+  const isPlaying = preview_url === uri;
 
   const onPauseResume = useCallback(() => {
     if (paused) resume();

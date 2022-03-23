@@ -49,8 +49,6 @@
     tags:
       - /tracks
     summary: add one track
-    security: 
-      - BearerAuth: []
     requestBody:
       content:
         application/json:
@@ -59,12 +57,14 @@
             properties:
               spotify_id:
                 type: string
-              youtube_id:
+              apple_id:
                 type: string
-              start_time:
-                type: integer
-              end_time:
-                type: integer
+              # youtube_id:
+              #   type: string
+              # start_time:
+              #   type: integer
+              # end_time:
+              #   type: integer
     responses:
       '201':
         content:

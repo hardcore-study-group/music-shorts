@@ -11,16 +11,17 @@ export interface User {
   playlist_id: string;
 }
 export interface Track {
-  uri: string;
   created_at: firestore.Timestamp;
-  spotify_id: string;
   name: string;
   artist_names: string[];
   image: string;
-  duration_ms: number;
   add_user_id: string;
-  climax_file_name: string;
+  // climax_file_name: string;
+  preview_url: string;
+  spotify_id: string;
+  apple_id: string;
   spotify_data: any;
+  apple_data: any;
 }
 export interface Device {
   called_track_ids: string[];

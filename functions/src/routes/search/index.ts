@@ -25,7 +25,7 @@ router.get('/apple', async (req, res, next) => {
     const {q}: any = req.query;
     const term = q.replace(/ /gi, '+');
     const {data, status} = await musicDeveloper(
-      `/catalog/US/search?types=songs&limit=15&term=${term}`,
+      `/search?types=songs&limit=15&term=${term}`,
     );
     res.status(status).json(data);
   } catch (error) {
