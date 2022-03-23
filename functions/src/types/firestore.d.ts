@@ -15,11 +15,11 @@ export interface Track {
   name: string;
   artist_names: string[];
   image: string;
-  add_user_id: string;
-  // climax_file_name: string;
-  preview_url: string;
-  spotify_id: string;
+  // add_user_id: string;
+  climax_file_name: string;
   apple_id: string;
+  spotify_id: string;
+  youtube_id: string;
   spotify_data: any;
   apple_data: any;
 }

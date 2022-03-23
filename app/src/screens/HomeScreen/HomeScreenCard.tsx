@@ -18,7 +18,7 @@ import {ShortsPlayerContext} from '../../context/ShortsPlayerContext';
 import {AuthContext} from '../../context/AuthContext';
 
 const HomeScreenCard: React.FC<Track> = props => {
-  const {image, artist_names, name, spotify_id, preview_url} = props;
+  const {image, artist_names, name, spotify_id, climax_url} = props;
   const {pause, resume, paused, uri} = useContext(ShortsPlayerContext);
   const {isAuthorized} = useContext(AuthContext);
   const {bottom} = useSafeAreaInsets();
@@ -27,7 +27,7 @@ const HomeScreenCard: React.FC<Track> = props => {
   const {height} = useSafeAreaFrame();
   const [pauseAnimation] = useState(new Animated.Value(0));
 
-  const isPlaying = preview_url === uri;
+  const isPlaying = climax_url === uri;
 
   const onPauseResume = useCallback(() => {
     if (paused) resume();
@@ -53,7 +53,15 @@ const HomeScreenCard: React.FC<Track> = props => {
 
   return (
     <View style={[styles.container, {height}]}>
-      <View style={[styles.background, {backgroundColor: '#222'}]} />
+      <Image
+        resizeMode="cover"
+        style={styles.background}
+        source={{uri: image}}
+        blurRadius={10}
+      />
+      <View
+        style={[styles.background, {backgroundColor: 'rgba(0, 0, 0, 0.6)'}]}
+      />
       <View style={styles.header}>
         <View style={{height: STATUSBAR_HEIGHT}} />
         <View style={styles.headerButtonContainer}>
@@ -124,7 +132,6 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     left: 0,
-    opacity: 0.5,
   },
   cover: {
     width: WIDTH,

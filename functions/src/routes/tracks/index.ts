@@ -7,6 +7,11 @@ import adminRequire from '../../middleware/adminRequire';
 import loginRequire from '../../middleware/loginRequire';
 import {Track} from '../../types/firestore';
 import recommendation from './recommendation';
+import ffmpeg from 'fluent-ffmpeg';
+import path from 'path';
+import fs from 'fs';
+import os from 'os';
+import youtubeMp3Downloader from '../../config/youtubeMp3Downloader';
 
 const router = Router();
 router.use('/recommendation', recommendation);
@@ -31,7 +36,7 @@ router.get('/', loginRequire, async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     // ------------ params ------------ //
-    const {apple_id, spotify_id} = req.body;
+    const {youtube_id, start_time, end_time, spotify_id, apple_id} = req.body;
 
     // ------------ spotify ------------ //
     const {
@@ -78,6 +83,37 @@ router.post('/', async (req, res, next) => {
       return;
     }
 
+    // ------------ Extract mp3 from youtube ------------ //
+    await new Promise((res, rej) => {
+      youtubeMp3Downloader.download(youtube_id, 'temp1.mp3');
+      youtubeMp3Downloader.on('finished', (error, data) => {
+        if (error) rej(error);
+        res(data);
+      });
+    });
+
+    // ------------ Extract climax ------------ //
+    await new Promise((res, rej) => {
+      ffmpeg(path.join(os.tmpdir(), 'temp1.mp3'))
+        .setStartTime(start_time)
+        .duration(end_time - start_time)
+        .save(path.join(os.tmpdir(), 'temp2.mp3'))
+        .on('end', res)
+        .on('error', rej);
+      // .removeAllListeners();
+    });
+    // ------------ Upload to storage ------------ //
+    const fileName = `${spotifyTrack.artists
+      .map(v => v.name.replace(/\//gi, ''))
+      .join(', ')} - ${spotifyTrack.name}.mp3`;
+
+    await admin
+      .storage()
+      .bucket()
+      .upload(path.join(os.tmpdir(), 'temp2.mp3'), {
+        destination: `climax/${fileName}`,
+      });
+
     // ------------ Create to firestore ------------ //
     const snapshot = await admin
       .firestore()
@@ -90,13 +126,18 @@ router.post('/', async (req, res, next) => {
           .replace('{w}', 1024)
           .replace('{h}', 1024),
         // add_user_id: req.me.id,
-        // climax_file_name: fileName,
+        climax_file_name: fileName,
         preview_url: appleTrack.attributes.previews[0].url,
-        spotify_id: spotifyTrack.id,
-        apple_id: appleTrack.id,
+        youtube_id,
+        spotify_id,
+        apple_id,
         spotify_data: spotifyTrack,
         apple_data: appleTrack,
       } as Track);
+
+    // ------------ Remove uploaded files ------------ //
+    fs.unlinkSync(path.join(os.tmpdir(), 'temp1.mp3'));
+    fs.unlinkSync(path.join(os.tmpdir(), 'temp2.mp3'));
 
     // ------------ Send result ------------ //
     const track = await snapshot.get();

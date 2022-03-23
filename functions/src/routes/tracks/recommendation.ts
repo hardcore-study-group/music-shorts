@@ -72,20 +72,20 @@ router.get('/', deviceRequire, async (req, res, next) => {
         });
     }
 
-    // const data = await Promise.all(
-    //   result.map(v =>
-    //     admin
-    //       .storage()
-    //       .bucket()
-    //       .file(`climax/${v.climax_file_name}`)
-    //       .getSignedUrl({
-    //         action: 'read',
-    //         expires: dayjs().add(1, 'hour').toDate(),
-    //       })
-    //       .then(url => ({...v, climax_url: url[0]})),
-    //   ),
-    // );
-    res.status(200).json(result);
+    const data = await Promise.all(
+      result.map(v =>
+        admin
+          .storage()
+          .bucket()
+          .file(`climax/${v.climax_file_name}`)
+          .getSignedUrl({
+            action: 'read',
+            expires: dayjs().add(1, 'hour').toDate(),
+          })
+          .then(url => ({...v, climax_url: url[0]})),
+      ),
+    );
+    res.status(200).json(data);
   } catch (error) {
     console.error(error);
     next(error);
