@@ -17,11 +17,10 @@ export interface Track {
   image: string;
   // add_user_id: string;
   climax_file_name: string;
-  apple_id: string;
   spotify_id: string;
   youtube_id: string;
   spotify_data: any;
-  apple_data: any;
+  youtube_data: any;
 }
 export interface Device {
   called_track_ids: string[];

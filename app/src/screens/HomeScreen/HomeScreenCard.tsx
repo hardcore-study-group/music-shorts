@@ -53,15 +53,13 @@ const HomeScreenCard: React.FC<Track> = props => {
 
   return (
     <View style={[styles.container, {height}]}>
-      <Image
+      {/* <Image
         resizeMode="cover"
         style={styles.background}
         source={{uri: image}}
         blurRadius={10}
-      />
-      <View
-        style={[styles.background, {backgroundColor: 'rgba(0, 0, 0, 0.6)'}]}
-      />
+      /> */}
+      <View style={[styles.background, {backgroundColor: '#222'}]} />
       <View style={styles.header}>
         <View style={{height: STATUSBAR_HEIGHT}} />
         <View style={styles.headerButtonContainer}>

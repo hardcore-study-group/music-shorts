@@ -57,8 +57,6 @@
             properties:
               spotify_id:
                 type: string
-              apple_id:
-                type: string
               youtube_id:
                 type: string
               start_time:

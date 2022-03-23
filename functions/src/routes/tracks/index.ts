@@ -1,6 +1,5 @@
 import {Router} from 'express';
 import {firestore} from 'firebase-admin';
-import musicDeveloper from '../../config/apple';
 import {admin} from '../../config/firebase';
 import {spotify} from '../../config/spotify';
 import adminRequire from '../../middleware/adminRequire';
@@ -36,7 +35,7 @@ router.get('/', loginRequire, async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     // ------------ params ------------ //
-    const {youtube_id, start_time, end_time, spotify_id, apple_id} = req.body;
+    const {youtube_id, start_time, end_time, spotify_id} = req.body;
 
     // ------------ spotify ------------ //
     const {
@@ -51,35 +50,14 @@ router.post('/', async (req, res, next) => {
       return;
     }
 
-    // ------------ apple ------------ //
-    const {data, status} = await musicDeveloper(`/songs/${apple_id}`);
-    const appleTrack = data.data[0];
-    if (status !== 200) {
-      res.status(status).json(data);
-      return;
-    }
-    if (appleTrack.attributes.previews.length === 0) {
-      res.status(403).send('apple music preview_url require');
-      return;
-    }
-
     // ------------ check exist ------------ //
     const prevSpotifyTrack = await admin
       .firestore()
       .collection('track')
       .where('spotify_id', '==', spotifyTrack.id)
       .get();
-    const prevAppleTrack = await admin
-      .firestore()
-      .collection('track')
-      .where('apple_id', '==', appleTrack.id)
-      .get();
     if (prevSpotifyTrack.size !== 0) {
       res.status(409).send('spotify already added');
-      return;
-    }
-    if (prevAppleTrack.size !== 0) {
-      res.status(409).send('apple already added');
       return;
     }
 
@@ -119,20 +97,16 @@ router.post('/', async (req, res, next) => {
       .firestore()
       .collection('track')
       .add({
+        // add_user_id: req.me.id,
         created_at: firestore.Timestamp.now(),
         artist_names: spotifyTrack.artists.map(v => v.name),
         name: spotifyTrack.name,
-        image: appleTrack.attributes.artwork.url
-          .replace('{w}', 1024)
-          .replace('{h}', 1024),
-        // add_user_id: req.me.id,
+        image: spotifyTrack.album.images[0].url,
         climax_file_name: fileName,
-        preview_url: appleTrack.attributes.previews[0].url,
         youtube_id,
         spotify_id,
-        apple_id,
         spotify_data: spotifyTrack,
-        apple_data: appleTrack,
+        youtube_data: {},
       } as Track);
 
     // ------------ Remove uploaded files ------------ //

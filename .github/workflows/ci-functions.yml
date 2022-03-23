@@ -30,6 +30,10 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
+      - uses: actions/checkout@v2
+      - uses: FedericoCarboni/setup-ffmpeg@v1
+        id: setup-ffmpeg
+
       - name: Create test firebase service account key from github secret
         run: echo "$TEST_FIREBASE_SERVICE_ACCOUNT_KEY" >> testServiceAccountKey.json
         env: 
