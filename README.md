@@ -16,11 +16,11 @@
 ![Firebase](https://img.shields.io/badge/firebase-222222?style=for-the-badge&logo=Firebase&logoColor=#C21325)
 ![Spotify](https://img.shields.io/badge/spotify-222222?style=for-the-badge&logo=spotify&logoColor=#C21325)
 
-<img width="300" src="https://user-images.githubusercontent.com/48207131/157844702-356aeccc-0b79-4f5b-bd9d-14abef3bddf0.gif">
+<img width="300" src="https://user-images.githubusercontent.com/48207131/159841183-2e47018d-aca1-4218-a438-14174da4082b.gif">
 
 ### Introduction
 
-`Music Shorts` is short music streaming service using `spotify api & sdk`
+`Music Shorts` provide short music streaming and synced playlist with `spotify` & `youtube music`
 
 ### Product
 - App
