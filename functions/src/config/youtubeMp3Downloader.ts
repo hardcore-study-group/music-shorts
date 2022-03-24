@@ -1,6 +1,6 @@
-import path from 'path';
 import YoutubeMp3Downloader from 'youtube-mp3-downloader';
 import os from 'os';
+
 const youtubeMp3Downloader = new YoutubeMp3Downloader({
   outputPath: os.tmpdir(),
   progressTimeout: 5000,
