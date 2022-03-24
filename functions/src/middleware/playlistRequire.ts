@@ -19,11 +19,14 @@ const createPlaylist = async () => {
 
 const playlistRequire: RequestHandler = async (req, res, next) => {
   try {
+    const me = await spotify.getMe();
+    const userId = me.body.id;
+
     // get user info from firestore
     const snapshot = await admin
       .firestore()
       .collection('user')
-      .doc(req.me.id)
+      .doc(userId)
       .get();
     const user = snapshot.data() as User;
     // user doesn't have playlist_id
@@ -38,7 +41,7 @@ const playlistRequire: RequestHandler = async (req, res, next) => {
       else req.playlist_id = await createPlaylist();
     }
     // migrate to firestore
-    await admin.firestore().collection('user').doc(req.me.id).update({
+    await admin.firestore().collection('user').doc(userId).update({
       playlist_id: req.playlist_id,
     });
     next();

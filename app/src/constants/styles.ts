@@ -11,4 +11,5 @@ export const COLORS = {
   gray: '#888888',
   red: '#CC4444',
   spotify: '#1DB954',
+  youtube: '#FF0100',
 };

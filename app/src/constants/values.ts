@@ -13,7 +13,7 @@ export const SPOTIFY_CLIENT_ID = 'babda1a147134d70b64cb301089cfeaa';
 
 export const BASE_URL = (() => {
   const LOCAL_IP = '192.168.10.13';
-  const PROD_TEST_MODE = true;
+  const PROD_TEST_MODE = false;
   if (!__DEV__ || PROD_TEST_MODE)
     return 'https://us-central1-music-shorts.cloudfunctions.net/api';
   if (IS_ANDROID) {
@@ -29,7 +29,7 @@ export const BASE_URL = (() => {
   return '';
 })();
 
-export const AUTH_CONFIG: AuthConfiguration = {
+export const SPOTIFY_AUTH_CONFIG: AuthConfiguration = {
   clientId: SPOTIFY_CLIENT_ID,
   redirectUrl: 'musicshorts:/oauth',
   scopes: [
@@ -43,4 +43,20 @@ export const AUTH_CONFIG: AuthConfiguration = {
   },
   useNonce: false,
   usePKCE: false,
+};
+const YOUTUBE_OAUTH_APP_GUID = IS_IOS
+  ? '866427811004-0n642qupjqslsei42oaao0v42ob58m6q'
+  : __DEV__
+  ? '866427811004-6qakvinrj9jknvktfg0gneulh8tb2efe'
+  : '866427811004-0flr8dedmumo85auk5ttvbpgr2up7s6t';
+export const YOUTUBE_AUTH_CONFIG: AuthConfiguration = {
+  issuer: 'https://accounts.google.com',
+  clientId: `${YOUTUBE_OAUTH_APP_GUID}.apps.googleusercontent.com`,
+  redirectUrl: `com.googleusercontent.apps.${YOUTUBE_OAUTH_APP_GUID}:/oauth2redirect/google`,
+  scopes: [
+    'openid',
+    'https://www.googleapis.com/auth/youtube',
+    'https://www.googleapis.com/auth/youtube.force-ssl',
+    'https://www.googleapis.com/auth/youtube.readonly',
+  ],
 };

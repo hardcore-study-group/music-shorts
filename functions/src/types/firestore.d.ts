@@ -1,5 +1,7 @@
 import {firestore} from 'firebase-admin';
 
+export type Type = 'spotify' | 'youtube';
+
 export interface Root {
   user: User[];
   track: Track[];
@@ -7,8 +9,8 @@ export interface Root {
 }
 
 export interface User {
-  is_admin?: boolean;
   playlist_id: string;
+  type: Type;
 }
 export interface Track {
   created_at: firestore.Timestamp;

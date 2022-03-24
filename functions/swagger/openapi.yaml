@@ -11,14 +11,10 @@ servers:
   - url: https://us-central1-music-shorts.cloudfunctions.net/api
   - url: http://0.0.0.0:5000/music-shorts/us-central1/api
 paths:
-  /auth/oauthurl/spotify: 
-    $ref: './auth.yaml#/~1auth~1oauthurl~1spotify'
   /auth/token/swap:
     $ref: './auth.yaml#/~1auth~1token~1swap'
   /auth/token/refresh:
     $ref: './auth.yaml#/~1auth~1token~1refresh'
-  /albums/{id}:
-    $ref: './albums.yaml#/~1albums~1{id}'
   /me:
     $ref: './me.yaml#/~1me'
   /me/playlist/tracks:
@@ -27,6 +23,8 @@ paths:
     $ref: './me.yaml#/~1me~1playlist~1tracks~1{id}'
   /search/spotify:
     $ref: './search.yaml#/~1search~1spotify'
+  /search/youtube:
+    $ref: './search.yaml#/~1search~1youtube'
   /tracks:
     $ref: './tracks.yaml#/~1tracks'
   /tracks/{id}:

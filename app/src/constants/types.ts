@@ -13,3 +13,5 @@ export interface Track {
   spotify_data: any;
   apple_data: any;
 }
+
+export type Type = 'spotify' | 'youtube';

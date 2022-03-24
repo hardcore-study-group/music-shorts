@@ -3,7 +3,7 @@ import request from 'supertest';
 import loginRequire from '../loginRequire';
 
 app.get('/test', loginRequire, (req, res) => {
-  res.status(200).json(req.me);
+  res.status(200).json(req.type);
 });
 
 describe('loginRequire', () => {

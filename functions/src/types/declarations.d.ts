@@ -1,3 +1,5 @@
+import {Type} from './firestore';
+
 interface Response<T> {
   body: T;
   headers: Record<string, string>;
@@ -20,7 +22,7 @@ declare module 'http' {
     access_token: string;
   }
   interface IncomingMessage {
-    me: SpotifyApi.CurrentUsersProfileResponse;
+    type: Type;
     playlist_id: string;
     device_id: string;
   }

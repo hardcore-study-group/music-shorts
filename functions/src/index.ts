@@ -9,7 +9,6 @@ import search from './routes/search';
 import tracks from './routes/tracks';
 import auth from './routes/auth';
 import me from './routes/me';
-import albums from './routes/albums';
 
 // ----------------- routes ----------------- //
 
@@ -31,7 +30,6 @@ app.use('/search', search);
 app.use('/auth', auth);
 app.use('/tracks', tracks);
 app.use('/me', me);
-app.use('/albums', albums);
 // ----------------- error handler ----------------- //
 app.use(errorLogger);
 

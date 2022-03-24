@@ -69,3 +69,20 @@
                                         type: integer
                                       height:
                                         type: integer
+/search/youtube:
+  get:
+    tags:
+      - /search
+    summary: search youtube tracks
+    parameters:
+      - in: query
+        name: q
+        schema:
+          type: string
+        description: query for search
+    responses:
+      '200':
+        content:
+          application/json:
+            schema:
+              type: object
