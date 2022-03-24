@@ -7,14 +7,17 @@ import React, {
 } from 'react';
 import axios from '../config/axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {AUTH_CONFIG} from '../constants/values';
-import {authorize} from 'react-native-app-auth';
+import {SPOTIFY_AUTH_CONFIG, YOUTUBE_AUTH_CONFIG} from '../constants/values';
+import {authorize, refresh} from 'react-native-app-auth';
+import {Type} from '../constants/types';
 
 export type AuthContextType = {
   // state
   isAuthorized: boolean;
+  type?: Type;
   // method
-  signIn: () => Promise<void>;
+  signInWithSpotify: () => Promise<void>;
+  signInWithYoutube: () => Promise<void>;
   signOut: () => Promise<void>;
 };
 
@@ -22,6 +25,7 @@ export const AuthContext = createContext<AuthContextType>({} as any);
 
 const AuthProvider: React.FC = ({children}) => {
   const [isAuthorized, setIsAuthorized] = useState(false);
+  const [type, setType] = useState<Type>();
 
   useEffect(() => {
     // login with cached refresh_token
@@ -36,20 +40,53 @@ const AuthProvider: React.FC = ({children}) => {
 
   const refreshToken = useCallback(async () => {
     const refresh_token = await AsyncStorage.getItem('refresh_token');
+    const _type = (await AsyncStorage.getItem('type')) as Type | null;
     // signed out
-    if (!refreshToken) return await signOut();
+    if (!refresh_token || !_type) return await signOut();
     // pre signed in
-    const {data} = await axios.post('auth/token/refresh', {refresh_token});
-    axios.defaults.headers.common.Authorization = `Bearer ${data.access_token}`;
+    let access_token = '';
+    switch (_type) {
+      case 'spotify': {
+        const {data} = await axios.post('auth/token/refresh', {refresh_token});
+        access_token = data.access_token;
+        break;
+      }
+      case 'youtube': {
+        const {accessToken} = await refresh(YOUTUBE_AUTH_CONFIG, {
+          refreshToken: refresh_token,
+        });
+        access_token = accessToken;
+        break;
+      }
+      default:
+        return;
+    }
+    axios.defaults.headers.common.Authorization = `Bearer ${access_token}`;
     setIsAuthorized(true);
   }, []);
 
-  const signIn = useCallback(async () => {
+  const signInWithSpotify = useCallback(async () => {
     try {
       // only use react-native-app-auth when first sign in
-      const token = await authorize(AUTH_CONFIG);
+      const token = await authorize(SPOTIFY_AUTH_CONFIG);
       axios.defaults.headers.common.Authorization = `Bearer ${token.accessToken}`;
       await AsyncStorage.setItem('refresh_token', token.refreshToken);
+      await AsyncStorage.setItem('type', 'spotify');
+      setType('spotify');
+      setIsAuthorized(true);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  const signInWithYoutube = useCallback(async () => {
+    try {
+      // only use react-native-app-auth when first sign in
+      const token = await authorize(YOUTUBE_AUTH_CONFIG);
+      axios.defaults.headers.common.Authorization = `Bearer ${token.accessToken}`;
+      await AsyncStorage.setItem('refresh_token', token.refreshToken);
+      await AsyncStorage.setItem('type', 'youtube');
+      setType('youtube');
       setIsAuthorized(true);
     } catch (error) {
       console.log(error);
@@ -58,17 +95,21 @@ const AuthProvider: React.FC = ({children}) => {
 
   const signOut = useCallback(async () => {
     await AsyncStorage.removeItem('refresh_token');
+    await AsyncStorage.removeItem('type');
     axios.defaults.headers.common.Authorization = '';
+    setType(undefined);
     setIsAuthorized(false);
   }, []);
 
   const contextValue = useMemo<AuthContextType>(
     () => ({
       isAuthorized,
-      signIn,
+      signInWithSpotify,
+      signInWithYoutube,
       signOut,
+      type,
     }),
-    [isAuthorized, signIn, signOut],
+    [isAuthorized, signInWithSpotify, signInWithYoutube, signOut, type],
   );
 
   return (

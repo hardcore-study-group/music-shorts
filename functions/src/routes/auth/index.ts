@@ -4,7 +4,7 @@ import youtube from './youtube';
 
 const router = Router();
 
-router.use('/spotify', spotify);
+router.use('/', spotify); // TODO
 router.use('/youtube', youtube);
 
 export default router;

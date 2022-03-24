@@ -1,21 +1,3 @@
-/auth/oauthurl/spotify:
-  get:
-    tags:
-      - /auth
-    summary: get spotify OAuth url
-    parameters:
-      - in: query
-        name: state
-        schema:
-          type: string
-        description: \"app\" or \"admin\"
-    responses:
-      '200':
-        content:
-          text/plain:
-            schema:
-              type: string
-              example: https://accounts.spotify.com/authorize?client_id=babda1a147134d70b64cb301089cfeaa&response_type=code&redirect_uri=https://auth.music-shorts.com/spotify/callback&scope=user-read-email&state=admin
 /auth/token/swap:
   post:
     tags:

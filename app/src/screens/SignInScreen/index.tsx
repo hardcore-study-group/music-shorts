@@ -1,19 +1,21 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React, {useCallback, useContext} from 'react';
+import React, {useCallback, useContext, useEffect} from 'react';
 import BaseHeader from '../../components/BaseHeader';
-import SpotifyButton from '../../components/SpotifyButton';
 import useNavigation from '../../hooks/useNavigation';
 import Typography from '../../components/Typography';
 import {AuthContext} from '../../context/AuthContext';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {COLORS} from '../../constants/styles';
+import BaseButton from '../../components/BaseButton';
 
 const SignInScreen = () => {
   const {goBack} = useNavigation();
-  const {signIn} = useContext(AuthContext);
+  const {signInWithSpotify, signInWithYoutube, isAuthorized} =
+    useContext(AuthContext);
 
-  const onSignInWithSpotify = useCallback(async () => {
-    await signIn();
-    goBack();
-  }, []);
+  useEffect(() => {
+    if (isAuthorized) goBack();
+  }, [isAuthorized]);
 
   return (
     <View style={{flex: 1}}>
@@ -26,10 +28,27 @@ const SignInScreen = () => {
         <Typography style={[styles.feature, {marginTop: 8, marginBottom: 56}]}>
           - The saved songs are synchronized with the Spotify playlist
         </Typography>
-        <SpotifyButton
-          title="Sign in with spotify"
-          onPress={onSignInWithSpotify}
-        />
+        <BaseButton
+          onPress={signInWithSpotify}
+          style={[styles.signInButton, {backgroundColor: COLORS.spotify}]}
+        >
+          <Icon name="spotify" size={24} color={COLORS.white} />
+          <Typography style={styles.signInButtonTitle}>
+            Sign in with spotify
+          </Typography>
+        </BaseButton>
+        {/* <BaseButton
+          onPress={signInWithYoutube}
+          style={[
+            styles.signInButton,
+            {backgroundColor: COLORS.youtube, marginTop: 24},
+          ]}
+        >
+          <Icon name="youtube" size={24} color={COLORS.white} />
+          <Typography style={styles.signInButtonTitle}>
+            Sign in with youtube music
+          </Typography>
+        </BaseButton> */}
       </View>
     </View>
   );
@@ -44,5 +63,17 @@ const styles = StyleSheet.create({
   },
   feature: {
     fontSize: 12,
+  },
+  signInButton: {
+    width: '100%',
+    height: 64,
+    borderRadius: 32,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  signInButtonTitle: {
+    fontWeight: 'bold',
+    marginLeft: 8,
   },
 });
