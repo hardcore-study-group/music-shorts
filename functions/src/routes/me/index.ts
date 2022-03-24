@@ -7,7 +7,7 @@ const router = Router();
 
 router.get('/', loginRequire, playlistRequire, async (req, res, next) => {
   try {
-    res.status(200).json({...req.me, playlist_id: req.playlist_id});
+    res.status(200).json({type: req.type, playlist_id: req.playlist_id});
   } catch (error) {
     next(error);
   }
