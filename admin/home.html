@@ -11,15 +11,34 @@
 <body>
     <header>
         <span id="title">Music Shorts Admin Page</span>
-        <div id="search-container">
-            <input id="search" type="text" placeholder="Search..." autocomplete="off">
-            <div id="search-box">Loading...</div>
-        </div>
+        <button id="popup-button" class="music-button">Add music</button>
         <script src="scripts/music-item.js"></script>
         <script src="scripts/search-item.js"></script>
     </header>
     <div id="music-list">
         Loading...
+    </div>
+
+    <!-- modal -->
+    <div id="modal">
+        <div id="modal-overlay"></div>
+        <div id="modal-box">
+            <input id="search" type="text" placeholder="Search..." autocomplete="off">
+            <div class="search-box" id="spotify-search-box"></div>
+            <form id="input-container" name="addForm">
+                <input type="hidden" name="spotifyId">
+                <span>youtube url : </span>
+                <input class="youtube-input" id="youtube-url" type="text" name="youtubeUrl">
+                <br>
+                <span>youtube timeline : </span>
+                <div style="display:inline-block;">
+                    <input class="youtube-input youtube-time" id="start-time" type="number" placeholder="sec" name="youtubeStartTime">
+                    <span>&nbsp;~&nbsp;</span>
+                    <input class="youtube-input youtube-time" id="end-time" type="text" placeholder="sec" name="youtubeEndTime">
+                </div>
+            </form>
+            <button id="add-button" class="music-button">Add music</button>
+        </div>
     </div>
     <script src="scripts/home.js"></script>
 </body>

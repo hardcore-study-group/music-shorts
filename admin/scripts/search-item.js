@@ -5,7 +5,7 @@ class SearchItem extends HTMLElement {
 
     connectedCallback() {
         let container = document.createElement('div');
-        container.id = 'search-item-container';
+        container.classList = ['search-item-container'];
 
         let album = document.createElement('img');
         album.src = this.getAttribute('src');
@@ -25,7 +25,7 @@ class SearchItem extends HTMLElement {
         artist.style.fontSize = '14px';
 
         let information = document.createElement('div');
-        information.style = `width: 80px;
+        information.style = `width: 100%;
                             text-align: left;
                             flex-grow: 1;
                             margin: 0 0 10px 0;
