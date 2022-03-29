@@ -110,7 +110,7 @@ addButton.addEventListener('click', e => {
         },
         body: JSON.stringify({
             "spotify_id" : document.addForm.spotifyId.value,
-            "youtube_id" : document.addForm.youtubeUrl.value.split('?v=')[1],
+            "youtube_id" : document.addForm.youtubeUrl.value.split('v=')[1].split('&')[0],
             "start_time" : document.addForm.youtubeStartTime.value,
             "end_time" : document.addForm.youtubeEndTime.value,
         })
