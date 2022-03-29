@@ -1,8 +1,7 @@
 // initialize api keys
 const baseUrl = 'https://us-central1-music-shorts.cloudfunctions.net/api';
 
-const access_token = sessionStorage.getItem('at');
-console.log(access_token);
+const access_token = '';
 
 // get tracks
 let musicList = document.getElementById('music-list');
@@ -34,69 +33,75 @@ fetch(baseUrl + '/tracks' + '/?offset=0&limit=50', {
         });
     });
 
+// pop-up modal
+let popupButton = document.getElementById('popup-button');
+let modal = document.getElementById('modal');
+popupButton.addEventListener('click', e => {
+    modal.style.display = 'flex';
+});
+
+// pop-down modal
+let modalOverlay = document.getElementById('modal-overlay');
+modalOverlay.addEventListener('click', e => {
+    modal.style.display = 'none';
+});
 
 // search tracks
 let search = document.getElementById('search');
-let searchBox = document.getElementById('search-box');
-
-search.addEventListener('focus', e => {
-    if (search.value != '') {
-        searchBox.style.display = 'block';
-    }
-});
-
-search.addEventListener('blur', e => {
-    // searchBox.style.display = 'none';
-});
+let spotifySearchBox = document.getElementById('spotify-search-box');
 
 search.addEventListener('input', e => {
     if (e.target.value != '') {
-        searchBox.style.display = 'block';
-        fetch(baseUrl + '/search' + '/?q=' + e.target.value, {
+        // spotify search
+        fetch(baseUrl + '/search/spotify' + '/?q=' + e.target.value, {
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + access_token,
+                'type': 'admin'
             }
         }).then(res => res.json())
             .then(data => {
-                searchBox.innerHTML = '';
+                spotifySearchBox.innerHTML = '';
                 let searchItem = null;
                 data.tracks.items.forEach(track => {
                     searchItem = document.createElement('search-item');
                     searchItem.setAttribute('track-id', track.id);
                     searchItem.setAttribute('src', track.album.images[2].url);
-                    if (!track.preview_url) {
-                        searchItem.setAttribute('src', 'sources/test.jpeg');
-                    }
                     searchItem.setAttribute('title', track.name);
                     searchItem.setAttribute('artist', track.artists[0].name);
-                    searchBox.appendChild(searchItem);
+                    spotifySearchBox.appendChild(searchItem);
                 });
             })
             .then(_ => {
-                let searchItems = searchBox.childNodes;
+                let searchItems = spotifySearchBox.childNodes;
                 searchItems.forEach(searchItem => {
-                    searchItem.addEventListener('click', event => addTrack(event, {
-                        'trackId': searchItem.getAttribute('track-id'),
-                        'src': searchItem.getAttribute('src'),
-                        'title': searchItem.getAttribute('title'),
-                        'artist': searchItem.getAttribute('artist'),
-                    }));
+                    searchItem.addEventListener('click', event => addTrack(event, searchItem.getAttribute('track-id'),));
                 });
             })
             .catch(error => {
                 console.log('error: ' + error)
-                searchBox.style.display = 'none';
             });
     }
     else {
-        searchBox.style.display = 'none';
+        spotifySearchBox.innerHTML = ''
     }
 });
 
 
 // add track
-function addTrack(event, searchItem) {
+let curSelected = null;
+function addTrack(event, trackId) {
+    document.addForm.spotifyId.value = trackId;
+    if (curSelected != null) {
+        curSelected.classList.remove('selected');
+    }
+    curSelected = event.target.closest('.search-item-container');
+    curSelected.classList.add('selected');
+}
+
+let addButton = document.getElementById('add-button');
+addButton.addEventListener('click', e => {
+    addButton.disabled = true;
+    addButton.innerHTML = 'Uploading...';
     fetch(baseUrl + '/tracks', {
         method: 'POST',
         headers: {
@@ -104,18 +109,25 @@ function addTrack(event, searchItem) {
             'Authorization': 'Bearer ' + access_token,
         },
         body: JSON.stringify({
-            'spotifyTrackId': searchItem.trackId
-        }),
+            "spotify_id" : document.addForm.spotifyId.value,
+            "youtube_id" : document.addForm.youtubeUrl.value.split('?v=')[1],
+            "start_time" : document.addForm.youtubeStartTime.value,
+            "end_time" : document.addForm.youtubeEndTime.value,
+        })
     })
         .then(res => {
-            musicItem = document.createElement('music-item');
-            musicItem.setAttribute('track-id', searchItem.trackId);
-            musicItem.setAttribute('src', searchItem.src);
-            musicItem.setAttribute('title', searchItem.title);
-            musicItem.setAttribute('artist', searchItem.artist);
-            musicList.prepend(musicItem)
+            addButton.disabled = false;
+            addButton.innerHTML = 'Add music';
         });
-}
+
+    document.addForm.spotifyId.value = ''
+    if (curSelected != null) {
+        curSelected.classList.remove('selected');
+    }
+    document.addForm.youtubeUrl.value = ''
+    document.addForm.youtubeStartTime.value = ''
+    document.addForm.youtubeEndTime.value = ''
+})
 
 // delete track
 function deleteTrack(event, musicItem) {
