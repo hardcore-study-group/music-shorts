@@ -101,32 +101,44 @@ function addTrack(event, trackId) {
 let addButton = document.getElementById('add-button');
 addButton.addEventListener('click', e => {
     addButton.disabled = true;
+    document.getElementById('warning-sign').style.display = 'none';
     addButton.innerHTML = 'Uploading...';
-    fetch(baseUrl + '/tracks', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + access_token,
-        },
-        body: JSON.stringify({
-            "spotify_id" : document.addForm.spotifyId.value,
-            "youtube_id" : document.addForm.youtubeUrl.value.split('v=')[1].split('&')[0],
-            "start_time" : document.addForm.youtubeStartTime.value,
-            "end_time" : document.addForm.youtubeEndTime.value,
+    try {
+        fetch(baseUrl + '/tracks', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + access_token,
+            },
+            body: JSON.stringify({
+                "spotify_id" : document.addForm.spotifyId.value,
+                "youtube_id" : document.addForm.youtubeUrl.value.split('v=')[1].split('&')[0],
+                "start_time" : document.addForm.youtubeStartTime.value,
+                "end_time" : document.addForm.youtubeEndTime.value,
+            })
         })
-    })
+        .catch(e => console.log(e))
+        .then(res => {
+            if (res.ok) {
+                if (curSelected != null) {
+                    curSelected.classList.remove('selected');
+                }
+                document.addForm.spotifyId.value = '';
+                document.addForm.youtubeUrl.value = '';
+                document.addForm.youtubeStartTime.value = '';
+                document.addForm.youtubeEndTime.value = '';
+            }
+            else {
+                document.getElementById('warning-sign').style.display = 'inline';
+            }
+        })
         .then(res => {
             addButton.disabled = false;
             addButton.innerHTML = 'Add music';
         });
-
-    document.addForm.spotifyId.value = ''
-    if (curSelected != null) {
-        curSelected.classList.remove('selected');
+    } catch(error) {
+        console.log(error);
     }
-    document.addForm.youtubeUrl.value = ''
-    document.addForm.youtubeStartTime.value = ''
-    document.addForm.youtubeEndTime.value = ''
 })
 
 // delete track

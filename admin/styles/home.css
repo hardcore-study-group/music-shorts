@@ -28,6 +28,10 @@ header {
     font-size: 16px;
 }
 
+#warning-sign {
+    display: none;
+}
+
 .music-button {
   background-color: #bbbbbb;
   border: none;
