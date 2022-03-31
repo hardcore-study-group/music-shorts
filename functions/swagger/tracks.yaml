@@ -3,8 +3,6 @@
     tags:
       - /tracks
     summary: get all tracks
-    security: 
-      - BearerAuth: []
     parameters:
       - in: query
         name: offset
@@ -49,6 +47,8 @@
     tags:
       - /tracks
     summary: add one track
+    security: 
+      - AdminPassword: []
     requestBody:
       content:
         application/json:
@@ -75,7 +75,7 @@
       - /tracks
     summary: delete one track
     security: 
-      - BearerAuth: []
+      - AdminPassword: []
     parameters:
       - in: path
         name: id

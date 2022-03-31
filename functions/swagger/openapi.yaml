@@ -36,6 +36,9 @@ components:
     BearerAuth:
       type: http
       scheme: bearer
+    AdminPassword:
+      type: http
+      scheme: bearer
   responses:
     successResponse:
       description: successful request
