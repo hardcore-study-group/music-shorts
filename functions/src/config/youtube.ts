@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {config} from 'firebase-functions/v1';
+import {config} from 'firebase-functions';
 
 const youtube = axios.create({
   baseURL: 'https://youtube.googleapis.com/youtube/v3',
