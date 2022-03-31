@@ -33,20 +33,21 @@ describe('/tracks', () => {
   });
 
   it('/ (GET)', async () => {
-    const res = await request(app).get('/tracks').set('Authorization', 'token');
+    const res = await request(app).get('/tracks');
+
     expect(res.status).toBe(200);
   });
   // folloing test code only can run in "ffmpeg" installed computer
   it('/ (POST)', async () => {
     const res = await request(app)
       .post('/tracks')
-      .set('Authorization', 'token')
       .send({
         spotify_id: 'test_id',
         youtube_id: 'ZzbNM2l-AAA',
         start_time: 30,
         end_time: 50,
-      });
+      })
+      .set('Authorization', 'Bearer 123456');
 
     expect(res.status).toBe(201);
     expect(JSON.parse(res.text)).toHaveProperty('id');
@@ -57,7 +58,7 @@ describe('/tracks', () => {
   it('/:id (DELETE)', async () => {
     const res = await request(app)
       .delete(`/tracks/${trackId}`)
-      .set('Authorization', 'token');
+      .set('Authorization', 'Bearer 123456');
 
     expect(res.status).toBe(204);
   });

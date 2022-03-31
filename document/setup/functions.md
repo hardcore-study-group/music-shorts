@@ -7,10 +7,11 @@ In this project use `firebase config` instaed of `.env` file.
 # Init firebase config with follow script
 firebase functions:config:set spotify.client_id="..." spotify.client_secret="..." spotify.app_redirect_uri="..." spotify.admin_redirect_uri="..."
 ```
-- client_id : [get from spotify dashboard](./spotify-developer.md#copy-clientid--secretkey)
-- client_secret : [get from spotify dashboard](./spotify-developer.md#copy-clientid--secretkey)
-- app_redirect_uri : musicshorts:/oauth
-- admin_redirect_uri : https://[(auth-domain)](./firebase.md#get-your-auth-domain)/spotify/callback
+- spotify.client_id : [get from spotify dashboard](./spotify-developer.md#copy-clientid--secretkey)
+- spotify.client_secret : [get from spotify dashboard](./spotify-developer.md#copy-clientid--secretkey)
+- spotify.app_redirect_uri : musicshorts:/oauth
+- spotify.admin_redirect_uri : https://[(auth-domain)](./firebase.md#get-your-auth-domain)/spotify/callback
+- admin.password : Anything you want!
 
 #### Result example
 ```bash

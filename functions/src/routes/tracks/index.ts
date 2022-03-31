@@ -15,7 +15,7 @@ import youtubeMp3Downloader from '../../config/youtubeMp3Downloader';
 const router = Router();
 router.use('/recommendation', recommendation);
 
-router.get('/', loginRequire, async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     const offset = Number(req.query.offset || 0);
     const limit = Number(req.query.limit || 10);
@@ -32,7 +32,7 @@ router.get('/', loginRequire, async (req, res, next) => {
   }
 });
 
-router.post('/', async (req, res, next) => {
+router.post('/', adminRequire, async (req, res, next) => {
   try {
     // ------------ params ------------ //
     const {youtube_id, start_time, end_time, spotify_id} = req.body;
@@ -122,7 +122,7 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-router.delete('/:id', loginRequire, adminRequire, async (req, res, next) => {
+router.delete('/:id', adminRequire, async (req, res, next) => {
   try {
     const {id} = req.params;
 

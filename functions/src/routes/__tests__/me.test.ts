@@ -4,7 +4,7 @@ import request from 'supertest';
 describe('/me', () => {
   it('/', async () => {
     const res = await request(app).get('/me').set('Authorization', 'token');
-    expect(JSON.parse(res.text)).toHaveProperty('id');
+    expect(JSON.parse(res.text)).toHaveProperty('type');
     expect(res.status).toBe(200);
   });
 
