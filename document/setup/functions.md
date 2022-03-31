@@ -11,6 +11,7 @@ firebase functions:config:set spotify.client_id="..." spotify.client_secret="...
 - client_secret : [get from spotify dashboard](./spotify-developer.md#copy-clientid--secretkey)
 - app_redirect_uri : musicshorts:/oauth
 - admin_redirect_uri : https://[(auth-domain)](./firebase.md#get-your-auth-domain)/spotify/callback
+- admin_password : Anything you want!
 
 #### Result example
 ```bash
