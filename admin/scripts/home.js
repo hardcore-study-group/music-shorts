@@ -1,7 +1,7 @@
 // initialize api keys
 const baseUrl = 'https://us-central1-music-shorts.cloudfunctions.net/api';
 
-const access_token = '';
+let adminPasswordInput = document.getElementById('admin-password');
 
 // get tracks
 let musicList = document.getElementById('music-list');
@@ -9,7 +9,7 @@ let musicList = document.getElementById('music-list');
 fetch(baseUrl + '/tracks' + '/?offset=0&limit=50', {
     headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + access_token,
+        'Authorization': 'Bearer ' + adminPasswordInput.value,
     }
 })
     .then(res => res.json())
@@ -56,7 +56,8 @@ search.addEventListener('input', e => {
         fetch(baseUrl + '/search/spotify' + '/?q=' + e.target.value, {
             headers: {
                 'Content-Type': 'application/json',
-                'type': 'admin'
+                'type': 'admin',
+                'Authorization': 'Bearer ' + adminPasswordInput.value
             }
         }).then(res => res.json())
             .then(data => {
@@ -108,7 +109,7 @@ addButton.addEventListener('click', e => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + access_token,
+                'Authorization': 'Bearer ' + adminPasswordInput.value,
             },
             body: JSON.stringify({
                 "spotify_id" : document.addForm.spotifyId.value,
@@ -117,7 +118,7 @@ addButton.addEventListener('click', e => {
                 "end_time" : document.addForm.youtubeEndTime.value,
             })
         })
-        .catch(e => console.log(e))
+        .catch(error => console.log('post error:' + error))
         .then(res => {
             if (res.ok) {
                 if (curSelected != null) {
@@ -143,12 +144,11 @@ addButton.addEventListener('click', e => {
 
 // delete track
 function deleteTrack(event, musicItem) {
-    console.log(musicItem.getAttribute('track-id'));
     fetch(baseUrl + '/tracks/' + musicItem.getAttribute('track-id'), {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + access_token,
+            'Authorization': 'Bearer ' + adminPasswordInput.value,
         }
     })
         .then(res => {

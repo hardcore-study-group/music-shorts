@@ -28,8 +28,18 @@ header {
     font-size: 16px;
 }
 
-#warning-sign {
-    display: none;
+input {
+    border: none;
+    border-radius: 2px;
+    padding: 0 4px;
+}
+
+input:focus {
+    outline: none;
+}
+
+#admin-password {
+    height: 20px;
 }
 
 .music-button {
@@ -161,10 +171,6 @@ header {
     align-self: flex-end;
 }
 
-#search:focus {
-    outline: none;
-}
-
 #search::placeholder {
     color: lightgray;
     font-size: 14px;
@@ -225,14 +231,14 @@ header {
     border: none;
 }
 
-.youtube-input:focus {
-    outline: none;
-}
-
 #youtube-url {
     width: 240px;
 }
 
 .youtube-time {
     width: 60px;
+}
+
+#warning-sign {
+    display: none;
 }
