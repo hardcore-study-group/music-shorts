@@ -12,10 +12,10 @@ const ProfileScreen = () => {
   const {signOut, isAuthorized} = useContext(AuthContext);
 
   const Options = [
-    {
-      title: isAuthorized ? 'Sign out' : 'Sign in',
-      onPress: isAuthorized ? signOut : () => navigate('SignIn'),
-    },
+    // {
+    //   title: isAuthorized ? 'Sign out' : 'Sign in',
+    //   onPress: isAuthorized ? signOut : () => navigate('SignIn'),
+    // },
     {title: 'Rate us', onPress: () => InAppReview.RequestInAppReview()},
     {
       title: 'Privacy policy',

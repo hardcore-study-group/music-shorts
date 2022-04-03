@@ -16,10 +16,12 @@ import axios from '../../config/axios';
 import {Track} from '../../constants/types';
 import {ShortsPlayerContext} from '../../context/ShortsPlayerContext';
 import {AuthContext} from '../../context/AuthContext';
+import {PlaylistContext} from '../../context/PlaylistContext';
 
 const HomeScreenCard: React.FC<Track> = props => {
   const {image, artist_names, name, spotify_id, climax_url} = props;
   const {pause, resume, paused, uri} = useContext(ShortsPlayerContext);
+  const {add} = useContext(PlaylistContext);
   const {isAuthorized} = useContext(AuthContext);
   const {bottom} = useSafeAreaInsets();
   const {navigate} = useNavigation();
@@ -46,19 +48,20 @@ const HomeScreenCard: React.FC<Track> = props => {
   }, [paused]);
 
   const onAddToPlaylist = useCallback(async () => {
-    if (!isAuthorized) return navigate('SignIn');
+    // if (!isAuthorized) return navigate('SignIn');
+    // await axios.post('me/playlist/tracks', {track_id: spotify_id});
     setPlaylistAdded(true);
-    await axios.post('me/playlist/tracks', {track_id: spotify_id});
-  }, [spotify_id, isAuthorized]);
+    add(props);
+  }, [spotify_id, isAuthorized, props]);
 
   return (
     <View style={[styles.container, {height}]}>
-      {/* <Image
+      <Image
         resizeMode="cover"
         style={styles.background}
         source={{uri: image}}
         blurRadius={10}
-      /> */}
+      />
       <View style={[styles.background, {backgroundColor: '#222'}]} />
       <View style={styles.header}>
         <View style={{height: STATUSBAR_HEIGHT}} />
@@ -71,7 +74,8 @@ const HomeScreenCard: React.FC<Track> = props => {
           </BorderlessButton>
           <BorderlessButton
             onPress={() =>
-              isAuthorized ? navigate('Playlist') : navigate('SignIn')
+              // isAuthorized ? navigate('Playlist') : navigate('SignIn')
+              navigate('Playlist')
             }
             style={styles.headerButton}
           >
