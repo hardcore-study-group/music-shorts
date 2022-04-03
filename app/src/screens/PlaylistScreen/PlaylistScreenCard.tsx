@@ -8,32 +8,42 @@ import Typography from '../../components/Typography';
 import artistFormatter from '../../util/artistFormatter';
 import durationFormatter from '../../util/durationFormatter';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {Track} from '../../constants/types';
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
 interface PlaylistScreenCardProps {
-  item: SpotifyApi.PlaylistTrackObject;
+  // item: SpotifyApi.PlaylistTrackObject;
+  item: Track;
   onDelete: (id: string) => void;
+  playerType: string;
 }
 
 const PlaylistScreenCard: React.FC<PlaylistScreenCardProps> = props => {
   const swipeableRef = useRef<Swipeable>(null);
   const {
-    item: {
-      track: {
-        id,
-        album: {images},
-        artists,
-        duration_ms,
-        name,
-      },
-    },
+    // item: {
+    //   track: {
+    //     id,
+    //     album: {images},
+    //     artists,
+    //     duration_ms,
+    //     name,
+    //   },
+    // },
+    item: {id, spotify_id, youtube_id, image, artist_names, name},
+    playerType,
     onDelete,
   } = props;
 
   const onPress = useCallback(() => {
-    Linking.openURL(`https://open.spotify.com/track/${id}`);
-  }, [id]);
+    if (playerType === 'spotify')
+      Linking.openURL(`https://open.spotify.com/track/${spotify_id}`);
+    if (playerType === 'youtube')
+      Linking.openURL(`https://youtube.com/watch?v=${youtube_id}`);
+    if (playerType === 'youtube-music')
+      Linking.openURL(`https://music.youtube.com/watch?v=${youtube_id}`);
+  }, [spotify_id, youtube_id, playerType]);
 
   return (
     <Swipeable
@@ -58,15 +68,20 @@ const PlaylistScreenCard: React.FC<PlaylistScreenCardProps> = props => {
       }}
     >
       <Pressable onPress={onPress} style={styles.container}>
-        <FastImage source={{uri: images[0].url}} style={styles.image} />
+        <FastImage
+          //  source={{uri: images[0].url}}
+          source={{uri: image}}
+          style={styles.image}
+        />
         <View>
           <Typography numberOfLines={1} style={styles.name}>
             {name}
           </Typography>
           <Typography numberOfLines={1} style={styles.info}>
-            {`${artistFormatter(
+            {artistFormatter(artist_names)}
+            {/* {`${artistFormatter(
               artists.map(v => v.name),
-            )} ・ ${durationFormatter(duration_ms)}`}
+            )} ・ ${durationFormatter(duration_ms)}`} */}
           </Typography>
         </View>
       </Pressable>

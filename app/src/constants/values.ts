@@ -13,7 +13,7 @@ export const SPOTIFY_CLIENT_ID = 'babda1a147134d70b64cb301089cfeaa';
 
 export const BASE_URL = (() => {
   const LOCAL_IP = '192.168.10.13';
-  const PROD_TEST_MODE = false;
+  const PROD_TEST_MODE = true;
   if (!__DEV__ || PROD_TEST_MODE)
     return 'https://us-central1-music-shorts.cloudfunctions.net/api';
   if (IS_ANDROID) {

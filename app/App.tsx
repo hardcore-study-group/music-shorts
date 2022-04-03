@@ -9,6 +9,8 @@ import AuthProvider from './src/context/AuthContext';
 import {QueryClientProvider} from 'react-query';
 import {queryClient} from './src/config/reactQuery';
 import ShortsPlayerProvider from './src/context/ShortsPlayerContext';
+import {PersistedStateProvider} from 'react-native-use-persisted-state';
+import PlaylistProvider from './src/context/PlaylistContext';
 
 LogBox.ignoreLogs([
   "[react-native-gesture-handler] Seems like you're using an old API with gesture components, check out new Gestures system!",
@@ -22,24 +24,28 @@ const App = () => {
   }, []);
 
   return (
-    <GestureHandlerRootView style={{flex: 1}}>
-      <QueryClientProvider client={queryClient}>
-        <AuthProvider>
-          <ShortsPlayerProvider>
-            <SafeAreaProvider>
-              <View style={{flex: 1, backgroundColor: COLORS.black}}>
-                <StatusBar
-                  backgroundColor="transparent"
-                  barStyle="light-content"
-                  translucent
-                />
-                <Navigation />
-              </View>
-            </SafeAreaProvider>
-          </ShortsPlayerProvider>
-        </AuthProvider>
-      </QueryClientProvider>
-    </GestureHandlerRootView>
+    <PersistedStateProvider>
+      <GestureHandlerRootView style={{flex: 1}}>
+        <QueryClientProvider client={queryClient}>
+          <AuthProvider>
+            <ShortsPlayerProvider>
+              <PlaylistProvider>
+                <SafeAreaProvider>
+                  <View style={{flex: 1, backgroundColor: COLORS.black}}>
+                    <StatusBar
+                      backgroundColor="transparent"
+                      barStyle="light-content"
+                      translucent
+                    />
+                    <Navigation />
+                  </View>
+                </SafeAreaProvider>
+              </PlaylistProvider>
+            </ShortsPlayerProvider>
+          </AuthProvider>
+        </QueryClientProvider>
+      </GestureHandlerRootView>
+    </PersistedStateProvider>
   );
 };
 
