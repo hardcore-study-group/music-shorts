@@ -1,1 +1,1 @@
-location.href = 'sign-in.html';
+location.href = 'home.html';

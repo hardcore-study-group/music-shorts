@@ -1,7 +1,7 @@
 // initialize api keys
 const baseUrl = 'https://us-central1-music-shorts.cloudfunctions.net/api';
 
-const access_token = '';
+let adminPasswordInput = document.getElementById('admin-password');
 
 // get tracks
 let musicList = document.getElementById('music-list');
@@ -9,7 +9,7 @@ let musicList = document.getElementById('music-list');
 fetch(baseUrl + '/tracks' + '/?offset=0&limit=50', {
     headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + access_token,
+        'Authorization': 'Bearer ' + adminPasswordInput.value,
     }
 })
     .then(res => res.json())
@@ -56,7 +56,8 @@ search.addEventListener('input', e => {
         fetch(baseUrl + '/search/spotify' + '/?q=' + e.target.value, {
             headers: {
                 'Content-Type': 'application/json',
-                'type': 'admin'
+                'type': 'admin',
+                'Authorization': 'Bearer ' + adminPasswordInput.value
             }
         }).then(res => res.json())
             .then(data => {
@@ -101,42 +102,53 @@ function addTrack(event, trackId) {
 let addButton = document.getElementById('add-button');
 addButton.addEventListener('click', e => {
     addButton.disabled = true;
+    document.getElementById('warning-sign').style.display = 'none';
     addButton.innerHTML = 'Uploading...';
-    fetch(baseUrl + '/tracks', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + access_token,
-        },
-        body: JSON.stringify({
-            "spotify_id" : document.addForm.spotifyId.value,
-            "youtube_id" : document.addForm.youtubeUrl.value.split('v=')[1].split('&')[0],
-            "start_time" : document.addForm.youtubeStartTime.value,
-            "end_time" : document.addForm.youtubeEndTime.value,
+    try {
+        fetch(baseUrl + '/tracks', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + adminPasswordInput.value,
+            },
+            body: JSON.stringify({
+                "spotify_id" : document.addForm.spotifyId.value,
+                "youtube_id" : document.addForm.youtubeUrl.value.split('v=')[1].split('&')[0],
+                "start_time" : document.addForm.youtubeStartTime.value,
+                "end_time" : document.addForm.youtubeEndTime.value,
+            })
         })
-    })
+        .catch(error => console.log('post error:' + error))
+        .then(res => {
+            if (res.ok) {
+                if (curSelected != null) {
+                    curSelected.classList.remove('selected');
+                }
+                document.addForm.spotifyId.value = '';
+                document.addForm.youtubeUrl.value = '';
+                document.addForm.youtubeStartTime.value = '';
+                document.addForm.youtubeEndTime.value = '';
+            }
+            else {
+                document.getElementById('warning-sign').style.display = 'inline';
+            }
+        })
         .then(res => {
             addButton.disabled = false;
             addButton.innerHTML = 'Add music';
         });
-
-    document.addForm.spotifyId.value = ''
-    if (curSelected != null) {
-        curSelected.classList.remove('selected');
+    } catch(error) {
+        console.log(error);
     }
-    document.addForm.youtubeUrl.value = ''
-    document.addForm.youtubeStartTime.value = ''
-    document.addForm.youtubeEndTime.value = ''
 })
 
 // delete track
 function deleteTrack(event, musicItem) {
-    console.log(musicItem.getAttribute('track-id'));
     fetch(baseUrl + '/tracks/' + musicItem.getAttribute('track-id'), {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + access_token,
+            'Authorization': 'Bearer ' + adminPasswordInput.value,
         }
     })
         .then(res => {
