@@ -138,8 +138,8 @@ android {
         applicationId "com.hardcorestudygroup.musicshorts"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 2
-        versionName "1.1.0"
+        versionCode 3
+        versionName "1.2.0"
         manifestPlaceholders = [
             appAuthRedirectScheme: 'musicshorts'
         ]
